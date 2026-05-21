@@ -1,4 +1,5 @@
 import React from 'react';
+import './NavBar.css';
 
 /**
  * NavBar Component specced from Figma (Node 611:2123)
@@ -24,8 +25,7 @@ export function NavBar({ activeTab, onChangeTab }) {
       id: "chat",
       label: "진단 받기",
       activeIcon: "http://localhost:3845/assets/fe3544d63eff88a86ea5263d482372dc001a1c36.svg",
-      inactiveIcon: "http://localhost:3845/assets/8152a1a4967dfecf5923a66a205e68510b3d4be9.svg",
-      center: true
+      inactiveIcon: "http://localhost:3845/assets/8152a1a4967dfecf5923a66a205e68510b3d4be9.svg"
     },
     {
       id: "map",
