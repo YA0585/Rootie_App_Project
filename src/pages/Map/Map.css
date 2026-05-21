@@ -1,44 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap');
-
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
 :root {
-    --green-primary: #3AB56A;
-    --green-dark: #2A8A50;
-    --green-light: #E8F7EE;
-    --text-dark: #1A1A1A;
-    --text-mid: #555;
-    --text-light: #888;
-    --bg: #F5F6F8;
-    --white: #FFFFFF;
-    --border: #E8E8E8;
-    --shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
-    --radius: 16px;
-}
-
-body {
-    font-family: 'Noto Sans KR', sans-serif;
-    background: #EDEEEF;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-}
-
-.phone-wrap {
-    width: 430px;
-    height: 932px;
-    background: var(--bg);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    position: relative;
+    --green-primary: var(--fin-maincolor);
+    --green-dark: var(--project-semantic-text-healthy);
+    --green-light: var(--project-semantic-bgcolor-healthy);
+    --text-dark: var(--fin-primary-text);
+    --text-mid: var(--fin-secondary-text);
+    --text-light: var(--fin-secondary-text);
+    --bg: var(--fin-background);
+    --white: var(--fin-white);
+    --border: var(--fin-divider);
+    --shadow: var(--shadow-md);
+    --radius: var(--radius-lg);
 }
 
 /* Map */
@@ -204,7 +175,7 @@ body {
 }
 
 .park-block::after {
-    content: "⛳";
+    content: "";
     position: absolute;
     top: 50%;
     left: 50%;
@@ -248,7 +219,6 @@ body {
     border: none;
     outline: none;
     font-size: 14px;
-    font-family: 'Noto Sans KR', sans-serif;
     color: var(--text-dark);
     background: transparent;
 }
@@ -287,7 +257,6 @@ body {
     background: var(--white);
     color: var(--text-dark);
     transition: all 0.15s;
-    font-family: 'Noto Sans KR', sans-serif;
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -322,20 +291,19 @@ body {
 
 /* Drag handle */
 .drag-handle {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
     width: 40px;
     height: 4px;
     background: #ccc;
     border-radius: 2px;
-    margin: 12px auto 4px auto;
-    flex-shrink: 0;
+    z-index: 10;
 }
 
 /* Bottom Sheet */
 .bottom-sheet {
-    width: 430px;
-    box-sizing: border-box;
-    margin: 0 auto;
-    padding: 0 20px;
     flex: 1;
     background: var(--white);
     overflow-y: auto;
@@ -348,11 +316,10 @@ body {
 
 /* AI Banner */
 .ai-banner {
-    box-sizing: border-box;
     display: flex;
     align-items: flex-start;
     gap: 14px;
-    margin: 16px 0 8px;
+    margin: 16px 16px 8px;
     border: 1.5px solid var(--border);
     border-radius: var(--radius);
     padding: 14px 16px;
@@ -382,20 +349,20 @@ body {
 
 /* Shop List */
 .shop-list {
-    padding: 8px 0 97px;
+    padding: 8px 0 90px;
 }
 
 .shop-row {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
+    padding: 16px;
     animation: fadeUp 0.35s ease both;
 }
 
 .shop-info {
-    flex: none;
-    width: 169px;
-    /* Prevent text overflow from stretching flex item */
+    flex: 1;
+    padding-right: 12px;
 }
 
 .shop-name {
@@ -460,27 +427,19 @@ body {
 .btn-reserve {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 4px;
-    width: 68px;
-    min-width: 68px;
-    max-width: 68px;
-    height: 30px;
-    min-height: 30px;
-    max-height: 30px;
-    padding: 0;
-    box-sizing: border-box;
+    gap: 6px;
+    padding: 9px 14px;
     background: var(--green-primary);
     color: var(--white);
     border: none;
-    border-radius: 20px;
+    border-radius: 10px;
     font-size: 13px;
     font-weight: 600;
     cursor: pointer;
     white-space: nowrap;
     transition: background 0.15s;
-    font-family: 'Noto Sans KR', sans-serif;
     flex-shrink: 0;
+    margin-top: 4px;
 }
 
 .btn-reserve:hover {
@@ -494,6 +453,63 @@ body {
 }
 
 /* Bottom Nav */
+.bottom-nav {
+    position: absolute;
+    bottom: 0;
+    width: 430px;
+    height: 68px;
+    background: var(--white);
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    z-index: 100;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    padding: 6px 12px;
+    border-radius: 10px;
+    transition: background 0.15s;
+}
+
+.nav-item:hover {
+    background: var(--green-light);
+}
+
+.nav-icon {
+    font-size: 22px;
+    line-height: 1;
+}
+
+.nav-label {
+    font-size: 10px;
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+.nav-item.active .nav-label {
+    color: var(--green-primary);
+    font-weight: 700;
+}
+
+.nav-center {
+    background: var(--green-primary);
+    border-radius: 14px;
+    padding: 8px 16px;
+}
+
+.nav-center .nav-label {
+    color: var(--white);
+}
+
+.nav-center:hover {
+    background: var(--green-dark);
+}
 
 @keyframes fadeUp {
     from {
