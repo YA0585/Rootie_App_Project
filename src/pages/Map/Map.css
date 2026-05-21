@@ -385,16 +385,16 @@ body {
 }
 
 .shop-row {
-    width: 390px;
+    width: 351px;
+    margin: 0 auto;
     display: flex;
     align-items: flex-start;
-    justify-content: flex-start;
-    gap: 11px;
+    justify-content: space-between;
     animation: fadeUp 0.35s ease both;
 }
 
 .shop-info {
-    flex: 1;
+    flex: none;
     width: 169px;
     /* Prevent text overflow from stretching flex item */
 }
