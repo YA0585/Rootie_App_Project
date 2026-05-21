@@ -497,7 +497,6 @@ body {
   cursor: pointer;
   padding: 6px 12px;
   border-radius: 10px;
-  transition: transform var(--transition-fast), background var(--transition-fast);
   outline: none;
 }
 
@@ -505,19 +504,8 @@ body {
   transform: scale(0.95);
 }
 
-.nav-item:hover {
-  background: none;
-}
-
-.nav-item:hover .nav-label {
-  color: var(--fin-maincolor);
-}
-
-.nav-item:hover img {
-  filter: sepia(100%) hue-rotate(50deg) saturate(3) brightness(0.7);
-}
-
-.nav-item.active img, .nav-item.active:hover img {
+.nav-item.active img,
+.nav-item.active:hover img {
   filter: none;
 }
 

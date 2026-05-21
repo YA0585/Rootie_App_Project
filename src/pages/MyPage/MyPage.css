@@ -17,7 +17,7 @@
     --text-light: #888;
     --bg: #F5F6F8;
     --white: #FFFFFF;
-    --border: #E8E8E8;
+    --border: #E7E5E4;
     --shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
     --radius: 16px;
 }
@@ -254,7 +254,7 @@ body {
 }
 
 .action-item:hover {
-    background: var(--green-light);
+    background: var(--border);
 }
 
 .action-icon {
