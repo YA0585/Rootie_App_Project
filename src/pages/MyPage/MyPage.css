@@ -291,6 +291,7 @@ body {
     font-size: 14px;
     font-weight: 700;
     color: var(--text-dark);
+    padding: 0; /* Home.css에서 넘어오는 padding(0 16px 12px) 덮어쓰기 */
 }
 
 /* Plants */
