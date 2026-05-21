@@ -98,7 +98,15 @@ export default function Map({ navBar }) {
             {/* Map Background */}
             <div className="map-background">
                 {/* Top Search */}
-                <div className="top-section">
+                <div 
+                    className="top-section"
+                    style={{
+                        opacity: Math.max(0, 1 - (sheetHeight - 46) / 15),
+                        transform: `translateY(-${Math.max(0, (sheetHeight - 46) * 1.5)}px)`,
+                        transition: isDragging ? 'none' : 'all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1)',
+                        pointerEvents: sheetHeight > 55 ? 'none' : 'auto'
+                    }}
+                >
                     <div className="search-bar">
                         <Search size={22} className="search-icon" />
                         <input type="text" placeholder="" />
@@ -146,7 +154,7 @@ export default function Map({ navBar }) {
                     className="drag-bar" 
                     onMouseDown={(e) => handleDragStart(e.clientY)}
                     onTouchStart={(e) => handleDragStart(e.touches[0].clientY)}
-                    style={{ cursor: 'grab', padding: '10px 0', margin: '-10px auto 8px', backgroundClip: 'content-box' }}
+                    style={{ cursor: 'grab', padding: '10px 0', backgroundClip: 'content-box' }}
                 />
 
                 {/* Recommendation Card */}
