@@ -74,6 +74,8 @@ body {
     margin-top: 14px;
     overflow-x: auto;
     padding-bottom: 4px;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
 }
 
 .filter-row::-webkit-scrollbar {
@@ -125,6 +127,12 @@ body {
     border-radius: 28px 28px 0 0;
     padding: 12px 20px 24px;
     overflow-y: auto;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.bottom-sheet::-webkit-scrollbar {
+    display: none;
 }
 
 .drag-bar {
