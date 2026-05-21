@@ -380,10 +380,12 @@ body {
 
 /* Shop List */
 .shop-list {
-    padding: 8px 20px 97px;
+    padding: 8px 0 97px;
+    margin: 0 auto;
 }
 
 .shop-row {
+    width: 390px;
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
@@ -393,7 +395,7 @@ body {
 
 .shop-info {
     flex: 1;
-    min-width: 0;
+    width: 169px;
     /* Prevent text overflow from stretching flex item */
 }
 
