@@ -60,7 +60,7 @@ export default function LocationSetting({ onBack }) {
                             <path d="M16 0C7.163 0 0 7.163 0 16c0 10 16 24 16 24S32 26 32 16C32 7.163 24.837 0 16 0z"
                                 fill="#3AB56A" />
                             <circle cx="16" cy="16" r="7" fill="white" />
-                            <circle cx="16" cy="16" r="4" fill="#3AB56A" />
+                            <circle cx="16" cy="16" r="4" fill="white" />
                         </svg>
                     </div>
                 </div>

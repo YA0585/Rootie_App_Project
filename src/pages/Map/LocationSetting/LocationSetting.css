@@ -67,7 +67,7 @@ body {
 
 /* Title */
 .loc-title-wrap {
-    padding: 8px 20px 16px;
+    padding: 79px 20px 16px;
     flex-shrink: 0;
 }
 
@@ -348,7 +348,7 @@ body {
 /* Address Result */
 .loc-result {
     background: var(--white);
-    padding: 18px 20px 14px;
+    padding: 24px 20px 97px;
     border-top: 1px solid var(--border);
     flex-shrink: 0;
     animation: fadeUp 0.35s ease both;
