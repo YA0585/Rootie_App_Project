@@ -385,8 +385,7 @@ body {
 }
 
 .shop-row {
-    width: 351px;
-    margin: 0 auto;
+    width: 390px;
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
