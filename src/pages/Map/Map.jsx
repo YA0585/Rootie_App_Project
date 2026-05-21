@@ -1,143 +1,120 @@
-import React, { useState } from "react";
+// MapPage.jsx
 import "./Map.css";
+import {
+    Search,
+    Sprout,
+    Stethoscope,
+    Scissors,
+    Syringe,
+    Calendar,
+    Star,
+    Plus,
+} from "lucide-react";
 
-const FILTERS = [
-    { label: "관엽식물", emoji: "🌿" },
-    { label: "진단", emoji: "🧪" },
-    { label: "분갈이", emoji: "🪴" },
-    { label: "영양제", emoji: "💉" },
-];
-
-const shops = [
-    {
-        id: 1,
-        name: "꽃집",
-        tags: "분갈이 · 영양제",
-        status: "영업중",
-        closes: "18:00에 영업종료",
-        distance: "도보 5분",
-        address: "서울시 마포구 00동",
-        rating: 4.4,
-        price: "55,000원~",
-    },
-    {
-        id: 2,
-        name: "꽃집",
-        tags: "분갈이 · 영양제",
-        status: "영업중",
-        closes: "18:00에 영업종료",
-        distance: "도보 5분",
-        address: "서울시 마포구 00동",
-        rating: 4.4,
-        price: "55,000원~",
-    },
-];
-
-export default function Map({ navBar, onGoToShop, onGoToLocationSetting }) {
-    const [activeFilter, setActiveFilter] = useState("관엽식물");
+export default function MapPage() {
+    const shops = [
+        {
+            id: 1,
+            name: "꽃집",
+            category: "분갈이 · 영양제",
+            close: "영업중 · 18:00에 영업종료",
+            location: "도보 5분 · 서울시 마포구 00동",
+            rating: "4.4",
+            price: "55,000원~",
+        },
+        {
+            id: 2,
+            name: "꽃집",
+            category: "분갈이 · 영양제",
+            close: "영업중 · 18:00에 영업종료",
+            location: "도보 5분 · 서울시 마포구 00동",
+            rating: "4.4",
+            price: "55,000원~",
+        },
+    ];
 
     return (
-        <div className="phone-wrap">
+        <div className="map-page">
+            {/* Map Background */}
+            <div className="map-background">
+                {/* Top Search */}
+                <div className="top-section">
+                    <div className="search-bar">
+                        <Search size={22} className="search-icon" />
+                        <input type="text" placeholder="" />
+                    </div>
 
-            {/* Map Area */}
-            <div className="map-area">
-                <div className="map-bg">
-                    <div className="road road-v1" />
-                    <div className="road road-v2" />
-                    <div className="road road-h1" />
-                    <div className="road road-h2" />
-                    <div className="road road-diag" />
-                    <div className="park-block" />
-                    {[...Array(12)].map((_, i) => (
-                        <div key={i} className={`city-block block-${i}`} />
-                    ))}
-                </div>
-
-                {/* Search bar */}
-                <div className="search-bar" onClick={() => onGoToLocationSetting && onGoToLocationSetting()} style={{ cursor: "pointer" }}>
-                    <svg width="18" height="18" fill="none" viewBox="0 0 24 24"
-                        stroke="#aaa" strokeWidth="2">
-                        <circle cx="11" cy="11" r="8" />
-                        <line x1="21" y1="21" x2="16.65" y2="16.65" />
-                    </svg>
-                    <input type="text" placeholder="업체 또는 지역 검색" readOnly />
-                </div>
-
-                {/* Filter chips */}
-                <div className="filter-row">
-                    {FILTERS.map(({ label, emoji }) => (
-                        <button
-                            key={label}
-                            className={`filter-chip ${activeFilter === label ? "active" : ""}`}
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                setActiveFilter(label);
-                            }}
-                        >
-                            <span>{emoji}</span> {label}
+                    {/* Filter Chips */}
+                    <div className="filter-row">
+                        <button className="chip active">
+                            <Sprout size={16} />
+                            반연식물
                         </button>
-                    ))}
+
+                        <button className="chip">
+                            <Stethoscope size={16} />
+                            진단
+                        </button>
+
+                        <button className="chip">
+                            <Scissors size={16} />
+                            분갈이
+                        </button>
+
+                        <button className="chip">
+                            <Syringe size={16} />
+                            영양제
+                        </button>
+                    </div>
                 </div>
 
-                {/* Zoom button */}
-                <button className="zoom-btn" aria-label="확대" onClick={(e) => e.stopPropagation()}>
-                    <svg width="20" height="20" fill="none" viewBox="0 0 24 24"
-                        stroke="white" strokeWidth="2.5">
-                        <line x1="12" y1="5" x2="12" y2="19" />
-                        <line x1="5" y1="12" x2="19" y2="12" />
-                    </svg>
+                {/* Floating Add Button */}
+                <button className="floating-btn">
+                    <Plus size={24} />
                 </button>
             </div>
 
             {/* Bottom Sheet */}
             <div className="bottom-sheet">
-                <div className="drag-handle" />
-                <div className="ai-banner">
-                    <span className="ai-icon">✦</span>
-                    <div className="ai-text">
-                        <p className="ai-title">우리 집 식물에게 알맞는 업체는?</p>
-                        <p className="ai-sub">간단한 체팅 후, 딱 맞는 관리 전문가와 매칭 받아보세요.</p>
+                <div className="drag-bar" />
+
+                {/* Recommendation Card */}
+                <div className="recommend-card">
+                    <div className="sparkle">✦</div>
+
+                    <div>
+                        <h3>우리 집 식물에게 알맞는 업체는?</h3>
+                        <p>
+                            간단한 채팅 후, 딱 맞는 관리 전문가와 매칭 받아보세요.
+                        </p>
                     </div>
                 </div>
 
+                {/* Shop List */}
                 <div className="shop-list">
-                    {shops.map((shop, i) => (
-                        <div key={shop.id}>
-                            <div className="shop-row">
-                                <div className="shop-info">
-                                    <p className="shop-name">{shop.name}</p>
-                                    <p className="shop-tags">{shop.tags}</p>
-                                    <p className="shop-hours">
-                                        <span className="open-dot" />
-                                        {shop.status} · {shop.closes}
-                                    </p>
-                                    <p className="shop-location">{shop.distance} · {shop.address}</p>
-                                    <div className="shop-meta">
-                                        <span className="star">★</span>
-                                        <span className="shop-rating">{shop.rating}</span>
-                                        <span className="shop-price">&nbsp;{shop.price}</span>
-                                    </div>
+                    {shops.map((shop) => (
+                        <div className="shop-card" key={shop.id}>
+                            <div className="shop-info">
+                                <h4>{shop.name}</h4>
+                                <p>{shop.category}</p>
+                                <p>{shop.close}</p>
+                                <p>{shop.location}</p>
+
+                                <div className="rating-row">
+                                    <Star size={14} fill="#73B843" strokeWidth={1.5} />
+                                    <span>{shop.rating}</span>
+                                    <span>{shop.price}</span>
                                 </div>
-                                <button className="btn-reserve" onClick={() => onGoToShop && onGoToShop()}>
-                                    <svg width="14" height="14" fill="none" viewBox="0 0 24 24"
-                                        stroke="white" strokeWidth="2">
-                                        <rect x="3" y="4" width="18" height="18" rx="2" />
-                                        <line x1="16" y1="2" x2="16" y2="6" />
-                                        <line x1="8" y1="2" x2="8" y2="6" />
-                                        <line x1="3" y1="10" x2="21" y2="10" />
-                                    </svg>
-                                    예약
-                                </button>
                             </div>
-                            {i < shops.length - 1 && <div className="shop-divider" />}
+
+                            <button className="reserve-btn">
+                                <Calendar size={16} />
+                                예약
+                            </button>
                         </div>
                     ))}
                 </div>
             </div>
-
-            {/* Bottom Nav */}
-            {navBar}
-
         </div>
     );
 }
