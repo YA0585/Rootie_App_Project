@@ -322,15 +322,12 @@ body {
 
 /* Drag handle */
 .drag-handle {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
     width: 40px;
     height: 4px;
     background: #ccc;
     border-radius: 2px;
-    z-index: 10;
+    margin: 12px auto 4px auto;
+    flex-shrink: 0;
 }
 
 /* Bottom Sheet */
