@@ -332,6 +332,7 @@ body {
 
 /* Bottom Sheet */
 .bottom-sheet {
+    width: 430px;
     flex: 1;
     background: var(--white);
     overflow-y: auto;
@@ -381,6 +382,7 @@ body {
 }
 
 .shop-row {
+    width: 169px;
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
@@ -458,11 +460,7 @@ body {
     justify-content: center;
     gap: 4px;
     width: 68px;
-    min-width: 68px;
-    max-width: 68px;
     height: 30px;
-    min-height: 30px;
-    max-height: 30px;
     padding: 0;
     box-sizing: border-box;
     background: var(--green-primary);
