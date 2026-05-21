@@ -1,4 +1,4 @@
-/* MapPage.css */
+/* Map.css */
 
 * {
     margin: 0;
@@ -24,7 +24,7 @@ body {
 /* Map Background */
 .map-background {
     height: 58%;
-    background-image: url("https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=1200&auto=format&fit=crop");
+    background-image: url();
     background-size: cover;
     background-position: center;
     position: relative;

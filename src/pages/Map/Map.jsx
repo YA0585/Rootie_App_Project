@@ -11,7 +11,7 @@ import {
     Plus,
 } from "lucide-react";
 
-export default function MapPage() {
+export default function Map({ navBar }) {
     const shops = [
         {
             id: 1,
@@ -115,6 +115,8 @@ export default function MapPage() {
                     ))}
                 </div>
             </div>
+            {/* Bottom Nav */}
+            {navBar}
         </div>
     );
 }
