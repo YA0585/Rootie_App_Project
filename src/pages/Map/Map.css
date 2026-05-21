@@ -346,10 +346,11 @@ body {
 /* AI Banner */
 .ai-banner {
     width: 390px;
+    box-sizing: border-box;
     display: flex;
     align-items: flex-start;
     gap: 14px;
-    margin: 16px 20px 8px;
+    margin: 16px auto 8px;
     border: 1.5px solid var(--border);
     border-radius: var(--radius);
     padding: 14px 16px;
@@ -379,7 +380,7 @@ body {
 
 /* Shop List */
 .shop-list {
-    padding: 8px 0px 97px;
+    padding: 8px 20px 97px;
 }
 
 .shop-row {
