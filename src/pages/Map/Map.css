@@ -24,7 +24,7 @@ body {
 /* Map Background */
 .map-background {
     height: 58%;
-    background-image: url();
+    background-color: #fff;
     background-size: cover;
     background-position: center;
     position: relative;
@@ -101,7 +101,7 @@ body {
 .floating-btn {
     position: absolute;
     right: 18px;
-    bottom: 22px;
+    bottom: calc(46% + 10px);
     width: 54px;
     height: 54px;
     border: none;

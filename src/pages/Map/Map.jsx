@@ -67,12 +67,12 @@ export default function Map({ navBar }) {
                         </button>
                     </div>
                 </div>
-
-                {/* Floating Add Button */}
-                <button className="floating-btn">
-                    <Plus size={24} />
-                </button>
             </div>
+
+            {/* Floating Add Button */}
+            <button className="floating-btn">
+                <Plus size={24} />
+            </button>
 
             {/* Bottom Sheet */}
             <div className="bottom-sheet">
