@@ -176,7 +176,7 @@ export default function ShopDetail2() {
                     </div>
                     <div className="review-filter-row">
                         <span className="review-filter-label">· 관련도순</span>
-                        <span className="review-filter-label active">전도순</span>
+                        <span className="review-filter-label active">별점순</span>
                     </div>
                     {REVIEWS.map((r) => (
                         <div key={r.id} className="review-card">
