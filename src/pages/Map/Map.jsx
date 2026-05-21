@@ -91,47 +91,56 @@ export default function Map({ navBar, onGoToShop, onGoToLocationSetting }) {
 
             {/* Bottom Sheet */}
             <div className="bottom-sheet">
-                <div className="drag-handle" />
-                <div className="ai-banner">
-                    <span className="ai-icon">✦</span>
-                    <div className="ai-text">
-                        <p className="ai-title">우리 집 식물에게 알맞는 업체는?</p>
-                        <p className="ai-sub">간단한 체팅 후, 딱 맞는 관리 전문가와 매칭 받아보세요.</p>
-                    </div>
+                <div
+                    className="drag-handle-area"
+                    onMouseDown={handleDragStart}
+                    onTouchStart={handleDragStart}
+                >
+                    <div className="drag-handle" />
                 </div>
 
-                <div className="shop-list">
-                    {shops.map((shop, i) => (
-                        <div key={shop.id}>
-                            <div className="shop-row">
-                                <div className="shop-info">
-                                    <p className="shop-name">{shop.name}</p>
-                                    <p className="shop-tags">{shop.tags}</p>
-                                    <p className="shop-hours">
-                                        <span className="open-dot" />
-                                        {shop.status} · {shop.closes}
-                                    </p>
-                                    <p className="shop-location">{shop.distance} · {shop.address}</p>
-                                    <div className="shop-meta">
-                                        <span className="star">★</span>
-                                        <span className="shop-rating">{shop.rating}</span>
-                                        <span className="shop-price">&nbsp;{shop.price}</span>
-                                    </div>
-                                </div>
-                                <button className="btn-reserve" onClick={() => onGoToShop && onGoToShop()}>
-                                    <svg width="14" height="14" fill="none" viewBox="0 0 24 24"
-                                        stroke="white" strokeWidth="2">
-                                        <rect x="3" y="4" width="18" height="18" rx="2" />
-                                        <line x1="16" y1="2" x2="16" y2="6" />
-                                        <line x1="8" y1="2" x2="8" y2="6" />
-                                        <line x1="3" y1="10" x2="21" y2="10" />
-                                    </svg>
-                                    예약
-                                </button>
-                            </div>
-                            {i < shops.length - 1 && <div className="shop-divider" />}
+                <div className="sheet-content">
+                    <div className="ai-banner">
+                        <span className="ai-icon">✦</span>
+                        <div className="ai-text">
+                            <p className="ai-title">우리 집 식물에게 알맞는 업체는?</p>
+                            <p className="ai-sub">간단한 체팅 후, 딱 맞는 관리 전문가와 매칭 받아보세요.</p>
                         </div>
-                    ))}
+                    </div>
+
+                    <div className="shop-list">
+                        {shops.map((shop, i) => (
+                            <div key={shop.id}>
+                                <div className="shop-row" onClick={() => navigate && navigate('shop-detail')} style={{ cursor: "pointer" }}>
+                                    <div className="shop-info">
+                                        <p className="shop-name">{shop.name}</p>
+                                        <p className="shop-tags">{shop.tags}</p>
+                                        <p className="shop-hours">
+                                            <span className="open-dot" />
+                                            {shop.status} · {shop.closes}
+                                        </p>
+                                        <p className="shop-location">{shop.distance} · {shop.address}</p>
+                                        <div className="shop-meta">
+                                            <span className="star">★</span>
+                                            <span className="shop-rating">{shop.rating}</span>
+                                            <span className="shop-price">&nbsp;{shop.price}</span>
+                                        </div>
+                                    </div>
+                                    <button className="btn-reserve">
+                                        <svg width="14" height="14" fill="none" viewBox="0 0 24 24"
+                                            stroke="white" strokeWidth="2">
+                                            <rect x="3" y="4" width="18" height="18" rx="2" />
+                                            <line x1="16" y1="2" x2="16" y2="6" />
+                                            <line x1="8" y1="2" x2="8" y2="6" />
+                                            <line x1="3" y1="10" x2="21" y2="10" />
+                                        </svg>
+                                        예약
+                                    </button>
+                                </div>
+                                {i < shops.length - 1 && <div className="shop-divider" />}
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
 
