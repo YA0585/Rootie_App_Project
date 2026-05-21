@@ -343,9 +343,14 @@ body {
     display: none;
 }
 
+.inner {
+    margin: 0px 20px;
+}
+
 /* AI Banner */
 .ai-banner {
     width: 390px;
+    box-sizing: border-box;
     display: flex;
     align-items: flex-start;
     gap: 14px;
@@ -379,21 +384,24 @@ body {
 
 /* Shop List */
 .shop-list {
-    padding: 8px 0 90px;
+    padding: 8px 16px 90px;
 }
 
 .shop-row {
+    width: 390px;
+    box-sizing: border-box;
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
-    gap: 114px;
+    gap: 110px;
     padding: 16px;
     animation: fadeUp 0.35s ease both;
 }
 
 .shop-info {
     flex: 1;
-    min-width: 0; /* Prevent text overflow from stretching flex item */
+    min-width: 0;
+    /* Prevent text overflow from stretching flex item */
 }
 
 .shop-name {
