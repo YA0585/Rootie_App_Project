@@ -333,6 +333,7 @@ body {
 /* Bottom Sheet */
 .bottom-sheet {
     width: 430px;
+    margin: 0 auto;
     flex: 1;
     background: var(--white);
     overflow-y: auto;
@@ -381,7 +382,6 @@ body {
 /* Shop List */
 .shop-list {
     padding: 8px 0 97px;
-    margin: 0 auto;
 }
 
 .shop-row {
