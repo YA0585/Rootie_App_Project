@@ -234,16 +234,10 @@ body {
 }
 
 .map-visual {
-    width: 120px;
-    background: linear-gradient(135deg, #b2dfdb 0%, #80cbc4 60%, #4db6ac 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-}
-
-.map-visual .map-icon {
-    font-size: 40px;
+    width: 90.013px;
+    height: 70.177px;
+    flex-shrink: 0;
+    aspect-ratio: 59/46;
 }
 
 .map-badge {

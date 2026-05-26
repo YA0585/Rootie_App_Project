@@ -75,8 +75,22 @@ export default function Home({ navBar, onGoToMap, onGoToReservations, onGoToChat
                         <p>식집사님의 위치기반<br />매칭 서비스</p>
                     </div>
                     <div className="map-visual">
-                        <span className="map-icon">🗺️</span>
-                        <span className="map-badge">1/4</span>
+                        <div style={{ width: '100%', height: '100%', position: 'relative' }}>
+                            <div style={{ width: 88.87, height: 40.44, left: 0.77, top: 29.34, position: 'absolute', background: '#B9E3A4', borderRadius: 2, outline: '1px #B9E3A4 solid', outlineOffset: '-0.50px' }} />
+                            <div style={{ width: 48.64, height: 22.86, left: 22.88, top: 35.51, position: 'absolute', background: 'white', borderRadius: 0.20, outline: '1px white solid', outlineOffset: '-0.50px' }} />
+                            <div style={{ width: 17.69, height: 23.78, left: 21.91, top: 39.69, position: 'absolute', background: 'white', borderRadius: 0.20, outline: '1px white solid', outlineOffset: '-0.50px' }} />
+                            <div style={{ width: 24.73, height: 27.48, left: 43.33, top: 0, position: 'absolute', background: '#5C9D31' }} />
+                            <div style={{ width: 24.73, height: 27.48, left: 42.18, top: 0, position: 'absolute', background: '#6AB43A' }} />
+                            <div style={{ width: 7.86, height: 7.86, left: 50.43, top: 8.56, position: 'absolute', background: 'white', outline: '1.50px white solid', outlineOffset: '-0.75px' }} />
+                            <div style={{ width: 19.75, height: 9.49, left: 54.33, top: 30.04, position: 'absolute', transform: 'rotate(1deg)', transformOrigin: 'top left', background: 'rgba(0, 0, 0, 0.10)' }} />
+                            <div style={{ width: 10.35, height: 9.84, left: 49.08, top: 29.34, position: 'absolute', background: '#6AB43A', outline: '1.50px #6AB43A solid', outlineOffset: '-0.75px' }} />
+                            <div style={{ width: 2.59, height: 3.62, left: 52.97, top: 35.55, position: 'absolute', background: 'white', borderRadius: 3, outline: '0.50px #6AB43A solid', outlineOffset: '-0.25px' }} />
+                            <div style={{ width: 6.46, height: 1.73, left: 38.98, top: 56.90, position: 'absolute', transform: 'rotate(-5deg)', transformOrigin: 'top left', background: 'rgba(0, 0, 0, 0.10)', borderRadius: 9999 }} />
+                            <div style={{ width: 8.24, height: 9.16, left: 35.66, top: 48.32, position: 'absolute', background: '#5C9D31' }} />
+                            <div style={{ width: 8.24, height: 9.16, left: 35.28, top: 48.32, position: 'absolute', background: '#6AB43A' }} />
+                            <div style={{ width: 1.73, height: 1.73, left: 38.73, top: 51.77, position: 'absolute', background: 'white', outline: '1px white solid', outlineOffset: '-0.50px' }} />
+                            <div style={{ width: 90, height: 25.30, left: 0.01, top: 44.88, position: 'absolute', background: 'rgba(0, 0, 0, 0.10)' }} />
+                        </div>
                     </div>
                 </div>
 
