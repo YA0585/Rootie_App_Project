@@ -483,7 +483,6 @@ body {
     align-items: center;
     gap: 2px;
     border-radius: 20px;
-    border: 1px solid #FFF;
     background: var(--fin-maincolor, #6AB43A);
 
     color: var(--white);
