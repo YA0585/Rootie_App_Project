@@ -16,11 +16,11 @@ import LocationSetting from "./pages/Map/LocationSetting/LocationSetting";
 import Shop from "./pages/Shop/Shop";
 import ShopReview from "./pages/Shop/ShopReview/ShopReview";
 import ShopPrice from "./pages/Shop/ShopPrice/ShopPrice";
+import ShopOptions from "./pages/Shop/ShopOptions/ShopOptions";
 import Chat from "./pages/Chat/Chat";
 import { NavBar } from "./components/NavBar/NavBar";
-import ShopOptions from "./pages/Shop/ShopOptions/ShopOptions";
 
-function MainApp() {
+function App() {
   const [activeTab, setActiveTab] = useState("home"); // "home" | "reservations" | "chat" | "map" | "mypage"
   const [currentScreen, setCurrentScreen] = useState(null); // null | "locationsetting" | "shop" | "shopprice" | "shopreview"
 
@@ -51,6 +51,9 @@ function MainApp() {
     }
     if (currentScreen === "shopprice") {
       return <ShopPrice onBack={() => setCurrentScreen("shop")} />;
+    }
+    if (currentScreen === "shopoptions") {
+      return <ShopOptions onBack={() => setCurrentScreen("shop")} />;
     }
     if (currentScreen === "shopreview") {
       return <ShopReview onBack={() => setCurrentScreen("shop")} />;
@@ -106,9 +109,5 @@ function MainApp() {
   );
 }
 
-
-function App() {
-  return <ShopOptions />;
-}
 
 export default App;

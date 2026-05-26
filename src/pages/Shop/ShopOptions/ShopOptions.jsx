@@ -18,7 +18,7 @@ const PRICE_TABLE = [
 
 const SIZE_OPTIONS = PRICE_TABLE.map((r) => r.size);
 
-export default function ShopOptions() {
+export default function ShopOptions({ onBack }) {
     const [selectedSize, setSelectedSize] = useState("");
     const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -29,14 +29,14 @@ export default function ShopOptions() {
 
             {/* Header */}
             <header className="so-header">
-                <button className="so-back-btn">
+                <button className="so-back-btn" onClick={onBack}>
                     <svg width="22" height="22" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" strokeWidth="2.2">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
                     </svg>
                 </button>
                 <h1 className="so-header-title">분갈이</h1>
-                <button className="so-close-btn">
+                <button className="so-close-btn" onClick={onBack}>
                     <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                         <line x1="18" y1="6" x2="6" y2="18" />
                         <line x1="6" y1="6" x2="18" y2="18" />
