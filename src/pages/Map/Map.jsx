@@ -1,201 +1,157 @@
-// MapPage.jsx
-import { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import "./Map.css";
-import {
-    Search,
-    Sprout,
-    Stethoscope,
-    Scissors,
-    Syringe,
-    Calendar,
-    Star,
-    Plus,
-} from "lucide-react";
 
-export default function Map({ navBar }) {
-    const shops = [
-        {
-            id: 1,
-            name: "꽃집",
-            category: "분갈이 · 영양제",
-            close: "영업중 · 18:00에 영업종료",
-            location: "도보 5분 · 서울시 마포구 00동",
-            rating: "4.4",
-            price: "55,000원~",
-        },
-        {
-            id: 2,
-            name: "꽃집",
-            category: "분갈이 · 영양제",
-            close: "영업중 · 18:00에 영업종료",
-            location: "도보 5분 · 서울시 마포구 00동",
-            rating: "4.4",
-            price: "55,000원~",
-        },
-    ];
+const FILTERS = [
+    { label: "관엽식물", emoji: "🌿" },
+    { label: "진단", emoji: "🧪" },
+    { label: "분갈이", emoji: "🪴" },
+    { label: "영양제", emoji: "💉" },
+];
 
-    const [sheetHeight, setSheetHeight] = useState(46);
-    const [isDragging, setIsDragging] = useState(false);
-    const isDraggingRef = useRef(false);
-    const startY = useRef(0);
-    const startHeight = useRef(46);
+const shops = [
+    {
+        id: 1,
+        name: "꽃집",
+        tags: "분갈이 · 영양제",
+        status: "영업중",
+        closes: "18:00에 영업종료",
+        distance: "도보 5분",
+        address: "서울시 마포구 00동",
+        rating: 4.4,
+        price: "55,000원~",
+    },
+    {
+        id: 2,
+        name: "꽃집",
+        tags: "분갈이 · 영양제",
+        status: "영업중",
+        closes: "18:00에 영업종료",
+        distance: "도보 5분",
+        address: "서울시 마포구 00동",
+        rating: 4.4,
+        price: "55,000원~",
+    },
+];
 
-    useEffect(() => {
-        const handleMouseMove = (e) => {
-            if (!isDraggingRef.current) return;
-            const deltaY = startY.current - e.clientY;
-            const deltaVH = (deltaY / window.innerHeight) * 100;
-            let newHeight = startHeight.current + deltaVH;
-            if (newHeight < 20) newHeight = 20;
-            if (newHeight > 90) newHeight = 90;
-            setSheetHeight(newHeight);
-        };
-        const handleTouchMove = (e) => {
-            if (!isDraggingRef.current) return;
-            const deltaY = startY.current - e.touches[0].clientY;
-            const deltaVH = (deltaY / window.innerHeight) * 100;
-            let newHeight = startHeight.current + deltaVH;
-            if (newHeight < 20) newHeight = 20;
-            if (newHeight > 90) newHeight = 90;
-            setSheetHeight(newHeight);
-        };
-        const handleMouseUp = () => {
-            if (!isDraggingRef.current) return;
-            isDraggingRef.current = false;
-            setIsDragging(false);
-            setSheetHeight(prev => {
-                if (prev > 65) return 90;
-                if (prev < 30) return 20;
-                return 46;
-            });
-        };
-
-        window.addEventListener('mousemove', handleMouseMove);
-        window.addEventListener('mouseup', handleMouseUp);
-        window.addEventListener('touchmove', handleTouchMove);
-        window.addEventListener('touchend', handleMouseUp);
-
-        return () => {
-            window.removeEventListener('mousemove', handleMouseMove);
-            window.removeEventListener('mouseup', handleMouseUp);
-            window.removeEventListener('touchmove', handleTouchMove);
-            window.removeEventListener('touchend', handleMouseUp);
-        };
-    }, []);
-
-    const handleDragStart = (clientY) => {
-        isDraggingRef.current = true;
-        setIsDragging(true);
-        startY.current = clientY;
-        setSheetHeight(prev => {
-            startHeight.current = prev;
-            return prev;
-        });
-    };
+export default function MapView() {
+    const [activeFilter, setActiveFilter] = useState("관엽식물");
 
     return (
-        <div className="map-page">
-            {/* Map Background */}
-            <div className="map-background">
-                {/* Top Search */}
-                <div 
-                    className="top-section"
-                    style={{
-                        opacity: Math.max(0, 1 - (sheetHeight - 46) / 15),
-                        transform: `translateY(-${Math.max(0, (sheetHeight - 46) * 1.5)}px)`,
-                        transition: isDragging ? 'none' : 'all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1)',
-                        pointerEvents: sheetHeight > 55 ? 'none' : 'auto'
-                    }}
-                >
-                    <div className="search-bar">
-                        <Search size={22} className="search-icon" />
-                        <input type="text" placeholder="" />
-                    </div>
+        <div className="phone-wrap">
 
-                    {/* Filter Chips */}
-                    <div className="filter-row">
-                        <button className="chip active">
-                            <Sprout size={16} />
-                            관엽식물
-                        </button>
-
-                        <button className="chip">
-                            <Stethoscope size={16} />
-                            진단
-                        </button>
-
-                        <button className="chip">
-                            <Scissors size={16} />
-                            분갈이
-                        </button>
-
-                        <button className="chip">
-                            <Syringe size={16} />
-                            영양제
-                        </button>
-                    </div>
+            {/* Map Area */}
+            <div className="map-area">
+                <div className="map-bg">
+                    <div className="road road-v1" />
+                    <div className="road road-v2" />
+                    <div className="road road-h1" />
+                    <div className="road road-h2" />
+                    <div className="road road-diag" />
+                    <div className="park-block" />
+                    {[...Array(12)].map((_, i) => (
+                        <div key={i} className={`city-block block-${i}`} />
+                    ))}
                 </div>
+
+                {/* Search bar */}
+                <div className="search-bar">
+                    <svg width="18" height="18" fill="none" viewBox="0 0 24 24"
+                        stroke="#aaa" strokeWidth="2">
+                        <circle cx="11" cy="11" r="8" />
+                        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                    </svg>
+                    <input type="text" placeholder="업체 또는 지역 검색" />
+                </div>
+
+                {/* Filter chips */}
+                <div className="filter-row">
+                    {FILTERS.map(({ label, emoji }) => (
+                        <button
+                            key={label}
+                            className={`filter-chip ${activeFilter === label ? "active" : ""}`}
+                            onClick={() => setActiveFilter(label)}
+                        >
+                            <span>{emoji}</span> {label}
+                        </button>
+                    ))}
+                </div>
+
+                {/* Zoom button */}
+                <button className="zoom-btn" aria-label="확대">
+                    <svg width="20" height="20" fill="none" viewBox="0 0 24 24"
+                        stroke="white" strokeWidth="2.5">
+                        <line x1="12" y1="5" x2="12" y2="19" />
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                    </svg>
+                </button>
+
+                <div className="drag-handle" />
             </div>
 
-            {/* Floating Add Button */}
-            <button 
-                className="floating-btn" 
-                style={{ bottom: `calc(${sheetHeight}% + 10px)` }}
-            >
-                <Plus size={24} />
-            </button>
-
             {/* Bottom Sheet */}
-            <div 
-                className="bottom-sheet" 
-                style={{ height: `${sheetHeight}%`, transition: isDragging ? 'none' : 'height 0.3s cubic-bezier(0.2, 0.8, 0.2, 1)' }}
-            >
-                <div 
-                    className="drag-bar" 
-                    onMouseDown={(e) => handleDragStart(e.clientY)}
-                    onTouchStart={(e) => handleDragStart(e.touches[0].clientY)}
-                    style={{ cursor: 'grab', padding: '10px 0', backgroundClip: 'content-box' }}
-                />
-
-                {/* Recommendation Card */}
-                <div className="recommend-card">
-                    <div className="sparkle">✦</div>
-
-                    <div>
-                        <h3>우리 집 식물에게 알맞는 업체는?</h3>
-                        <p>
-                            간단한 채팅 후, 딱 맞는 관리 전문가와 매칭 받아보세요.
-                        </p>
+            <div className="bottom-sheet">
+                <div className="ai-banner">
+                    <span className="ai-icon">✦</span>
+                    <div className="ai-text">
+                        <p className="ai-title">우리 집 식물에게 알맞는 업체는?</p>
+                        <p className="ai-sub">간단한 체팅 후, 딱 맞는 관리 전문가와 매칭 받아보세요.</p>
                     </div>
                 </div>
 
-                {/* Shop List */}
                 <div className="shop-list">
-                    {shops.map((shop) => (
-                        <div className="shop-card" key={shop.id}>
-                            <div className="shop-info">
-                                <h4>{shop.name}</h4>
-                                <p>{shop.category}</p>
-                                <p>{shop.close}</p>
-                                <p>{shop.location}</p>
-
-                                <div className="rating-row">
-                                    <Star size={14} fill="#73B843" strokeWidth={1.5} />
-                                    <span>{shop.rating}</span>
-                                    <span>{shop.price}</span>
+                    {shops.map((shop, i) => (
+                        <div key={shop.id}>
+                            <div className="shop-row">
+                                <div className="shop-info">
+                                    <p className="shop-name">{shop.name}</p>
+                                    <p className="shop-tags">{shop.tags}</p>
+                                    <p className="shop-hours">
+                                        <span className="open-dot" />
+                                        {shop.status} · {shop.closes}
+                                    </p>
+                                    <p className="shop-location">{shop.distance} · {shop.address}</p>
+                                    <div className="shop-meta">
+                                        <span className="star">★</span>
+                                        <span className="shop-rating">{shop.rating}</span>
+                                        <span className="shop-price">&nbsp;{shop.price}</span>
+                                    </div>
                                 </div>
+                                <button className="btn-reserve">
+                                    <svg width="14" height="14" fill="none" viewBox="0 0 24 24"
+                                        stroke="white" strokeWidth="2">
+                                        <rect x="3" y="4" width="18" height="18" rx="2" />
+                                        <line x1="16" y1="2" x2="16" y2="6" />
+                                        <line x1="8" y1="2" x2="8" y2="6" />
+                                        <line x1="3" y1="10" x2="21" y2="10" />
+                                    </svg>
+                                    예약
+                                </button>
                             </div>
-
-                            <button className="reserve-btn">
-                                <Calendar size={16} />
-                                예약
-                            </button>
+                            {i < shops.length - 1 && <div className="shop-divider" />}
                         </div>
                     ))}
                 </div>
             </div>
+
             {/* Bottom Nav */}
-            {navBar}
+            <nav className="bottom-nav">
+                {[
+                    { icon: "🏠", label: "홈" },
+                    { icon: "📋", label: "예약 내역" },
+                    { icon: "✦", label: "진단 받기", center: true },
+                    { icon: "📍", label: "지도", active: true },
+                    { icon: "👤", label: "나의 루티" },
+                ].map(({ icon, label, active, center }) => (
+                    <div
+                        key={label}
+                        className={`nav-item${active ? " active" : ""}${center ? " nav-center" : ""}`}
+                    >
+                        <span className="nav-icon">{icon}</span>
+                        <span className="nav-label">{label}</span>
+                    </div>
+                ))}
+            </nav>
+
         </div>
     );
 }
