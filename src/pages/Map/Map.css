@@ -335,7 +335,8 @@ body {
 
 /* Bottom Sheet */
 .bottom-sheet {
-    width: 430px;
+    width: 490px;
+    align-self: center;
     flex: 1;
     background: var(--white);
     overflow-y: auto;
@@ -385,16 +386,18 @@ body {
 }
 
 .shop-row {
+    width: 390px;
+    margin: 0 auto;
     display: flex;
     align-items: flex-start;
-    justify-content: space-between;
-    padding: 16px;
+    gap: 114px;
+    padding: 16px 0;
     animation: fadeUp 0.35s ease both;
 }
 
 .shop-info {
     flex: 1;
-    padding-right: 12px;
+    padding-right: 0;
 }
 
 .shop-name {
