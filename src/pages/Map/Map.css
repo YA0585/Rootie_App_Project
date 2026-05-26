@@ -463,14 +463,14 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 4px;
+    gap: 2px;
     width: 68px;
     height: 36px;
     padding: 0;
     background: var(--green-primary);
     color: var(--white);
     border: none;
-    border-radius: 10px;
+    border-radius: 20px;
     font-size: 13px;
     font-weight: 600;
     cursor: pointer;
