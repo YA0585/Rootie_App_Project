@@ -393,7 +393,7 @@ body {
 }
 
 .shop-info {
-    width: 169px;
+    flex: 1;
     padding-right: 12px;
 }
 
