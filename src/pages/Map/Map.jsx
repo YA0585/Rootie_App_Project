@@ -85,11 +85,11 @@ export default function Map({ navBar }) {
                     </svg>
                 </button>
 
-                <div className="drag-handle" />
             </div>
 
             {/* Bottom Sheet */}
             <div className="bottom-sheet">
+                <div className="drag-handle" />
                 <div className="ai-banner">
                     <span className="ai-icon">✦</span>
                     <div className="ai-text">
