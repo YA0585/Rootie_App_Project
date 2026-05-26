@@ -298,19 +298,19 @@ body {
 
 /* Home location */
 .home-location {
-    position: absolute;
-    bottom: 36px;
-    right: 16px;
+    display: flex;
     width: 40px;
     height: 40px;
-    background: #FFF;
-    border: none;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
+    padding: 8px;
     justify-content: center;
-    cursor: pointer;
+    align-items: center;
+    aspect-ratio: 1/1;
+
+    border-radius: 50px;
+    background: #FFF;
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+
+    cursor: pointer;
     z-index: 10;
     transition: background 0.15s;
 }
@@ -320,8 +320,8 @@ body {
 }
 
 .home-location .icon-wrapper {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
