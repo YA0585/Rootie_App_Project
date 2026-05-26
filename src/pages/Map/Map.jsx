@@ -33,7 +33,7 @@ const shops = [
     },
 ];
 
-export default function MapView() {
+export default function Map({ navBar }) {
     const [activeFilter, setActiveFilter] = useState("관엽식물");
 
     return (
@@ -134,23 +134,7 @@ export default function MapView() {
             </div>
 
             {/* Bottom Nav */}
-            <nav className="bottom-nav">
-                {[
-                    { icon: "🏠", label: "홈" },
-                    { icon: "📋", label: "예약 내역" },
-                    { icon: "✦", label: "진단 받기", center: true },
-                    { icon: "📍", label: "지도", active: true },
-                    { icon: "👤", label: "나의 루티" },
-                ].map(({ icon, label, active, center }) => (
-                    <div
-                        key={label}
-                        className={`nav-item${active ? " active" : ""}${center ? " nav-center" : ""}`}
-                    >
-                        <span className="nav-icon">{icon}</span>
-                        <span className="nav-label">{label}</span>
-                    </div>
-                ))}
-            </nav>
+            {navBar}
 
         </div>
     );
