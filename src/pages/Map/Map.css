@@ -391,12 +391,11 @@ body {
     display: flex;
     align-items: flex-start;
     gap: 114px;
-    padding: 16px 0;
     animation: fadeUp 0.35s ease both;
 }
 
 .shop-info {
-    flex: 1;
+    flex: 0 0 auto;
     padding-right: 0;
 }
 
