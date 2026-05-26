@@ -389,13 +389,13 @@ body {
 
 .shop-row {
     display: flex;
+    justify-content: space-between;
     align-items: flex-start;
-    gap: 114px;
     animation: fadeUp 0.35s ease both;
 }
 
 .shop-info {
-    flex: 0 0 auto;
+    flex: 1;
     padding-right: 0;
 }
 
