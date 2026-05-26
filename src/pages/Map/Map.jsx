@@ -60,7 +60,7 @@ export default function Map({ navBar }) {
                         <circle cx="11" cy="11" r="8" />
                         <line x1="21" y1="21" x2="16.65" y2="16.65" />
                     </svg>
-                    <input type="text" placeholder="업체 또는 지역 검색" />
+                    <input type="text" />
                 </div>
 
                 {/* Filter chips */}
@@ -95,7 +95,7 @@ export default function Map({ navBar }) {
                     <span className="ai-icon">✦</span>
                     <div className="ai-text">
                         <p className="ai-title">우리 집 식물에게 알맞는 업체는?</p>
-                        <p className="ai-sub">간단한 체팅 후, 딱 맞는 관리 전문가와 매칭 받아보세요.</p>
+                        <p className="ai-sub">간단한 채팅 후, 딱 맞는 관리 전문가와 매칭 받아보세요.</p>
                     </div>
                 </div>
 
