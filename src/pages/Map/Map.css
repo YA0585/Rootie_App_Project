@@ -489,19 +489,22 @@ body {
 
 .btn-reserve {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-
+    gap: 4px;
     height: 27px;
-    padding: 0;
-    line-height: 0;
-
+    padding: 5px 10px;
+    border-radius: 20px;
     border: none;
-    background: transparent;
+    background-color: var(--fin-maincolor);
+    color: white;
+    cursor: pointer;
 }
 
 .btn-reserve svg {
     display: block;
+    height: 18px;
+    width: 18px;
 }
 
 .btn-reserve:hover,
