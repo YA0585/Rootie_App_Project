@@ -401,8 +401,7 @@ body {
 /* Shop List */
 .shop-list {
     width: 100%;
-    /* ← 390px 제거 */
-    padding-bottom: 20px;
+    padding: 20px 20px;
 
 }
 
