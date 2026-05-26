@@ -94,11 +94,7 @@ inactiveIcon: (<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns
             aria-label={tab.label}
           >
             <div className="nav-item-icon">
-              <img
-                src={isActive ? tab.activeIcon : tab.inactiveIcon}
-                alt={tab.label}
-                style={{ width: '24px', height: '24px', display: 'block' }}
-              />
+              {isActive ? tab.activeIcon : tab.inactiveIcon}
             </div>
             <span className="nav-label">{tab.label}</span>
           </button>
