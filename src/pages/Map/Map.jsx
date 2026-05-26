@@ -116,16 +116,19 @@ export default function Map({ navBar }) {
                                         <span className="shop-price">&nbsp;{shop.price}</span>
                                     </div>
                                 </div>
-                                <button className="btn-reserve">
-                                    <svg width="14" height="14" fill="none" viewBox="0 0 24 24"
-                                        stroke="white" strokeWidth="2">
-                                        <rect x="3" y="4" width="18" height="18" rx="2" />
-                                        <line x1="16" y1="2" x2="16" y2="6" />
-                                        <line x1="8" y1="2" x2="8" y2="6" />
-                                        <line x1="3" y1="10" x2="21" y2="10" />
-                                    </svg>
-                                    예약
-                                </button>
+                                <div className="btn-wrap">
+                                    <button className="btn-reserve">
+                                        <svg width="14" height="14" fill="none" viewBox="0 0 24 24"
+                                            stroke="white" strokeWidth="2">
+                                            <rect x="3" y="4" width="18" height="18" rx="2" />
+                                            <line x1="16" y1="2" x2="16" y2="6" />
+                                            <line x1="8" y1="2" x2="8" y2="6" />
+                                            <line x1="3" y1="10" x2="21" y2="10" />
+                                        </svg>
+                                        예약
+                                    </button>
+                                </div>
+
                             </div>
                             {i < shops.length - 1 && <div className="shop-divider" />}
                         </div>
