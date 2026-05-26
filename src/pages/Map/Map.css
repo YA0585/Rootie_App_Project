@@ -475,8 +475,7 @@ body {
     white-space: nowrap;
     transition: background 0.15s;
     font-family: 'Noto Sans KR', sans-serif;
-    flex-shrink: 1;
-    min-width: 0;
+    flex-shrink: 0;
     margin-top: 4px;
 }
 
