@@ -366,14 +366,15 @@ body {
 }
 
 .ai-icon {
-    font-size: 26px;
+    width: 47px;
+    height: 47px;
+    aspect-ratio: 1/1;
     color: var(--green-primary);
     flex-shrink: 0;
-    margin-top: 2px;
 }
 
 .ai-title {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 700;
     color: var(--text-dark);
     margin-bottom: 4px;
@@ -477,7 +478,7 @@ body {
 
 .btn-reserve {
     display: flex;
-    padding: 5px 10px;
+    /* padding: 5px 10px; */
     justify-content: center;
     align-items: center;
     gap: 2px;

@@ -108,7 +108,13 @@ export default function Map({ navBar }) {
             <div className="bottom-sheet">
                 <div className="drag-handle" />
                 <div className="ai-banner">
-                    <span className="ai-icon">✦</span>
+                    <span className="ai-icon">
+                        <svg width="47" height="47" viewBox="0 0 47 47" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M29.3748 3.91669L30.4298 8.60018C31.3247 12.5728 34.4269 15.6751 38.3996 16.57L43.0832 17.625L38.3996 18.68C34.4269 19.5749 31.3247 22.6771 30.4298 26.6498L29.3748 31.3334L28.3199 26.6498C27.4249 22.6771 24.3227 19.5749 20.3501 18.68L15.6665 17.625L20.3501 16.57C24.3225 15.6751 27.4249 12.5728 28.3199 8.6002L29.3748 3.91669Z" fill="#6AB43A" stroke="#6AB43A" stroke-width="1.5" stroke-linejoin="round" />
+                            <path d="M13.7082 23.5L14.4618 26.8454C15.101 29.6828 17.3169 31.8989 20.1544 32.5381L23.4998 33.2917L20.1544 34.0452C17.3169 34.6844 15.101 36.9003 14.4618 39.7379L13.7082 43.0833L12.9546 39.7379C12.3154 36.9003 10.0995 34.6844 7.26187 34.0452L3.9165 33.2917L7.26187 32.5381C10.0995 31.8989 12.3154 29.683 12.9546 26.8454L13.7082 23.5Z" fill="#6AB43A" stroke="#6AB43A" stroke-width="1.5" stroke-linejoin="round" />
+                        </svg>
+
+                    </span>
                     <div className="ai-text">
                         <p className="ai-title">우리 집 식물에게 알맞는 업체는?</p>
                         <p className="ai-sub">간단한 채팅 후, 딱 맞는 관리 전문가와 매칭 받아보세요.</p>
