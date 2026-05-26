@@ -38,6 +38,7 @@ body {
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    /* ← 핵심: 바깥으로 안 넘치게 */
     position: relative;
 }
 
@@ -335,12 +336,13 @@ body {
 
 /* Bottom Sheet */
 .bottom-sheet {
-    width: 430px;
-    align-self: center;
     flex: 1;
-    background: var(--white);
+    min-height: 0;
+    /* ← 핵심: flex child가 실제로 줄어들게 */
     overflow-y: auto;
+    background: var(--white);
     border-top: 1px solid var(--border);
+    width: 100%;
 }
 
 .bottom-sheet::-webkit-scrollbar {
@@ -382,8 +384,9 @@ body {
 
 /* Shop List */
 .shop-list {
-    /* padding: 8px 0 90px; */
-    width: 390px;
+    width: 100%;
+    /* ← 390px 제거 */
+    padding-bottom: 20px;
 
 }
 
@@ -392,11 +395,16 @@ body {
     justify-content: space-between;
     align-items: flex-start;
     gap: 12px;
+    padding: 14px 16px;
+    /* ← 패딩 추가 (shop-list padding 대신) */
     animation: fadeUp 0.35s ease both;
 }
 
 .shop-info {
-    flex-shrink: 0;
+    flex: 1;
+    /* ← 추가: 남은 공간 모두 차지 */
+    min-width: 0;
+    /* ← 추가: 텍스트 overflow 방지 */
 }
 
 .shop-name {
@@ -462,19 +470,22 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 2px;
-    padding: 5px 10px;
+    gap: 5px;
+    padding: 8px 14px;
+    width: fit-content;
+    /* ← 추가: 내용만큼만 너비 */
+    flex-shrink: 0;
+    /* 이미 있지만 확인 */
     background: var(--green-primary);
     color: var(--white);
     border: none;
     border-radius: 20px;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
     cursor: pointer;
     white-space: nowrap;
     transition: background 0.15s;
     font-family: 'Noto Sans KR', sans-serif;
-    flex-shrink: 0;
     margin-top: 4px;
 }
 
