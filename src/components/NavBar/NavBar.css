@@ -3,14 +3,13 @@
     bottom: 0;
     left: 0;
     right: 0;
-    height: 68px;
+    height: 97px;
     background: var(--fin-white);
     border-top: 1px solid var(--fin-divider);
     display: flex;
     align-items: center;
     justify-content: space-around;
     z-index: 999;
-    padding: 0 10px;
 }
 
 .nav-item {
@@ -24,6 +23,7 @@
     padding: 6px 12px;
     border-radius: 10px;
     outline: none;
+    padding: 0 20px 30px;
 }
 
 

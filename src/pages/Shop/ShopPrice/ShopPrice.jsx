@@ -47,9 +47,9 @@ export default function ShopPrice() {
                 </button>
                 <button className="hd-btn" onClick={() => setBookmarked(!bookmarked)}>
                     <svg width="22" height="22"
-                        fill={bookmarked ? "#3AB56A" : "none"}
+                        fill={bookmarked ? "var(--fin-maincolor)" : "none"}
                         viewBox="0 0 24 24"
-                        stroke={bookmarked ? "#3AB56A" : "currentColor"}
+                        stroke={bookmarked ? "var(--fin-maincolor)" : "currentColor"}
                         strokeWidth="2">
                         <path strokeLinecap="round" strokeLinejoin="round"
                             d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />

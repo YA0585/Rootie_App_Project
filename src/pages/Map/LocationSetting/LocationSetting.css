@@ -9,7 +9,7 @@
 }
 
 :root {
-    --green-primary: #3AB56A;
+    --green-primary: var(--fin-maincolor);
     --green-dark: #2A8A50;
     --green-light: #E8F7EE;
     --text-dark: #1A1A1A;

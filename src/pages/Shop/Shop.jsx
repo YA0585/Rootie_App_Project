@@ -52,8 +52,8 @@ export default function ShopDetail2() {
                     </svg>
                 </button>
                 <button className="hd-btn" onClick={() => setBookmarked(!bookmarked)}>
-                    <svg width="20" height="20" fill={bookmarked ? "#3AB56A" : "none"}
-                        viewBox="0 0 24 24" stroke={bookmarked ? "#3AB56A" : "currentColor"} strokeWidth="2">
+                    <svg width="20" height="20" fill={bookmarked ? "var(--fin-maincolor)" : "none"}
+                        viewBox="0 0 24 24" stroke={bookmarked ? "var(--fin-maincolor)" : "currentColor"} strokeWidth="2">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
                     </svg>
                 </button>
@@ -125,8 +125,8 @@ export default function ShopDetail2() {
                         <div className="mmap-pin">
                             <div className="mmap-pin-label">강남역사거리</div>
                             <svg width="24" height="30" viewBox="0 0 32 40" fill="none">
-                                <path d="M16 0C7.163 0 0 7.163 0 16c0 10 16 24 16 24S32 26 32 16C32 7.163 24.837 0 16 0z" fill="#3AB56A" />
-                                <circle cx="16" cy="16" r="7" fill="white" /><circle cx="16" cy="16" r="4" fill="#3AB56A" />
+                                <path d="M16 0C7.163 0 0 7.163 0 16c0 10 16 24 16 24S32 26 32 16C32 7.163 24.837 0 16 0z" fill="var(--fin-maincolor)" />
+                                <circle cx="16" cy="16" r="7" fill="white" /><circle cx="16" cy="16" r="4" fill="var(--fin-maincolor)" />
                             </svg>
                         </div>
                     </div>

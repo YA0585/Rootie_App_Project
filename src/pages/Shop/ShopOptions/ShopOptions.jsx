@@ -136,7 +136,7 @@ export default function ShopOptions({ onBack }) {
                                         {opt}
                                         {selectedSize === opt && (
                                             <svg width="16" height="16" fill="none" viewBox="0 0 24 24"
-                                                stroke="#3AB56A" strokeWidth="2.5">
+                                                stroke="var(--fin-maincolor)" strokeWidth="2.5">
                                                 <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                                             </svg>
                                         )}

@@ -28,7 +28,7 @@ export default function Home({ navBar, onGoToMap, onGoToReservations, onGoToChat
                 <div className="notice">
                     <div className="notice-icon">
                         <svg width="16" height="16" fill="none" viewBox="0 0 24 24"
-                            stroke="#3AB56A" strokeWidth="2.2">
+                            stroke="var(--fin-maincolor)" strokeWidth="2.2">
                             <path strokeLinecap="round" strokeLinejoin="round"
                                 d="M11 5.882V19.24a1 1 0 001.516.86l7-4.166a1 1 0 000-1.72l-7-4.166A1 1 0 0011 5.882z" />
                         </svg>
@@ -55,7 +55,7 @@ export default function Home({ navBar, onGoToMap, onGoToReservations, onGoToChat
                 <div className="cta-strip" onClick={() => onGoToReservations && onGoToReservations()}>
                     <div className="cta-icon">
                         <svg width="18" height="18" fill="none" viewBox="0 0 24 24"
-                            stroke="#3AB56A" strokeWidth="2">
+                            stroke="var(--fin-maincolor)" strokeWidth="2">
                             <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
                             <line x1="16" y1="2" x2="16" y2="6" />
                             <line x1="8" y1="2" x2="8" y2="6" />
@@ -122,7 +122,7 @@ export default function Home({ navBar, onGoToMap, onGoToReservations, onGoToChat
                     <div className="expert-info">
                         <h3>그린핸즈 식물 케어</h3>
                         <div className="expert-location">
-                            <svg width="12" height="12" fill="#3AB56A" viewBox="0 0 24 24">
+                            <svg width="12" height="12" fill="var(--fin-maincolor)" viewBox="0 0 24 24">
                                 <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z" />
                             </svg>
                             서울시 서초구 00동
