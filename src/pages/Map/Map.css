@@ -383,7 +383,8 @@ body {
 /* Shop List */
 .shop-list {
     /* padding: 8px 0 90px; */
-    width: 390px;
+    width: 100%;
+    padding: 0 16px;
 
 }
 
@@ -391,13 +392,13 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+    gap: 12px;
     animation: fadeUp 0.35s ease both;
 }
 
 .shop-info {
-    width: 169px;
     flex: 1;
-    padding-right: 0;
+    min-width: 0;
 }
 
 .shop-name {
