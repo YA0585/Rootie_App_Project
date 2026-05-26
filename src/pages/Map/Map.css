@@ -296,6 +296,18 @@ body {
     border-color: var(--green-primary);
 }
 
+.filter-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.filter-icon svg {
+    width: 14px;
+    height: 14px;
+    display: block;
+}
+
 /* Home location */
 .home-location {
     display: flex;
@@ -478,13 +490,19 @@ body {
 
 .btn-reserve {
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 2px;
-    border-radius: 20px;
-    border: none;
-    cursor: pointer;
+    justify-content: center;
+
     height: 27px;
+    padding: 0;
+    line-height: 0;
+
+    border: none;
+    background: transparent;
+}
+
+.btn-reserve svg {
+    display: block;
 }
 
 .btn-reserve:hover,
