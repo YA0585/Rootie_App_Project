@@ -478,14 +478,16 @@ body {
 
 .btn-reserve {
     display: flex;
+    padding: 5px 10px;
+    justify-content: center;
     align-items: center;
-    gap: 5px;
-    padding: 8px 14px;
-    background: var(--green-primary);
-    color: var(--white);
-    border: none;
+    gap: 2px;
     border-radius: 20px;
-    font-size: 13px;
+    border: 1px solid #FFF;
+    background: var(--fin-maincolor, #6AB43A);
+
+    color: var(--white);
+    font-size: 14px;
     font-weight: 600;
     cursor: pointer;
     white-space: nowrap;
