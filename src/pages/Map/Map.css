@@ -335,7 +335,7 @@ body {
 
 /* Bottom Sheet */
 .bottom-sheet {
-    width: 100%;
+    width: 430px;
     align-self: center;
     flex: 1;
     background: var(--white);
@@ -383,8 +383,7 @@ body {
 /* Shop List */
 .shop-list {
     /* padding: 8px 0 90px; */
-    width: 100%;
-    padding: 0 16px;
+    width: 390px;
 
 }
 
