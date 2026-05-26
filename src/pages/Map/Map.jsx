@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Map.css";
 
 const FILTERS = [
@@ -63,23 +63,23 @@ const shops = [
 
 export default function Map({ navBar }) {
     const [activeFilter, setActiveFilter] = useState("관엽식물");
+    useEffect(() => {
+        const container = document.getElementById("map");
+
+        const options = {
+            center: new window.kakao.maps.LatLng(37.5665, 126.9780),
+            level: 3,
+        };
+
+        new window.kakao.maps.Map(container, options);
+    }, []);
 
     return (
         <div className="phone-wrap">
 
             {/* Map Area */}
             <div className="map-area">
-                <div className="map-bg">
-                    <div className="road road-v1" />
-                    <div className="road road-v2" />
-                    <div className="road road-h1" />
-                    <div className="road road-h2" />
-                    <div className="road road-diag" />
-                    <div className="park-block" />
-                    {[...Array(12)].map((_, i) => (
-                        <div key={i} className={`city-block block-${i}`} />
-                    ))}
-                </div>
+                <div id="map" className="map-bg"></div>
 
                 {/* Search bar */}
                 <div className="search-bar">
@@ -115,10 +115,10 @@ export default function Map({ navBar }) {
                 <button className="home-location" aria-label="위치추가">
                     <div className="icon-wrapper">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M17 8.5C17 5.73858 14.7614 3.5 12 3.5C9.23858 3.5 7 5.73858 7 8.5C7 11.2614 9.23858 13.5 12 13.5C14.7614 13.5 17 11.2614 17 8.5Z" fill="#6AB43A" />
-                            <path d="M19 20.5C19 16.634 15.866 13.5 12 13.5C8.13401 13.5 5 16.634 5 20.5" fill="#6AB43A" />
-                            <path d="M19 20.5C19 16.634 15.866 13.5 12 13.5C8.13401 13.5 5 16.634 5 20.5" stroke="#6AB43A" strokeWidth="1.5" strokeLinejoin="round" />
+                            <path d="M3 11.9891V14.6316C3 18.1051 3 19.8418 4.07908 20.9209C5.15816 22 6.89492 22 10.3684 22H14.5789C18.0524 22 19.7892 22 20.8683 20.9209C21.9474 19.8418 21.9474 18.1051 21.9474 14.6316V11.9891C21.9474 10.2193 21.9474 9.33445 21.5727 8.56847C21.1981 7.8025 20.4997 7.25924 19.1027 6.17275L16.9975 4.53532C14.8243 2.84511 13.7378 2 12.4737 2C11.2096 2 10.123 2.84511 7.94992 4.53532L5.84464 6.17275C4.44772 7.25924 3.74925 7.8025 3.37463 8.56847C3 9.33445 3 10.2193 3 11.9891Z" fill="#6AB43A" stroke="#6AB43A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M12.4731 8.78946C12.4845 8.78946 12.4977 8.79349 12.5103 8.80606C12.5226 8.81853 12.5259 8.83092 12.5259 8.84219V13.0004H16.6841C16.6954 13.0004 16.7077 13.0037 16.7202 13.016C16.7326 13.0284 16.7367 13.0409 16.7368 13.0522C16.7368 13.0635 16.7328 13.0767 16.7202 13.0893C16.7077 13.1016 16.6954 13.1049 16.6841 13.1049H12.5259V17.2631C12.5259 17.2744 12.5226 17.2868 12.5103 17.2992C12.4977 17.3118 12.4845 17.3158 12.4731 17.3158C12.4619 17.3157 12.4494 17.3116 12.437 17.2992C12.4246 17.2867 12.4214 17.2744 12.4214 17.2631V13.1049H8.26318C8.25191 13.1049 8.23952 13.1016 8.22705 13.0893C8.21448 13.0767 8.21045 13.0635 8.21045 13.0522C8.21055 13.0409 8.21465 13.0284 8.22705 13.016C8.23953 13.0037 8.25191 13.0004 8.26318 13.0004H12.4214V8.84219C12.4214 8.83092 12.4247 8.81854 12.437 8.80606C12.4494 8.79366 12.4619 8.78956 12.4731 8.78946Z" fill="white" stroke="white" stroke-width="2" />
                         </svg>
+
                     </div>
                 </button>
 
@@ -154,7 +154,10 @@ export default function Map({ navBar }) {
                                     </p>
                                     <p className="shop-location">{shop.distance} · {shop.address}</p>
                                     <div className="shop-meta">
-                                        <span className="star">★</span>
+                                        <span className="star"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M8.03656 1.86651L9.09243 3.99573C9.23643 4.29212 9.62038 4.57642 9.94438 4.63086L11.8581 4.95145C13.082 5.15712 13.37 6.05236 12.4881 6.9355L11.0003 8.43562C10.7483 8.68966 10.6103 9.17962 10.6883 9.5305L11.1143 11.3875C11.4502 12.8574 10.6763 13.426 9.38643 12.6578L7.59262 11.5871C7.26868 11.3936 6.73474 11.3936 6.40474 11.5871L4.61096 12.6578C3.3271 13.426 2.54719 12.8513 2.88315 11.3875L3.3091 9.5305C3.38709 9.17962 3.24911 8.68966 2.99713 8.43562L1.5093 6.9355C0.6334 6.05236 0.91537 5.15712 2.13923 4.95145L4.05302 4.63086C4.37098 4.57642 4.75494 4.29212 4.89892 3.99573L5.9548 1.86651C6.53074 0.711165 7.46662 0.711165 8.03656 1.86651Z" fill="#6AB43A" />
+                                        </svg>
+                                        </span>
                                         <span className="shop-rating">{shop.rating}</span>
                                         <span className="shop-price">&nbsp;{shop.price}</span>
                                     </div>
@@ -162,12 +165,11 @@ export default function Map({ navBar }) {
                                 <div className="btn-wrap">
                                     <button className="btn-reserve">
                                         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M12.1 2V4.80002M6.5 2V4.80002" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                                            <path d="M10 3.3999H8.6C5.96013 3.3999 4.6402 3.3999 3.8201 4.22001C3 5.04012 3 6.36006 3 8.99995V10.4C3 13.0398 3 14.3598 3.8201 15.1799C4.6402 16 5.96013 16 8.6 16H10C12.6398 16 13.9598 16 14.7799 15.1799C15.6 14.3598 15.6 13.0398 15.6 10.4V8.99995C15.6 6.36006 15.6 5.04012 14.7799 4.22001C13.9598 3.3999 12.6398 3.3999 10 3.3999Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                                            <path d="M3 7.59979H15.6" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                                            <path d="M9.30068 9.69989V13.8999M11.4007 11.7999H7.20068" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                            <path d="M12.1 2V4.80002M6.5 2V4.80002" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M10 3.3999H8.6C5.96013 3.3999 4.6402 3.3999 3.8201 4.22001C3 5.04012 3 6.36006 3 8.99995V10.4C3 13.0398 3 14.3598 3.8201 15.1799C4.6402 16 5.96013 16 8.6 16H10C12.6398 16 13.9598 16 14.7799 15.1799C15.6 14.3598 15.6 13.0398 15.6 10.4V8.99995C15.6 6.36006 15.6 5.04012 14.7799 4.22001C13.9598 3.3999 12.6398 3.3999 10 3.3999Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M3 7.59979H15.6" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M9.30068 9.69989V13.8999M11.4007 11.7999H7.20068" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                         </svg>
-
                                         <p>예약</p>
 
                                     </button>
