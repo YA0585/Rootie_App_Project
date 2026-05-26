@@ -478,14 +478,13 @@ body {
 
 .btn-reserve {
     display: flex;
-    /* padding: 5px 10px; */
     justify-content: center;
     align-items: center;
     gap: 2px;
     border-radius: 20px;
     border: none;
     cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
+    height: 27px;
 }
 
 .btn-reserve:hover,
