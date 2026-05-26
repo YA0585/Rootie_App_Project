@@ -18,8 +18,9 @@ import ShopReview from "./pages/Shop/ShopReview/ShopReview";
 import ShopPrice from "./pages/Shop/ShopPrice/ShopPrice";
 import Chat from "./pages/Chat/Chat";
 import { NavBar } from "./components/NavBar/NavBar";
+import ShopOptions from "./pages/Shop/ShopOptions/ShopOptions";
 
-function App() {
+function MainApp() {
   const [activeTab, setActiveTab] = useState("home"); // "home" | "reservations" | "chat" | "map" | "mypage"
   const [currentScreen, setCurrentScreen] = useState(null); // null | "locationsetting" | "shop" | "shopprice" | "shopreview"
 
@@ -103,6 +104,11 @@ function App() {
       {renderActivePage()}
     </div>
   );
+}
+
+
+function App() {
+  return <ShopOptions />;
 }
 
 export default App;
