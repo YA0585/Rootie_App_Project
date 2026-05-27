@@ -1,4 +1,4 @@
-/* RootieLogin.css */
+/* LoginPage.css */
 
 * {
     box-sizing: border-box;
@@ -6,13 +6,13 @@
     padding: 0;
 }
 
-.rootie-container {
-    height: 100%;
+.phone-wrap {
+    width: 430px;
+    height: 932px;
     background-color: #ffffff;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
 }
 
 .rootie-inner {
@@ -32,11 +32,7 @@
 }
 
 .rootie-logo {
-    font-size: 42px;
-    font-weight: 700;
-    color: #5BAD3E;
-    letter-spacing: -0.5px;
-    font-family: 'Georgia', 'Times New Roman', serif;
+    font: var(--font-splash-logo)
 }
 
 /* ── Form ── */
