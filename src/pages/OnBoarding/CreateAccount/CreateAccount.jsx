@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./CreateAccount.css";
 
-export default function RootieSignup() {
+export default function RootieSignup({ onNext }) {
     const [form, setForm] = useState({
         name: "",
         id: "",
@@ -21,7 +21,7 @@ export default function RootieSignup() {
 
     const handleNext = () => {
         if (!isActive) return;
-        alert(`다음 단계로 이동: ${form.name}`);
+        if (onNext) onNext();
     };
 
     return (
@@ -61,7 +61,7 @@ export default function RootieSignup() {
                         <input
                             className="signup-input"
                             type="password"
-                            placeholder="아이디 입력"
+                            placeholder="비밀번호 입력"
                             value={form.password}
                             onChange={handleChange("password")}
                         />
@@ -72,7 +72,7 @@ export default function RootieSignup() {
                         <input
                             className="signup-input"
                             type="email"
-                            placeholder="아이디 입력"
+                            placeholder="이메일 입력"
                             value={form.email}
                             onChange={handleChange("email")}
                         />
