@@ -101,7 +101,6 @@
      font-size: 16px;
      font-weight: 600;
      cursor: pointer;
-     transition: color 0.2s ease, transform 0.1s ease;
      font-family: inherit;
      letter-spacing: 0.5px;
 
@@ -116,10 +115,6 @@
 
  .signup-next-btn.active {
      background: var(--fin-maincolor);
- }
-
- .signup-next-btn.active:hover {
-     opacity: 0.9;
  }
 
  .signup-next-btn:disabled {
