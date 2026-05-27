@@ -105,17 +105,16 @@
  }
 
  .signup-next-btn.active {
-     background: #5BAD3E;
+     background: var(--fin-maincolor);
      color: #ffffff;
  }
 
  .signup-next-btn.active:hover {
-     background: #4d9c33;
+     opacity: 0.9;
  }
 
  .signup-next-btn.active:active {
      transform: scale(0.98);
-     background: #4d9c33;
  }
 
  .signup-next-btn:disabled {
