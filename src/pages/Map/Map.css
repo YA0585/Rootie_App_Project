@@ -40,7 +40,7 @@ body {
     overflow: hidden;
     /* ← 핵심: 바깥으로 안 넘치게 */
     position: relative;
-    border-radius: 20px;
+    border-radius: 40px;
     z-index: 100;
     transform: translateZ(0);
     -webkit-mask-image: -webkit-radial-gradient(white, black);
@@ -51,7 +51,7 @@ body {
     position: relative;
     width: 100%;
     height: 100%;
-    border-radius: 20px;
+    border-radius: 40px;
     overflow: hidden;
     background: none;
     isolation: isolate;
@@ -63,7 +63,7 @@ body {
 .map-bg {
     width: 100%;
     height: 100%;
-    border-radius: 20px;
+    border-radius: 40px;
     position: relative;
     overflow: hidden;
     background: none;
