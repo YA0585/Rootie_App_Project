@@ -8,18 +8,36 @@ export default function LoginPage({ onLogin }) {
                     <div style={{ color: '#6AB43A', fontSize: 48, fontFamily: 'Quicksand', fontWeight: '700', wordWrap: 'break-word' }}>Rootie</div>
                     <div style={{ width: 350, flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 20, display: 'flex' }}>
                         <div style={{ alignSelf: 'stretch', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 20, display: 'flex' }}>
-                            <div style={{ alignSelf: 'stretch', height: 109, flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', gap: 10, display: 'flex' }}>
-                                <div style={{ alignSelf: 'stretch', height: 50, paddingLeft: 20, paddingRight: 20, background: 'white', borderRadius: 10, outline: '1px #E7E5E4 solid', outlineOffset: '-1px', justifyContent: 'flex-start', alignItems: 'center', gap: 10, display: 'inline-flex' }}>
-                                    <div style={{ color: '#D9D9D9', fontSize: 18, fontFamily: 'Noto Sans KR', fontWeight: '400', lineHeight: '28px', wordWrap: 'break-word' }}>아이디 입력</div>
-                                </div>
-                                <div style={{ alignSelf: 'stretch', height: 50, paddingLeft: 20, paddingRight: 20, background: 'white', borderRadius: 10, outline: '1px #E7E5E4 solid', outlineOffset: '-1px', justifyContent: 'space-between', alignItems: 'center', display: 'inline-flex' }}>
-                                    <div style={{ color: '#D9D9D9', fontSize: 18, fontFamily: 'Noto Sans KR', fontWeight: '400', lineHeight: '28px', wordWrap: 'break-word' }}>비밀번호 입력</div>
-                                    <div style={{ width: 24, height: 24, position: 'relative' }}>
-                                        <div style={{ width: 20, height: 14, left: 2, top: 5, position: 'absolute', outline: '1.50px #D9D9D9 solid', outlineOffset: '-0.75px' }} />
-                                        <div style={{ width: 6, height: 6, left: 9, top: 9, position: 'absolute', outline: '1.50px #D9D9D9 solid', outlineOffset: '-0.75px' }} />
+                                <div style={{ alignSelf: 'stretch', height: 109, flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', gap: 10, display: 'flex' }}>
+                                    <input 
+                                        type="text" 
+                                        placeholder="아이디 입력"
+                                        style={{ 
+                                            width: '100%', height: 50, padding: '0 20px', 
+                                            background: 'white', borderRadius: 10, 
+                                            border: '1px solid #E7E5E4', 
+                                            color: '#2F2F2F', fontSize: 16, fontFamily: 'Noto Sans KR',
+                                            outline: 'none'
+                                        }} 
+                                    />
+                                    <div style={{ alignSelf: 'stretch', position: 'relative' }}>
+                                        <input 
+                                            type="password" 
+                                            placeholder="비밀번호 입력"
+                                            style={{ 
+                                                width: '100%', height: 50, padding: '0 45px 0 20px', 
+                                                background: 'white', borderRadius: 10, 
+                                                border: '1px solid #E7E5E4', 
+                                                color: '#2F2F2F', fontSize: 16, fontFamily: 'Noto Sans KR',
+                                                outline: 'none'
+                                            }} 
+                                        />
+                                        <div style={{ position: 'absolute', right: 20, top: 13, width: 24, height: 24 }}>
+                                            <div style={{ width: 20, height: 14, left: 2, top: 5, position: 'absolute', outline: '1.50px #D9D9D9 solid', outlineOffset: '-0.75px' }} />
+                                            <div style={{ width: 6, height: 6, left: 9, top: 9, position: 'absolute', outline: '1.50px #D9D9D9 solid', outlineOffset: '-0.75px' }} />
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                             <div
                                 onClick={onLogin}
                                 style={{ cursor: 'pointer', alignSelf: 'stretch', height: 50, paddingLeft: 45, paddingRight: 45, paddingTop: 10, paddingBottom: 10, background: '#6AB43A', overflow: 'hidden', borderRadius: 10, justifyContent: 'center', alignItems: 'center', display: 'inline-flex' }}

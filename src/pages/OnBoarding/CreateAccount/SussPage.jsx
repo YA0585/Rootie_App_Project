@@ -1,6 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-export default function SussPage() {
+export default function SussPage({ onFinish }) {
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            if (onFinish) onFinish();
+        }, 2500); // 2.5 seconds delay
+        return () => clearTimeout(timer);
+    }, [onFinish]);
+
     return (
         <div className="phone-wrap" style={{ position: 'relative', background: '' }}>
             <div style={{ width: 187, left: 121, top: 380, position: 'absolute', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', gap: 12, display: 'inline-flex' }}>

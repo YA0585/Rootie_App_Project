@@ -26,6 +26,7 @@ import PlantDetail from "./pages/MyPage/PlantDetail";
 import SplashScreen from "./pages/OnBoarding/SplashScreen";
 import OnBoarding from "./pages/OnBoarding/OnBoarding";
 import LoginPage from "./pages/OnBoarding/LoginPage";
+import SussPage from "./pages/OnBoarding/CreateAccount/SussPage";
 
 function App() {
   const [activeTab, setActiveTab] = useState("home"); // "home" | "reservations" | "chat" | "map" | "mypage"
@@ -49,6 +50,9 @@ function App() {
     }
     if (currentScreen === "onboarding") {
       return <OnBoarding onStart={() => setCurrentScreen("login")} />;
+    }
+    if (currentScreen === "susspage") {
+      return <SussPage onFinish={() => setCurrentScreen("login")} />;
     }
     if (currentScreen === "login") {
       return <LoginPage onLogin={() => setCurrentScreen(null)} />;
