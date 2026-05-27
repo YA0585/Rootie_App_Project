@@ -155,21 +155,6 @@
     font-weight: 700;
     letter-spacing: -0.3px;
     cursor: pointer;
-    box-shadow: 0 4px 18px rgba(76, 175, 80, 0.35);
-    transition: background 0.2s ease,
-        transform 0.12s ease,
-        box-shadow 0.2s ease;
-    -webkit-tap-highlight-color: transparent;
-}
-
-.onboarding-btn:hover {
-    background: var(--green-dark);
-    box-shadow: 0 6px 22px rgba(76, 175, 80, 0.42);
-}
-
-.onboarding-btn:active {
-    transform: scale(0.98);
-    box-shadow: 0 2px 10px rgba(76, 175, 80, 0.28);
 }
 
 /* ── Responsive ── */
