@@ -19,10 +19,17 @@ import ShopPrice from "./pages/Shop/ShopPrice/ShopPrice";
 import ShopOptions from "./pages/Shop/ShopOptions/ShopOptions";
 import Chat from "./pages/Chat/Chat";
 import { NavBar } from "./components/NavBar/NavBar";
+import MyPlant from "./pages/MyPage/MyPlant";
+import PlantDetail from "./pages/MyPage/PlantDetail";
+
+// Onboarding imports
+import SplashScreen from "./pages/OnBoarding/SplashScreen";
+import OnBoarding from "./pages/OnBoarding/OnBoarding";
+import LoginPage from "./pages/OnBoarding/LoginPage";
 
 function App() {
   const [activeTab, setActiveTab] = useState("home"); // "home" | "reservations" | "chat" | "map" | "mypage"
-  const [currentScreen, setCurrentScreen] = useState(null); // null | "locationsetting" | "shop" | "shopprice" | "shopreview"
+  const [currentScreen, setCurrentScreen] = useState("splash"); // "splash" | "onboarding" | "login" | null | "locationsetting" | "shop" | "shopprice" | "shopreview" | "myplant" | "plantdetail"
 
   // Synchronization NavBar to inject as prop
   const sharedNavBar = (
@@ -36,6 +43,17 @@ function App() {
   );
 
   const renderActivePage = () => {
+    // 0. Onboarding flow
+    if (currentScreen === "splash") {
+      return <SplashScreen onFinish={() => setCurrentScreen("onboarding")} />;
+    }
+    if (currentScreen === "onboarding") {
+      return <OnBoarding onStart={() => setCurrentScreen("login")} />;
+    }
+    if (currentScreen === "login") {
+      return <LoginPage onLogin={() => setCurrentScreen(null)} />;
+    }
+
     // 1. Sub-page screens
     if (currentScreen === "locationsetting") {
       return <LocationSetting onBack={() => setCurrentScreen(null)} />;
@@ -57,6 +75,12 @@ function App() {
     }
     if (currentScreen === "shopreview") {
       return <ShopReview onBack={() => setCurrentScreen("shop")} />;
+    }
+    if (currentScreen === "myplant") {
+      return <MyPlant onBack={() => setCurrentScreen(null)} onGoToPlantDetail={() => setCurrentScreen("plantdetail")} />;
+    }
+    if (currentScreen === "plantdetail") {
+      return <PlantDetail onBack={() => setCurrentScreen("myplant")} />;
     }
 
     // 2. Primary Main screens
@@ -95,6 +119,7 @@ function App() {
         return (
           <MyPage
             navBar={sharedNavBar}
+            onGoToMyPlant={() => setCurrentScreen("myplant")}
           />
         );
       default:

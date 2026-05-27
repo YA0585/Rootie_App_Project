@@ -61,17 +61,21 @@ const shops = [
     },
 ];
 
-export default function Map({ navBar }) {
+export default function Map({ navBar, onGoToShop, onGoToLocationSetting }) {
     const [activeFilter, setActiveFilter] = useState("관엽식물");
     useEffect(() => {
-        const container = document.getElementById("map");
+        if (!window.kakao || !window.kakao.maps) return;
 
-        const options = {
-            center: new window.kakao.maps.LatLng(37.5665, 126.9780),
-            level: 3,
-        };
+        window.kakao.maps.load(() => {
+            const container = document.getElementById("map");
 
-        new window.kakao.maps.Map(container, options);
+            const options = {
+                center: new window.kakao.maps.LatLng(37.504598, 127.025060),
+                level: 3,
+            };
+
+            new window.kakao.maps.Map(container, options);
+        });
     }, []);
 
     return (
@@ -145,7 +149,7 @@ export default function Map({ navBar }) {
                     {shops.map((shop, i) => (
                         <div key={shop.id}>
                             <div className="shop-row">
-                                <div className="shop-info">
+                                <div className="shop-info" onClick={onGoToShop} style={{ cursor: 'pointer' }}>
                                     <p className="shop-name">{shop.name}</p>
                                     <p className="shop-tags">{shop.tags}</p>
                                     <p className="shop-hours">

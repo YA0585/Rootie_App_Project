@@ -27,7 +27,7 @@ const reviews = [
     },
 ];
 
-export default function MyRootie({ navBar }) {
+export default function MyRootie({ navBar, onGoToMyPlant }) {
     const [activeNav, setActiveNav] = useState("나의 루티");
 
     return (
@@ -129,7 +129,7 @@ export default function MyRootie({ navBar }) {
                 <div className="card section-card">
                     <div className="section-header">
                         <span className="section-title">내 반려식물</span>
-                        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#888" strokeWidth="2">
+                        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#888" strokeWidth="2" onClick={onGoToMyPlant} style={{ cursor: 'pointer' }}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                         </svg>
                     </div>

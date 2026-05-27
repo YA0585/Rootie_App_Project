@@ -1,0 +1,69 @@
+.carousel-wrapper {
+    width: 100%;
+    position: relative;
+    /* Optional: Fade edges for modern look */
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.carousel-container {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: auto; /* Handle smoothly in JS */
+    /* Hide scrollbars */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    
+    /* Snapping when not dragging */
+    scroll-snap-type: x mandatory;
+    cursor: grab;
+    
+    /* Hardware acceleration for smooth scrolling */
+    transform: translate3d(0, 0, 0);
+    will-change: scroll-position;
+    
+    /* Prevent text selection while dragging */
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: pan-x; /* Allow native horizontal pan, disable vertical during drag */
+}
+
+.carousel-container::-webkit-scrollbar {
+    display: none;
+}
+
+.carousel-container.dragging {
+    scroll-snap-type: none;
+    cursor: grabbing;
+}
+
+.carousel-content {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end; /* match design */
+    width: max-content;
+    padding-left: 20px; /* Optional start padding */
+    padding-right: 20px;
+}
+
+.carousel-item {
+    scroll-snap-align: center; /* Snap items to center */
+    flex-shrink: 0;
+    /* Hover effects for modern feel */
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.carousel-container:not(.dragging) .carousel-item:hover {
+    transform: scale(1.02) translateY(-4px);
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .carousel-item {
+        transition: none;
+    }
+    .carousel-container:not(.dragging) .carousel-item:hover {
+        transform: none;
+    }
+}

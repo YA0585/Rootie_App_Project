@@ -322,6 +322,7 @@ body {
     cursor: pointer;
     z-index: 10;
     transition: background 0.15s;
+    border: none;
 }
 
 .home-location:hover {
