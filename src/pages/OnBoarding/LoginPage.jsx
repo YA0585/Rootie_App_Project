@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function LoginPage({ onLogin }) {
     return (
-        <div className="phone-wrap" style={{ width: '100%', height: '100%', position: 'relative', background: 'white', overflow: 'hidden' }}>
+        <div className="phone-wrap" style={{ position: 'relative', background: 'white' }}>
             <div style={{ width: 350, left: 40, top: 216, position: 'absolute', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', gap: 100, display: 'inline-flex' }}>
                 <div style={{ flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', gap: 40, display: 'flex' }}>
                     <div style={{ color: '#6AB43A', fontSize: 48, fontFamily: 'Quicksand', fontWeight: '700', wordWrap: 'break-word' }}>Rootie</div>

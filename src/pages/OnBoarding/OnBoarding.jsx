@@ -57,7 +57,7 @@ export default function OnBoarding({ onStart }) {
     ];
 
     return (
-        <div className="phone-wrap" style={{ width: '100%', height: '100%', position: 'relative', background: 'white' }}>
+        <div className="phone-wrap" style={{ position: 'relative', background: 'white' }}>
             <div data-property-1="Default" style={{ width: 430, height: 120, left: 0, bottom: 0, position: 'absolute', background: 'white', overflow: 'hidden', zIndex: 10 }}>
                 <div
                     onClick={onStart}
