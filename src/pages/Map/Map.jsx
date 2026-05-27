@@ -69,10 +69,12 @@ export default function Map({ navBar, onGoToShop, onGoToLocationSetting }) {
     const MAX_Y = 600; // Collapsed
     const [sheetY, setSheetY] = useState(MAX_Y);
     const [isDragging, setIsDragging] = useState(false);
+    const isDraggingRef = useRef(false);
     const dragStartY = useRef(0);
     const startSheetY = useRef(0);
 
     const handlePointerDown = (e) => {
+        isDraggingRef.current = true;
         setIsDragging(true);
         dragStartY.current = e.clientY;
         startSheetY.current = sheetY;
@@ -80,7 +82,7 @@ export default function Map({ navBar, onGoToShop, onGoToLocationSetting }) {
     };
 
     const handlePointerMove = (e) => {
-        if (!isDragging) return;
+        if (!isDraggingRef.current) return;
         const delta = e.clientY - dragStartY.current;
         let newY = startSheetY.current + delta;
         if (newY < MIN_Y) newY = MIN_Y;
@@ -89,17 +91,16 @@ export default function Map({ navBar, onGoToShop, onGoToLocationSetting }) {
     };
 
     const handlePointerUp = (e) => {
-        if (!isDragging) return;
+        if (!isDraggingRef.current) return;
+        isDraggingRef.current = false;
         setIsDragging(false);
         e.target.releasePointerCapture(e.pointerId);
         
         // Snap to closest boundary
-        const threshold = (MAX_Y + MIN_Y) / 2;
-        if (sheetY < threshold) {
-            setSheetY(MIN_Y);
-        } else {
-            setSheetY(MAX_Y);
-        }
+        setSheetY(prevY => {
+            const threshold = (MAX_Y + MIN_Y) / 2;
+            return prevY < threshold ? MIN_Y : MAX_Y;
+        });
     };
     useEffect(() => {
         if (!window.kakao || !window.kakao.maps) return;
