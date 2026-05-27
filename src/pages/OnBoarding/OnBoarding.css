@@ -133,8 +133,8 @@
 }
 
 .dot.dot-active {
-    background: var(--dot-active);
-    width: 22px;
+    background: var(--fin-maincolor);
+    width: 8px;
 }
 
 /* ── Footer ── */

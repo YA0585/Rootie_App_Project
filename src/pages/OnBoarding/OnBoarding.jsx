@@ -175,7 +175,7 @@ export default function Onboarding({ onStart }) {
 
     return (
         <div
-            className="onboarding-wrapper"
+            className="phone-wrap onboarding-wrapper"
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
         >
