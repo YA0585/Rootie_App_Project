@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./Map.css";
 
 const FILTERS = [
@@ -63,6 +63,44 @@ const shops = [
 
 export default function Map({ navBar, onGoToShop, onGoToLocationSetting }) {
     const [activeFilter, setActiveFilter] = useState("관엽식물");
+
+    // Bottom Sheet Drag State
+    const MIN_Y = 50; // Fully expanded (leaves 50px at top)
+    const MAX_Y = 600; // Collapsed
+    const [sheetY, setSheetY] = useState(MAX_Y);
+    const [isDragging, setIsDragging] = useState(false);
+    const dragStartY = useRef(0);
+    const startSheetY = useRef(0);
+
+    const handlePointerDown = (e) => {
+        setIsDragging(true);
+        dragStartY.current = e.clientY;
+        startSheetY.current = sheetY;
+        e.target.setPointerCapture(e.pointerId);
+    };
+
+    const handlePointerMove = (e) => {
+        if (!isDragging) return;
+        const delta = e.clientY - dragStartY.current;
+        let newY = startSheetY.current + delta;
+        if (newY < MIN_Y) newY = MIN_Y;
+        if (newY > MAX_Y) newY = MAX_Y;
+        setSheetY(newY);
+    };
+
+    const handlePointerUp = (e) => {
+        if (!isDragging) return;
+        setIsDragging(false);
+        e.target.releasePointerCapture(e.pointerId);
+        
+        // Snap to closest boundary
+        const threshold = (MAX_Y + MIN_Y) / 2;
+        if (sheetY < threshold) {
+            setSheetY(MIN_Y);
+        } else {
+            setSheetY(MAX_Y);
+        }
+    };
     useEffect(() => {
         if (!window.kakao || !window.kakao.maps) return;
 
@@ -115,22 +153,51 @@ export default function Map({ navBar, onGoToShop, onGoToLocationSetting }) {
                     ))}
                 </div>
 
-                {/* Home location */}
-                <button className="home-location" aria-label="위치추가">
-                    <div className="icon-wrapper">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M3 11.9891V14.6316C3 18.1051 3 19.8418 4.07908 20.9209C5.15816 22 6.89492 22 10.3684 22H14.5789C18.0524 22 19.7892 22 20.8683 20.9209C21.9474 19.8418 21.9474 18.1051 21.9474 14.6316V11.9891C21.9474 10.2193 21.9474 9.33445 21.5727 8.56847C21.1981 7.8025 20.4997 7.25924 19.1027 6.17275L16.9975 4.53532C14.8243 2.84511 13.7378 2 12.4737 2C11.2096 2 10.123 2.84511 7.94992 4.53532L5.84464 6.17275C4.44772 7.25924 3.74925 7.8025 3.37463 8.56847C3 9.33445 3 10.2193 3 11.9891Z" fill="#6AB43A" stroke="#6AB43A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M12.4731 8.78946C12.4845 8.78946 12.4977 8.79349 12.5103 8.80606C12.5226 8.81853 12.5259 8.83092 12.5259 8.84219V13.0004H16.6841C16.6954 13.0004 16.7077 13.0037 16.7202 13.016C16.7326 13.0284 16.7367 13.0409 16.7368 13.0522C16.7368 13.0635 16.7328 13.0767 16.7202 13.0893C16.7077 13.1016 16.6954 13.1049 16.6841 13.1049H12.5259V17.2631C12.5259 17.2744 12.5226 17.2868 12.5103 17.2992C12.4977 17.3118 12.4845 17.3158 12.4731 17.3158C12.4619 17.3157 12.4494 17.3116 12.437 17.2992C12.4246 17.2867 12.4214 17.2744 12.4214 17.2631V13.1049H8.26318C8.25191 13.1049 8.23952 13.1016 8.22705 13.0893C8.21448 13.0767 8.21045 13.0635 8.21045 13.0522C8.21055 13.0409 8.21465 13.0284 8.22705 13.016C8.23953 13.0037 8.25191 13.0004 8.26318 13.0004H12.4214V8.84219C12.4214 8.83092 12.4247 8.81854 12.437 8.80606C12.4494 8.79366 12.4619 8.78956 12.4731 8.78946Z" fill="white" stroke="white" stroke-width="2" />
-                        </svg>
-
-                    </div>
-                </button>
-
             </div>
 
             {/* Bottom Sheet */}
-            <div className="bottom-sheet">
-                <div className="drag-handle" />
+            <div 
+                className="bottom-sheet"
+                style={{ 
+                    transform: `translateY(${sheetY}px)`,
+                    transition: isDragging ? 'none' : 'transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1)'
+                }}
+            >
+                {/* Home location - Follows bottom sheet */}
+                <button 
+                    className="home-location" 
+                    aria-label="위치추가"
+                    style={{
+                        opacity: sheetY < 100 ? 0 : 1,
+                        pointerEvents: sheetY < 100 ? 'none' : 'auto',
+                        transition: isDragging ? 'none' : 'opacity 0.3s ease'
+                    }}
+                >
+                    <div className="icon-wrapper">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3 11.9891V14.6316C3 18.1051 3 19.8418 4.07908 20.9209C5.15816 22 6.89492 22 10.3684 22H14.5789C18.0524 22 19.7892 22 20.8683 20.9209C21.9474 19.8418 21.9474 18.1051 21.9474 14.6316V11.9891C21.9474 10.2193 21.9474 9.33445 21.5727 8.56847C21.1981 7.8025 20.4997 7.25924 19.1027 6.17275L16.9975 4.53532C14.8243 2.84511 13.7378 2 12.4737 2C11.2096 2 10.123 2.84511 7.94992 4.53532L5.84464 6.17275C4.44772 7.25924 3.74925 7.8025 3.37463 8.56847C3 9.33445 3 10.2193 3 11.9891Z" fill="#6AB43A" stroke="#6AB43A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                            <path d="M12.4731 8.78946C12.4845 8.78946 12.4977 8.79349 12.5103 8.80606C12.5226 8.81853 12.5259 8.83092 12.5259 8.84219V13.0004H16.6841C16.6954 13.0004 16.7077 13.0037 16.7202 13.016C16.7326 13.0284 16.7367 13.0409 16.7368 13.0522C16.7368 13.0635 16.7328 13.0767 16.7202 13.0893C16.7077 13.1016 16.6954 13.1049 16.6841 13.1049H12.5259V17.2631C12.5259 17.2744 12.5226 17.2868 12.5103 17.2992C12.4977 17.3118 12.4845 17.3158 12.4731 17.3158C12.4619 17.3157 12.4494 17.3116 12.437 17.2992C12.4246 17.2867 12.4214 17.2744 12.4214 17.2631V13.1049H8.26318C8.25191 13.1049 8.23952 13.1016 8.22705 13.0893C8.21448 13.0767 8.21045 13.0635 8.21045 13.0522C8.21055 13.0409 8.21465 13.0284 8.22705 13.016C8.23953 13.0037 8.25191 13.0004 8.26318 13.0004H12.4214V8.84219C12.4214 8.83092 12.4247 8.81854 12.437 8.80606C12.4494 8.79366 12.4619 8.78956 12.4731 8.78946Z" fill="white" stroke="white" strokeWidth="2" />
+                        </svg>
+                    </div>
+                </button>
+
+                <div 
+                    className="drag-handle-area"
+                    onPointerDown={handlePointerDown}
+                    onPointerMove={handlePointerMove}
+                    onPointerUp={handlePointerUp}
+                    onPointerCancel={handlePointerUp}
+                    style={{
+                        width: '100%',
+                        padding: '12px 0',
+                        cursor: 'grab',
+                        touchAction: 'none',
+                        display: 'flex',
+                        justifyContent: 'center'
+                    }}
+                >
+                    <div className="drag-handle" style={{ margin: 0 }} />
+                </div>
                 <div className="ai-banner">
                     <span className="ai-icon">
                         <svg width="47" height="47" viewBox="0 0 47 47" fill="none" xmlns="http://www.w3.org/2000/svg">
