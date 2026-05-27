@@ -87,7 +87,7 @@ export default function RootieSignup({ onNext }) {
                     onClick={handleNext}
                     disabled={!isActive}
                 >
-                    다음
+                    <p>다음</p>
                 </button>
             </div>
         </div>

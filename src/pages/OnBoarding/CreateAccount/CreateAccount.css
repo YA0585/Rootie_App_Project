@@ -95,18 +95,20 @@
      font-size: 16px;
      font-weight: 600;
      cursor: pointer;
-     transition: background 0.2s ease, transform 0.1s ease;
+     transition: color 0.2s ease, transform 0.1s ease;
      font-family: inherit;
      letter-spacing: 0.5px;
 
      /* Default (inactive) */
-     background: #D5D5D5;
+     background: var(--fin-disabled);
+ }
+
+ .signup-next-btn p {
      color: #ffffff;
  }
 
  .signup-next-btn.active {
      background: var(--fin-maincolor);
-     color: #ffffff;
  }
 
  .signup-next-btn.active:hover {
