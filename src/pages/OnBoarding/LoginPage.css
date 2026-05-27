@@ -32,7 +32,8 @@
 }
 
 .rootie-logo {
-    font: var(--font-splash-logo)
+    font: var(--font-splash-logo);
+    color: var(--fin-maincolor);
 }
 
 /* ── Form ── */
@@ -136,10 +137,6 @@
     transition: color 0.15s;
 }
 
-.rootie-link:hover {
-    font: var(--font-body3-semibold);
-}
-
 .rootie-divider {
     color: var(--fin-divider);
     font-size: 13px;
@@ -162,7 +159,7 @@
 .rootie-social-line {
     flex: 1;
     height: 1px;
-    background: #E0E0E0;
+    background: var(--fin-divider);
 }
 
 .rootie-social-text {
@@ -198,27 +195,6 @@
 .rootie-social-btn:active {
     transform: scale(0.95);
 }
-
-/* .rootie-social-btn.kakao {
-    background: #FEE500;
-}
-
-.rootie-social-btn.naver {
-    background: #03C75A;
-}
-
-.rootie-social-btn.google {
-    background: #ffffff;
-    border: 1px solid #E0E0E0;
-}
-
-.rootie-social-btn.facebook {
-    background: #1877F2;
-}
-
-.rootie-social-btn.apple {
-    background: #000000;
-} */
 
 /* ── Responsive (Mobile) ── */
 @media (max-width: 430px) {
