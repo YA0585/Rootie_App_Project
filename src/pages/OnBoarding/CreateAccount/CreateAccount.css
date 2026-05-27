@@ -82,7 +82,7 @@
  }
 
  .signup-input:focus {
-     border-color: #5BAD3E;
+     border-color: var(--fin-maincolor);
  }
 
  /* ── Footer Button ── */
@@ -107,8 +107,6 @@
 
      /* Default (inactive) */
      background: var(--fin-disabled);
-     transform: translateZ(0);
-     will-change: transform, opacity;
  }
 
  .signup-next-btn p {
