@@ -129,19 +129,19 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
-    margin-top: 4px;
+    gap: 20px;
+    margin-top: 20px;
 }
 
 .rootie-link {
     font-size: 13px;
-    color: #555;
+    color: var(--fin-secondary-text);
     text-decoration: none;
     transition: color 0.15s;
 }
 
 .rootie-link:hover {
-    color: #5BAD3E;
+    font: var(--font-body3-semibold);
 }
 
 .rootie-divider {

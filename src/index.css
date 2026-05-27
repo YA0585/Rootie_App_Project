@@ -52,6 +52,26 @@
   --transition-fast: 0.12s ease;
   --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-spring: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  /* 1.5 Font Variables */
+  --font-title1-bold: 700 24px/36px 'Noto Sans KR', sans-serif;
+  --font-title1-semi: 500 24px/36px 'Noto Sans KR', sans-serif;
+  --font-title2-bold: 700 20px/32px 'Noto Sans KR', sans-serif;
+  --font-title2-semi: 500 20px/32px 'Noto Sans KR', sans-serif;
+  --font-subtitle-bold: 700 18px/28px 'Noto Sans KR', sans-serif;
+  --font-subtitle-semi: 500 18px/28px 'Noto Sans KR', sans-serif;
+  --font-subtitle-regular: 400 18px/28px 'Noto Sans KR', sans-serif;
+  --font-body1-bold: 700 16px/24px 'Noto Sans KR', sans-serif;
+  --font-body1-semibold: 500 16px/24px 'Noto Sans KR', sans-serif;
+  --font-body1-regular: 400 16px/24px 'Noto Sans KR', sans-serif;
+  --font-body2-bold: 700 14px/20px 'Noto Sans KR', sans-serif;
+  --font-body2-semibold: 500 14px/20px 'Noto Sans KR', sans-serif;
+  --font-body2-regular: 400 14px/20px 'Noto Sans KR', sans-serif;
+  --font-body3-semibold: 500 12px/18px 'Noto Sans KR', sans-serif;
+  --font-body3-regular: 400 12px/18px 'Noto Sans KR', sans-serif;
+  --font-caption-regular: 400 12px/18px 'Noto Sans KR', sans-serif;
+  --font-calendar-inter-regular: 400 16px/1.0 'Inter', sans-serif;
+  --font-splash-logo: 700 48px/1.0 'Quicksand', sans-serif;
 }
 
 /* ── 2. GLOBAL RESET & BASE RULES ── */
