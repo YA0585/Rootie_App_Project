@@ -1,45 +1,94 @@
-import React from 'react';
+import { useState } from "react";
+import "./CreateAccount.css";
 
-export default function CreateAccount({ onNext }) {
+export default function RootieSignup() {
+    const [form, setForm] = useState({
+        name: "",
+        id: "",
+        password: "",
+        email: "",
+    });
+
+    const isActive =
+        form.name.trim() !== "" &&
+        form.id.trim() !== "" &&
+        form.password.trim() !== "" &&
+        form.email.trim() !== "";
+
+    const handleChange = (field) => (e) => {
+        setForm((prev) => ({ ...prev, [field]: e.target.value }));
+    };
+
+    const handleNext = () => {
+        if (!isActive) return;
+        alert(`다음 단계로 이동: ${form.name}`);
+    };
+
     return (
-        <div className="phone-wrap" style={{ position: 'relative', background: '' }}>
-            <div style={{ width: 349, left: 40, top: 216, position: 'absolute', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', gap: 40, display: 'inline-flex' }}>
-                <div style={{ alignSelf: 'stretch', textAlign: 'center', color: '#6AB43A', fontSize: 48, fontFamily: 'Quicksand', fontWeight: '700', wordWrap: 'break-word' }}>Rootie</div>
-                <div style={{ alignSelf: 'stretch', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', gap: 24, display: 'flex' }}>
-                    <div style={{ flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', gap: 24, display: 'flex' }}>
-                        <div style={{ flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 6, display: 'flex' }}>
-                            <div style={{ color: '#2F2F2F', fontSize: 14, fontFamily: 'Noto Sans KR', fontWeight: '500', lineHeight: 20, wordWrap: 'break-word' }}>이름</div>
-                            <div style={{ width: 350, flex: '1 1 0', paddingLeft: 20, paddingRight: 20, background: 'white', borderRadius: 10, outline: '1px #E7E5E4 solid', outlineOffset: '-1px', justifyContent: 'flex-start', alignItems: 'center', gap: 10, display: 'inline-flex' }}>
-                                <div style={{ color: '#D9D9D9', fontSize: 18, fontFamily: 'Noto Sans KR', fontWeight: '400', lineHeight: 28, wordWrap: 'break-word' }}>이름 입력</div>
-                            </div>
-                        </div>
-                        <div style={{ flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 6, display: 'flex' }}>
-                            <div style={{ color: '#2F2F2F', fontSize: 14, fontFamily: 'Noto Sans KR', fontWeight: '500', lineHeight: 20, wordWrap: 'break-word' }}>아이디</div>
-                            <div style={{ width: 350, flex: '1 1 0', paddingLeft: 20, paddingRight: 20, background: 'white', borderRadius: 10, outline: '1px #E7E5E4 solid', outlineOffset: '-1px', justifyContent: 'flex-start', alignItems: 'center', gap: 10, display: 'inline-flex' }}>
-                                <div style={{ color: '#D9D9D9', fontSize: 18, fontFamily: 'Noto Sans KR', fontWeight: '400', lineHeight: 28, wordWrap: 'break-word' }}>아이디 입력</div>
-                            </div>
-                        </div>
-                        <div style={{ flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 6, display: 'flex' }}>
-                            <div style={{ color: '#2F2F2F', fontSize: 14, fontFamily: 'Noto Sans KR', fontWeight: '500', lineHeight: 20, wordWrap: 'break-word' }}>비밀번호</div>
-                            <div style={{ width: 350, flex: '1 1 0', paddingLeft: 20, paddingRight: 20, background: 'white', borderRadius: 10, outline: '1px #E7E5E4 solid', outlineOffset: '-1px', justifyContent: 'flex-start', alignItems: 'center', gap: 10, display: 'inline-flex' }}>
-                                <div style={{ color: '#D9D9D9', fontSize: 18, fontFamily: 'Noto Sans KR', fontWeight: '400', lineHeight: 28, wordWrap: 'break-word' }}>아이디 입력</div>
-                            </div>
-                        </div>
-                        <div style={{ flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 6, display: 'flex' }}>
-                            <div style={{ color: '#2F2F2F', fontSize: 14, fontFamily: 'Noto Sans KR', fontWeight: '500', lineHeight: 20, wordWrap: 'break-word' }}>이메일</div>
-                            <div style={{ width: 350, flex: '1 1 0', paddingLeft: 20, paddingRight: 20, background: 'white', borderRadius: 10, outline: '1px #E7E5E4 solid', outlineOffset: '-1px', justifyContent: 'flex-start', alignItems: 'center', gap: 10, display: 'inline-flex' }}>
-                                <div style={{ color: '#D9D9D9', fontSize: 18, fontFamily: 'Noto Sans KR', fontWeight: '400', lineHeight: 28, wordWrap: 'break-word' }}>아이디 입력</div>
-                            </div>
-                        </div>
+        <div className="signup-container">
+            <div className="signup-inner">
+                {/* Logo */}
+                <div className="signup-logo-wrap">
+                    <h1 className="signup-logo">Rootie</h1>
+                </div>
+
+                {/* Form Fields */}
+                <div className="signup-form">
+                    <div className="signup-field">
+                        <label className="signup-label">이름</label>
+                        <input
+                            className="signup-input"
+                            type="text"
+                            placeholder="이름 입력"
+                            value={form.name}
+                            onChange={handleChange("name")}
+                        />
+                    </div>
+
+                    <div className="signup-field">
+                        <label className="signup-label">아이디</label>
+                        <input
+                            className="signup-input"
+                            type="text"
+                            placeholder="아이디 입력"
+                            value={form.id}
+                            onChange={handleChange("id")}
+                        />
+                    </div>
+
+                    <div className="signup-field">
+                        <label className="signup-label">비밀번호</label>
+                        <input
+                            className="signup-input"
+                            type="password"
+                            placeholder="아이디 입력"
+                            value={form.password}
+                            onChange={handleChange("password")}
+                        />
+                    </div>
+
+                    <div className="signup-field">
+                        <label className="signup-label">이메일</label>
+                        <input
+                            className="signup-input"
+                            type="email"
+                            placeholder="아이디 입력"
+                            value={form.email}
+                            onChange={handleChange("email")}
+                        />
                     </div>
                 </div>
             </div>
-            <div data-property-1="Variant2" style={{ width: 430, height: 120, left: 0, bottom: 0, position: 'absolute', background: 'white', overflow: 'hidden' }}>
-                <div 
-                    onClick={onNext}
-                    style={{ cursor: 'pointer', width: 390, height: 50, paddingLeft: 45, paddingRight: 45, paddingTop: 10, paddingBottom: 10, left: 20, top: 22, position: 'absolute', background: '#6AB43A', borderRadius: 10, justifyContent: 'center', alignItems: 'center', display: 'inline-flex' }}>
-                    <div style={{ color: 'white', fontSize: 16, fontFamily: 'Noto Sans KR', fontWeight: '700', lineHeight: '24px', wordWrap: 'break-word' }}>다음</div>
-                </div>
+
+            {/* Bottom Button */}
+            <div className="signup-footer">
+                <button
+                    className={`signup-next-btn ${isActive ? "active" : ""}`}
+                    onClick={handleNext}
+                    disabled={!isActive}
+                >
+                    다음
+                </button>
             </div>
         </div>
     );
