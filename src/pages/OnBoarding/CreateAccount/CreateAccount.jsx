@@ -25,7 +25,7 @@ export default function RootieSignup({ onNext }) {
     };
 
     return (
-        <div className="signup-container">
+        <div className="phone-wrap">
             <div className="signup-inner">
                 {/* Logo */}
                 <div className="signup-logo-wrap">
