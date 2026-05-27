@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Form5() {
+export default function Form5({ onNext }) {
     return (
         <div className="phone-wrap" style={{ position: 'relative', background: '' }}>
             <div style={{ width: 430, height: 932, left: 0, top: 0, position: 'absolute', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 271, display: 'inline-flex' }}>
@@ -52,7 +52,7 @@ export default function Form5() {
                 </div>
                 <div style={{ textAlign: 'center', color: '#6B7280', fontSize: 14, fontFamily: 'Noto Sans KR', fontWeight: '500', lineHeight: 20, wordWrap: 'break-word' }}>식물은 나중에 다시 추가할 수 있어요!</div>
                 <div data-property-1="Variant2" style={{ width: 430, height: 120, position: 'relative', background: '#F5F5F4', overflow: 'hidden' }}>
-                    <div style={{ width: 390, height: 50, paddingLeft: 45, paddingRight: 45, paddingTop: 10, paddingBottom: 10, left: 20, top: 22, position: 'absolute', background: '#D9D9D9', borderRadius: 10, justifyContent: 'space-between', alignItems: 'center', display: 'inline-flex' }}>
+                <div onClick={onNext} style={{ width: 390, height: 50, paddingLeft: 45, paddingRight: 45, paddingTop: 10, paddingBottom: 10, left: 20, top: 22, position: 'absolute', background: '#6AB43A', cursor: 'pointer', borderRadius: 10, justifyContent: 'space-between', alignItems: 'center', display: 'inline-flex' }}>
                         <div style={{ color: 'white', fontSize: 16, fontFamily: 'Noto Sans KR', fontWeight: '700', lineHeight: 24, wordWrap: 'break-word' }}>선택하기</div>
                     </div>
                 </div>

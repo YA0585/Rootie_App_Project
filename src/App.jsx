@@ -30,6 +30,10 @@ import SussPage from "./pages/OnBoarding/CreateAccount/SussPage";
 import CreateAccount from "./pages/OnBoarding/CreateAccount/CreateAccount";
 import Form1 from "./pages/OnBoarding/CreateAccount/Form-1";
 import Form2 from "./pages/OnBoarding/CreateAccount/Form-2";
+import Form3 from "./pages/OnBoarding/CreateAccount/Form-3";
+import Form4 from "./pages/OnBoarding/CreateAccount/Form-4";
+import Form5 from "./pages/OnBoarding/CreateAccount/Form-5";
+import Form6 from "./pages/OnBoarding/CreateAccount/Form-6";
 
 function App() {
   const [activeTab, setActiveTab] = useState("home"); // "home" | "reservations" | "chat" | "map" | "mypage"
@@ -65,6 +69,18 @@ function App() {
     }
     if (currentScreen === "form2") {
       return <Form2 onNext={() => setCurrentScreen("form3")} />;
+    }
+    if (currentScreen === "form3") {
+      return <Form3 onNext={() => setCurrentScreen("form4")} />;
+    }
+    if (currentScreen === "form4") {
+      return <Form4 onNext={() => setCurrentScreen("form5")} />;
+    }
+    if (currentScreen === "form5") {
+      return <Form5 onNext={() => setCurrentScreen("form6")} />;
+    }
+    if (currentScreen === "form6") {
+      return <Form6 onNext={() => setCurrentScreen("susspage")} />;
     }
     if (currentScreen === "susspage") {
       return <SussPage onFinish={() => setCurrentScreen("login")} />;

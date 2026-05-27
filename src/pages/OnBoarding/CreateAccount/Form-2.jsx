@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Form2() {
+export default function Form2({ onNext }) {
     return (
         <div className="phone-wrap" style={{ position: 'relative', background: '' }}>
             <div style={{ width: 430, left: 0, top: 0, position: 'absolute', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', gap: 20, display: 'inline-flex' }}>
@@ -54,7 +54,7 @@ export default function Form2() {
                 </div>
             </div>
             <div data-property-1="Variant2" style={{ width: 430, height: 120, left: 0, top: 812, position: 'absolute', background: '#F5F5F4', overflow: 'hidden' }}>
-                <div style={{ width: 390, height: 50, paddingLeft: 45, paddingRight: 45, paddingTop: 10, paddingBottom: 10, left: 20, top: 22, position: 'absolute', background: '#D9D9D9', borderRadius: 10, justifyContent: 'space-between', alignItems: 'center', display: 'inline-flex' }}>
+                <div onClick={onNext} style={{ width: 390, height: 50, paddingLeft: 45, paddingRight: 45, paddingTop: 10, paddingBottom: 10, left: 20, top: 22, position: 'absolute', background: '#6AB43A', cursor: 'pointer', borderRadius: 10, justifyContent: 'space-between', alignItems: 'center', display: 'inline-flex' }}>
                     <div style={{ color: 'white', fontSize: 16, fontFamily: 'Noto Sans KR', fontWeight: '700', lineHeight: 24, wordWrap: 'break-word' }}>선택하기</div>
                 </div>
             </div>
