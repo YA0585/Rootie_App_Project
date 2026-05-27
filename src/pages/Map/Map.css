@@ -34,7 +34,6 @@ body {
 .phone-wrap {
     width: 430px;
     height: 932px;
-    background: var(--bg);
     display: flex;
     flex-direction: column;
     overflow-y: auto;
@@ -42,6 +41,9 @@ body {
     /* ← 핵심: 바깥으로 안 넘치게 */
     position: relative;
     border-radius: 20px;
+    z-index: 100;
+    transform: translateZ(0);
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
 }
 
 /* Map */
@@ -53,6 +55,9 @@ body {
     overflow: hidden;
     background: none;
     isolation: isolate;
+    z-index: 0;
+    transform: translateZ(0);
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
 }
 
 .map-bg {
@@ -200,7 +205,7 @@ body {
     display: flex;
     flex-direction: column;
     overflow-y: auto;
-    box-shadow: 0 -4px 16px rgba(0,0,0,0.1);
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.1);
 }
 
 .drag-handle {
