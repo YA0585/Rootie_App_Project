@@ -95,7 +95,7 @@ export default function Map({ navBar, onGoToShop, onGoToLocationSetting }) {
         isDraggingRef.current = false;
         setIsDragging(false);
         e.target.releasePointerCapture(e.pointerId);
-        
+
         // Snap to closest boundary
         setSheetY(prevY => {
             const threshold = (MAX_Y + MIN_Y) / 2;
@@ -109,7 +109,7 @@ export default function Map({ navBar, onGoToShop, onGoToLocationSetting }) {
             const container = document.getElementById("map");
 
             const options = {
-                center: new window.kakao.maps.LatLng(37.504598, 127.025060),
+                center: new window.kakao.maps.LatLng(37.507970, 127.021722),
                 level: 3,
             };
 
@@ -157,16 +157,16 @@ export default function Map({ navBar, onGoToShop, onGoToLocationSetting }) {
             </div>
 
             {/* Bottom Sheet */}
-            <div 
+            <div
                 className="bottom-sheet"
-                style={{ 
+                style={{
                     transform: `translateY(${sheetY}px)`,
                     transition: isDragging ? 'none' : 'transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1)'
                 }}
             >
                 {/* Home location - Follows bottom sheet */}
-                <button 
-                    className="home-location" 
+                <button
+                    className="home-location"
                     aria-label="위치추가"
                     style={{
                         opacity: sheetY < 100 ? 0 : 1,
@@ -182,7 +182,7 @@ export default function Map({ navBar, onGoToShop, onGoToLocationSetting }) {
                     </div>
                 </button>
 
-                <div 
+                <div
                     className="drag-handle-area"
                     onPointerDown={handlePointerDown}
                     onPointerMove={handlePointerMove}

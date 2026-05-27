@@ -250,6 +250,8 @@ body {
   box-shadow: var(--shadow-lg);
   border-radius: 40px;
   border: 12px solid #222222;
+  isolation: isolate;
+  transform: translateZ(0);
 }
 
 .scroll-area {
