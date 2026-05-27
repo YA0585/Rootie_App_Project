@@ -11,6 +11,9 @@
      display: flex;
      flex-direction: column;
      justify-content: center;
+     border-radius: 40px;
+     overflow: hidden;
+     transform: translateZ(0);
  }
 
  .signup-inner {
@@ -105,6 +108,7 @@
 
  .signup-next-btn p {
      color: #ffffff;
+     margin: 0;
  }
 
  .signup-next-btn.active {
