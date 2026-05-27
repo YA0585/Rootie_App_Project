@@ -1,103 +1,167 @@
-import React from 'react';
+import { useState } from "react";
+import "./LoginPage.css";
 
-export default function LoginPage({ onLogin, onGoToSignup }) {
+// Social login icons as SVG components
+const KakaoIcon = () => (
+    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="20" cy="20" r="20" fill="#FEE500" />
+        <path d="M19.8109 10C13.8263 10 9 13.861 9 18.5483C9 21.5907 11.0077 24.2548 14.0193 25.7761L13 29.5831C12.9808 29.6401 12.9778 29.7014 12.9915 29.76C13.0051 29.8187 13.0348 29.8723 13.0772 29.9151C13.1391 29.9696 13.2187 29.9998 13.3012 30C13.3696 29.9945 13.4344 29.9675 13.4865 29.9228L17.8726 26.9653C18.5201 27.0547 19.1727 27.101 19.8263 27.1042C25.8032 27.1042 30.6371 23.2433 30.6371 18.5483C30.6371 13.8533 25.7877 10 19.8109 10Z" fill="#392020" />
+        <path d="M12.7833 17.1973H11.6018C11.4554 17.2016 11.3108 17.1641 11.1849 17.0892C11.1289 17.0542 11.0809 17.008 11.0437 16.9535C11.0065 16.899 10.9809 16.8374 10.9686 16.7726C10.9649 16.7315 10.9649 16.6902 10.9686 16.6491C10.965 16.5722 10.9799 16.4955 11.0122 16.4256C11.0444 16.3557 11.0931 16.2947 11.154 16.2476C11.2886 16.1501 11.4511 16.0985 11.6173 16.1008H15.1771C15.3247 16.0956 15.4704 16.1361 15.5941 16.2166C15.6514 16.2501 15.7004 16.2959 15.7378 16.3507C15.7752 16.4054 15.8 16.4678 15.8103 16.5333C15.8141 16.5718 15.8141 16.6106 15.8103 16.6491C15.814 16.7271 15.7991 16.8049 15.7669 16.876C15.7347 16.9471 15.6861 17.0096 15.625 17.0583C15.4937 17.1557 15.3328 17.2048 15.1694 17.1973H14.0266V21.2591C14.0312 21.3457 14.0178 21.4322 13.9872 21.5133C13.9567 21.5944 13.9096 21.6683 13.849 21.7302C13.7908 21.7894 13.7209 21.8358 13.6438 21.8664C13.5667 21.897 13.484 21.9111 13.4011 21.9078C13.256 21.9119 13.1141 21.8656 12.9995 21.7766C12.8905 21.6896 12.8164 21.5662 12.791 21.429C12.7834 21.3726 12.7834 21.3155 12.791 21.2591L12.7833 17.1973Z" fill="#FEE500" />
+        <path d="M16.1514 16.4012C16.1854 16.2741 16.2651 16.1641 16.3753 16.0923C16.4928 16.0257 16.6266 15.9936 16.7614 15.9996H17.0549C17.198 15.9945 17.3397 16.0292 17.4641 16.1C17.596 16.1887 17.6898 16.3238 17.7267 16.4784L19.2711 20.8413C19.3111 20.9552 19.3447 21.0713 19.3715 21.1889C19.3741 21.2378 19.3741 21.2867 19.3715 21.3356C19.3741 21.4108 19.3602 21.4858 19.3309 21.5551C19.3016 21.6245 19.2574 21.6866 19.2016 21.7371C19.1475 21.7926 19.0825 21.8363 19.0108 21.8655C18.9391 21.8947 18.8621 21.9088 18.7846 21.907C18.6655 21.9188 18.5459 21.8903 18.445 21.8258C18.3442 21.7614 18.2679 21.6649 18.2286 21.5518L17.9043 20.602H15.8734L15.5491 21.5518C15.5107 21.6671 15.4336 21.7655 15.3308 21.8303C15.228 21.895 15.1059 21.9221 14.9854 21.907C14.8548 21.9104 14.7269 21.8696 14.6224 21.7911C14.5207 21.7102 14.452 21.5949 14.4294 21.4669C14.4253 21.4232 14.4253 21.3792 14.4294 21.3356C14.4161 21.2589 14.4161 21.1806 14.4294 21.104C14.4294 21.019 14.4834 20.9263 14.5143 20.8413L16.1514 16.4012ZM16.9236 17.4128L16.19 19.7294H17.6495L16.9236 17.4128Z" fill="#FEE500" />
+        <path d="M19.5485 16.6492C19.5407 16.4759 19.6018 16.3065 19.7184 16.1781C19.7777 16.1183 19.8489 16.0716 19.9274 16.041C20.0058 16.0104 20.0899 15.9966 20.174 16.0005C20.3187 15.9988 20.4598 16.045 20.5755 16.1318C20.6828 16.2223 20.754 16.3483 20.7763 16.487C20.7839 16.5407 20.7839 16.5954 20.7763 16.6492V20.711H22.8999C23.0471 20.7091 23.1918 20.7492 23.3169 20.8267C23.3731 20.8614 23.4214 20.9076 23.4587 20.9621C23.4959 21.0166 23.5213 21.0784 23.5331 21.1434C23.5331 21.1434 23.5331 21.2206 23.5331 21.2592C23.5368 21.3361 23.5218 21.4127 23.4896 21.4826C23.4573 21.5525 23.4087 21.6137 23.3478 21.6608C23.2131 21.7583 23.0507 21.8097 22.8844 21.8074H20.2744C20.1082 21.8181 19.9429 21.7749 19.8033 21.684C19.6785 21.5906 19.5953 21.452 19.5717 21.2979C19.566 21.213 19.566 21.1278 19.5717 21.043L19.5485 16.6492Z" fill="#FEE500" />
+        <path d="M23.6722 16.6486C23.6675 16.4758 23.7282 16.3077 23.8421 16.1776C23.9578 16.0724 24.1062 16.0103 24.2624 16.0019C24.4185 15.9935 24.5728 16.0391 24.6992 16.1312C24.8088 16.221 24.8827 16.3469 24.9077 16.4864C24.9115 16.5404 24.9115 16.5946 24.9077 16.6486V18.5405L26.8614 16.2856C26.9366 16.2087 27.0166 16.1366 27.1008 16.0695C27.1801 16.0222 27.271 15.9981 27.3633 15.9999C27.4983 15.9992 27.6303 16.0396 27.7417 16.1158C27.7942 16.1511 27.839 16.1967 27.8735 16.2498C27.908 16.3029 27.9315 16.3623 27.9425 16.4247C27.9456 16.4399 27.9456 16.4558 27.9425 16.471C27.9387 16.4889 27.9387 16.5072 27.9425 16.5251C27.9422 16.6063 27.9209 16.6862 27.8807 16.7568C27.8397 16.8315 27.7905 16.9014 27.734 16.9652L26.4521 18.3706L27.9965 20.7644V20.8416C28.0767 20.9523 28.1392 21.0748 28.1818 21.2047V21.2432C28.1908 21.3327 28.1779 21.423 28.1443 21.5064C28.1106 21.5898 28.0573 21.6637 27.9888 21.722C27.86 21.8193 27.7024 21.871 27.5409 21.8687C27.4336 21.8732 27.3271 21.8491 27.232 21.7992C27.1292 21.7302 27.0444 21.6375 26.9849 21.5289L25.5486 19.2123L24.8614 19.9305V21.22C24.866 21.3928 24.8053 21.561 24.6915 21.691C24.6305 21.7507 24.5579 21.7973 24.4782 21.8278C24.3985 21.8584 24.3134 21.8723 24.2282 21.8687C24.0857 21.8717 23.9465 21.8253 23.8343 21.7374C23.7253 21.6505 23.6512 21.5271 23.6258 21.39C23.6182 21.3336 23.6182 21.2764 23.6258 21.22L23.6722 16.6486Z" fill="#FEE500" />
+    </svg>
+
+);
+
+const NaverIcon = () => (
+    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="40" height="40" rx="20" fill="#03C75A" />
+        <path d="M23.2053 20.633L16.5315 11H11V29H16.7947V19.3655L23.4685 29H29V11H23.2053V20.633Z" fill="white" />
+    </svg>
+
+);
+
+const GoogleIcon = () => (
+    <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M21 0.5C32.3218 0.5 41.5 9.67816 41.5 21C41.5 32.3218 32.3218 41.5 21 41.5C9.67816 41.5 0.5 32.3218 0.5 21C0.5 9.67816 9.67816 0.5 21 0.5Z" fill="white" stroke="#E7E5E4" />
+        <g clip-path="url(#clip0_664_3345)">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M31.4125 21.2273C31.4125 20.5182 31.3489 19.8364 31.2307 19.1818H21.8125V23.05H27.1943C26.9625 24.3 26.258 25.3591 25.1989 26.0682V28.5773H28.4307C30.3216 26.8364 31.4125 24.2727 31.4125 21.2273Z" fill="#4285F4" />
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M21.8123 31C24.5123 31 26.776 30.1046 28.4305 28.5773L25.1987 26.0682C24.3033 26.6682 23.1578 27.0228 21.8123 27.0228C19.2078 27.0228 17.0033 25.2637 16.2169 22.9H12.876V25.4909C14.5214 28.7591 17.9033 31 21.8123 31Z" fill="#34A853" />
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M16.217 22.9C16.017 22.3 15.9034 21.6591 15.9034 21C15.9034 20.3409 16.017 19.7 16.217 19.1V16.5091H12.8761C12.1989 17.8591 11.8125 19.3864 11.8125 21C11.8125 22.6136 12.1989 24.1409 12.8761 25.4909L16.217 22.9Z" fill="#FBBC05" />
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M21.8123 14.9773C23.2805 14.9773 24.5987 15.4818 25.6351 16.4727L28.5033 13.6045C26.7714 11.9909 24.5078 11 21.8123 11C17.9033 11 14.5214 13.2409 12.876 16.5091L16.2169 19.1C17.0033 16.7364 19.2078 14.9773 21.8123 14.9773Z" fill="#EA4335" />
+        </g>
+        <defs>
+            <clipPath id="clip0_664_3345">
+                <rect width="20" height="20" fill="white" transform="translate(11.5 11)" />
+            </clipPath>
+        </defs>
+    </svg>
+
+);
+
+const FacebookIcon = () => (
+    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M40 20C40 31.0457 31.0457 40 20 40C8.9543 40 0 31.0457 0 20C0 8.9543 8.9543 0 20 0C31.0457 0 40 8.9543 40 20Z" fill="#33394D" />
+        <g clip-path="url(#clip0_664_3353)">
+            <g clip-path="url(#clip1_664_3353)">
+                <path d="M22.4233 39.8556C32.3267 38.6567 40 30.2244 40 20C40 8.95444 31.0456 0 20 0C8.95444 0 0 8.95444 0 20C0 29.38 6.45667 37.2511 15.1689 39.4122L15.5556 37.7778H21.6667L22.4233 39.8556Z" fill="#0866FF" />
+                <path d="M15.1678 39.4128V26.1128H11.04V20.0006H15.1678V17.3672C15.1678 10.5594 18.2478 7.40723 24.9278 7.40723C26.1923 7.40723 28.3756 7.655 29.2723 7.90278V13.4394C28.8 13.3917 27.9756 13.3672 26.96 13.3672C23.68 13.3672 22.4156 14.6072 22.4156 17.8394V20.0006H28.9523L27.8323 26.1117H22.4245V39.8561C19.9991 40.1482 17.5408 39.998 15.1689 39.4128H15.1678Z" fill="white" />
+            </g>
+        </g>
+        <defs>
+            <clipPath id="clip0_664_3353">
+                <rect width="40" height="40" fill="white" />
+            </clipPath>
+            <clipPath id="clip1_664_3353">
+                <rect width="40" height="40" fill="white" />
+            </clipPath>
+        </defs>
+    </svg>
+
+);
+
+const AppleIcon = () => (
+    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M40 20C40 31.0457 31.0457 40 20 40C8.9543 40 0 31.0457 0 20C0 8.9543 8.9543 0 20 0C31.0457 0 40 8.9543 40 20Z" fill="black" />
+        <path d="M28.2062 25.5861C27.901 26.2848 27.5397 26.928 27.1211 27.5193C26.5506 28.3255 26.0834 28.8835 25.7234 29.1934C25.1652 29.702 24.5673 29.9625 23.9269 29.9773C23.4672 29.9773 22.9129 29.8477 22.2675 29.5847C21.6201 29.323 21.0251 29.1934 20.4811 29.1934C19.9105 29.1934 19.2986 29.323 18.644 29.5847C17.9885 29.8477 17.4604 29.9847 17.0567 29.9983C16.4426 30.0242 15.8306 29.7563 15.2196 29.1934C14.8297 28.8563 14.342 28.2786 13.7577 27.4601C13.1308 26.586 12.6154 25.5725 12.2117 24.417C11.7793 23.1689 11.5625 21.9603 11.5625 20.7902C11.5625 19.4498 11.8548 18.2938 12.4402 17.3251C12.9002 16.547 13.5123 15.9332 14.2783 15.4826C15.0443 15.0319 15.872 14.8023 16.7634 14.7876C17.2511 14.7876 17.8907 14.9371 18.6855 15.231C19.4781 15.5258 19.987 15.6753 20.2101 15.6753C20.3769 15.6753 20.9423 15.5005 21.9007 15.1519C22.807 14.8287 23.5719 14.6949 24.1985 14.7476C25.8965 14.8834 27.1722 15.5467 28.0206 16.7418C26.502 17.6536 25.7508 18.9307 25.7657 20.5691C25.7794 21.8452 26.2466 22.9071 27.1647 23.7503C27.5808 24.1417 28.0455 24.4441 28.5625 24.6589C28.4504 24.9812 28.332 25.2898 28.2062 25.5861ZM24.3119 10.4001C24.3119 11.4003 23.9431 12.3343 23.2081 13.1987C22.3211 14.2263 21.2482 14.8201 20.0848 14.7264C20.07 14.6064 20.0614 14.4801 20.0614 14.3474C20.0614 13.3872 20.4832 12.3596 21.2323 11.5193C21.6063 11.0939 22.0819 10.7402 22.6587 10.458C23.2343 10.18 23.7787 10.0263 24.2907 10C24.3056 10.1337 24.3119 10.2674 24.3119 10.4001V10.4001Z" fill="white" />
+    </svg>
+
+);
+
+const EyeIcon = ({ visible }) => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M21.544 11.045C21.848 11.4713 22 11.6845 22 12C22 12.3155 21.848 12.5287 21.544 12.955C20.1779 14.8706 16.6892 19 12 19C7.31078 19 3.8221 14.8706 2.45604 12.955C2.15201 12.5287 2 12.3155 2 12C2 11.6845 2.15201 11.4713 2.45604 11.045C3.8221 9.12944 7.31078 5 12 5C16.6892 5 20.1779 9.12944 21.544 11.045Z" stroke="#D9D9D9" stroke-width="1.5" />
+        <path d="M15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15C13.6569 15 15 13.6569 15 12Z" stroke="#D9D9D9" stroke-width="1.5" />
+    </svg>
+
+);
+
+export default function RootieLogin() {
+    const [id, setId] = useState("");
+    const [password, setPassword] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
+
+    const handleLogin = () => {
+        alert(`로그인 시도: ${id}`);
+    };
+
     return (
-        <div className="phone-wrap" style={{ position: 'relative', background: 'white' }}>
-            <div style={{ width: 350, left: 40, top: 216, position: 'absolute', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', gap: 100, display: 'inline-flex' }}>
-                <div style={{ flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', gap: 40, display: 'flex' }}>
-                    <div style={{ color: '#6AB43A', fontSize: 48, fontFamily: 'Quicksand', fontWeight: '700', wordWrap: 'break-word' }}>Rootie</div>
-                    <div style={{ width: 350, flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 20, display: 'flex' }}>
-                        <div style={{ alignSelf: 'stretch', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 20, display: 'flex' }}>
-                                <div style={{ alignSelf: 'stretch', height: 109, flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', gap: 10, display: 'flex' }}>
-                                    <input 
-                                        type="text" 
-                                        placeholder="아이디 입력"
-                                        style={{ 
-                                            width: '100%', height: 50, padding: '0 20px', 
-                                            background: 'white', borderRadius: 10, 
-                                            border: '1px solid #E7E5E4', 
-                                            color: '#2F2F2F', fontSize: 16, fontFamily: 'Noto Sans KR',
-                                            outline: 'none'
-                                        }} 
-                                    />
-                                    <div style={{ alignSelf: 'stretch', position: 'relative' }}>
-                                        <input 
-                                            type="password" 
-                                            placeholder="비밀번호 입력"
-                                            style={{ 
-                                                width: '100%', height: 50, padding: '0 45px 0 20px', 
-                                                background: 'white', borderRadius: 10, 
-                                                border: '1px solid #E7E5E4', 
-                                                color: '#2F2F2F', fontSize: 16, fontFamily: 'Noto Sans KR',
-                                                outline: 'none'
-                                            }} 
-                                        />
-                                        <div style={{ position: 'absolute', right: 20, top: 13, width: 24, height: 24 }}>
-                                            <div style={{ width: 20, height: 14, left: 2, top: 5, position: 'absolute', outline: '1.50px #D9D9D9 solid', outlineOffset: '-0.75px' }} />
-                                            <div style={{ width: 6, height: 6, left: 9, top: 9, position: 'absolute', outline: '1.50px #D9D9D9 solid', outlineOffset: '-0.75px' }} />
-                                        </div>
-                                    </div>
-                                </div>
-                            <div
-                                onClick={onLogin}
-                                style={{ cursor: 'pointer', alignSelf: 'stretch', height: 50, paddingLeft: 45, paddingRight: 45, paddingTop: 10, paddingBottom: 10, background: '#6AB43A', overflow: 'hidden', borderRadius: 10, justifyContent: 'center', alignItems: 'center', display: 'inline-flex' }}
-                            >
-                                <div style={{ color: 'var(--design-background-white, #F7F6F2)', fontSize: 16, fontFamily: 'Noto Sans KR', fontWeight: '700', lineHeight: '24px', wordWrap: 'break-word' }}>로그인</div>
-                            </div>
-                        </div>
-                        <div style={{ alignSelf: 'stretch', paddingLeft: 20, paddingRight: 20, justifyContent: 'space-between', alignItems: 'center', display: 'inline-flex' }}>
-                            <div style={{ color: '#6B7280', fontSize: 14, fontFamily: 'Noto Sans KR', fontWeight: '500', lineHeight: '20px', wordWrap: 'break-word', cursor: 'pointer' }}>아이디 찾기</div>
-                            <div style={{ color: '#6B7280', fontSize: 14, fontFamily: 'Noto Sans KR', fontWeight: '500', lineHeight: '20px', wordWrap: 'break-word', cursor: 'pointer' }}>비밀번호 찾기</div>
-                            <div onClick={onGoToSignup} style={{ color: '#6B7280', fontSize: 14, fontFamily: 'Noto Sans KR', fontWeight: '500', lineHeight: '20px', wordWrap: 'break-word', cursor: 'pointer' }}>회원가입</div>
-                        </div>
+        <div className="rootie-container">
+            <div className="rootie-inner">
+                {/* Logo */}
+                <div className="rootie-logo-wrap">
+                    <h1 className="rootie-logo">Rootie</h1>
+                </div>
+
+                {/* Input Fields */}
+                <div className="rootie-form">
+                    <div className="rootie-input-wrap">
+                        <input
+                            className="rootie-input"
+                            type="text"
+                            placeholder="아이디 입력"
+                            value={id}
+                            onChange={(e) => setId(e.target.value)}
+                        />
+                    </div>
+
+                    <div className="rootie-input-wrap rootie-input-pw">
+                        <input
+                            className="rootie-input"
+                            type={showPassword ? "text" : "password"}
+                            placeholder="비밀번호 입력"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                        <button
+                            className="rootie-eye-btn"
+                            onClick={() => setShowPassword((v) => !v)}
+                            aria-label="비밀번호 보기"
+                        >
+                            <EyeIcon visible={showPassword} />
+                        </button>
+                    </div>
+
+                    {/* Login Button */}
+                    <button className="rootie-login-btn" onClick={handleLogin}>
+                        로그인
+                    </button>
+
+                    {/* Links */}
+                    <div className="rootie-links">
+                        <a href="#" className="rootie-link">아이디 찾기</a>
+                        <span className="rootie-divider">|</span>
+                        <a href="#" className="rootie-link">비밀번호 찾기</a>
+                        <span className="rootie-divider">|</span>
+                        <a href="#" className="rootie-link">회원가입</a>
                     </div>
                 </div>
-                <div style={{ width: 313, flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', gap: 10, display: 'flex' }}>
-                    <div style={{ width: 310, overflow: 'hidden', justifyContent: 'space-between', alignItems: 'center', display: 'inline-flex' }}>
-                        <div style={{ paddingLeft: 2, paddingRight: 2, justifyContent: 'flex-start', alignItems: 'center', gap: 10, display: 'flex' }}>
-                            <div style={{ color: '#6B7280', fontSize: 12, fontFamily: 'Noto Sans KR', fontWeight: '400', lineHeight: '18px', wordWrap: 'break-word' }}>SNS 계정으로 로그인</div>
-                        </div>
+
+                {/* Social Login */}
+                <div className="rootie-social-section">
+                    <div className="rootie-social-label">
+                        <span className="rootie-social-line" />
+                        <span className="rootie-social-text">SNS 계정으로 로그인</span>
+                        <span className="rootie-social-line" />
                     </div>
-                    <div style={{ width: 310, justifyContent: 'space-between', alignItems: 'center', display: 'inline-flex' }}>
-                        <div style={{ width: 40, height: 40, position: 'relative' }}>
-                            <div style={{ width: 40, height: 40, left: 0, top: 0, position: 'absolute' }}>
-                                <div style={{ width: 40, height: 40, left: 0, top: 0, position: 'absolute', background: '#FEE500', borderRadius: 9999 }} />
-                            </div>
-                            <div style={{ width: 21.64, height: 20, left: 9, top: 10, position: 'absolute', background: '#392020' }} />
-                            <div style={{ width: 4.85, height: 5.81, left: 10.97, top: 16.10, position: 'absolute', background: '#FEE500' }} />
-                            <div style={{ width: 4.95, height: 5.91, left: 14.42, top: 16, position: 'absolute', background: '#FEE500' }} />
-                            <div style={{ width: 3.99, height: 5.81, left: 19.55, top: 16, position: 'absolute', background: '#FEE500' }} />
-                            <div style={{ width: 4.56, height: 5.87, left: 23.62, top: 16, position: 'absolute', background: '#FEE500' }} />
-                        </div>
-                        <div style={{ width: 40, height: 40, background: 'var(--naver-bg, #03C75A)', overflow: 'hidden', borderRadius: 9999, justifyContent: 'center', alignItems: 'center', display: 'flex' }}>
-                            <div style={{ width: 18, height: 18, position: 'relative' }}>
-                                <div style={{ width: 18, height: 18, left: 0, top: 0, position: 'absolute', background: 'var(--naver-text, white)' }} />
-                            </div>
-                        </div>
-                        <div style={{ width: 40, height: 40, position: 'relative' }}>
-                            <div style={{ width: 40, height: 40, left: 0, top: 0, position: 'absolute', background: 'white', outline: '1px #E7E5E4 solid' }} />
-                            <div style={{ width: 20, height: 20, left: 10.50, top: 10, position: 'absolute', overflow: 'hidden' }}>
-                                <div style={{ width: 9.60, height: 9.40, left: 10.31, top: 8.18, position: 'absolute', background: '#4285F4' }} />
-                                <div style={{ width: 15.55, height: 8.10, left: 1.38, top: 11.90, position: 'absolute', background: '#34A853' }} />
-                                <div style={{ width: 4.40, height: 8.98, left: 0.31, top: 5.51, position: 'absolute', background: '#FBBC05' }} />
-                                <div style={{ width: 15.63, height: 8.10, left: 1.38, top: 0, position: 'absolute', background: '#EA4335' }} />
-                            </div>
-                        </div>
-                        <div style={{ width: 40, height: 40, position: 'relative' }}>
-                            <div style={{ width: 40, height: 40, left: 0, top: 0, position: 'absolute', background: '#33394D' }} />
-                            <div style={{ width: 40, height: 40, left: 0, top: 0, position: 'absolute', overflow: 'hidden' }}>
-                                <div style={{ width: 40, height: 40, left: 0, top: 0, position: 'absolute', overflow: 'hidden' }}>
-                                    <div style={{ width: 40, height: 39.86, left: 0, top: 0, position: 'absolute', background: '#0866FF' }} />
-                                    <div style={{ width: 18.23, height: 32.59, left: 11.04, top: 7.41, position: 'absolute', background: 'white' }} />
-                                </div>
-                            </div>
-                        </div>
-                        <div style={{ width: 40, height: 40, position: 'relative' }}>
-                            <div style={{ width: 40, height: 40, left: 0, top: 0, position: 'absolute', background: 'black' }} />
-                            <div style={{ width: 20, height: 20, left: 10, top: 10, position: 'absolute', overflow: 'hidden' }}>
-                                <div style={{ width: 17, height: 20, left: 1.56, top: 0, position: 'absolute', background: 'white' }} />
-                            </div>
-                        </div>
+
+                    <div className="rootie-social-icons">
+                        <button className="rootie-social-btn kakao" aria-label="카카오 로그인">
+                            <KakaoIcon />
+                        </button>
+                        <button className="rootie-social-btn naver" aria-label="네이버 로그인">
+                            <NaverIcon />
+                        </button>
+                        <button className="rootie-social-btn google" aria-label="구글 로그인">
+                            <GoogleIcon />
+                        </button>
+                        <button className="rootie-social-btn facebook" aria-label="페이스북 로그인">
+                            <FacebookIcon />
+                        </button>
+                        <button className="rootie-social-btn apple" aria-label="애플 로그인">
+                            <AppleIcon />
+                        </button>
                     </div>
                 </div>
             </div>
