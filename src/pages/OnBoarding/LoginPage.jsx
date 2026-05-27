@@ -87,7 +87,7 @@ export default function RootieLogin() {
     };
 
     return (
-        <div className="rootie-container">
+        <div className="phone-wrap rootie-container">
             <div className="rootie-inner">
                 {/* Logo */}
                 <div className="rootie-logo-wrap">
