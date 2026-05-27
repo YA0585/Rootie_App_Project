@@ -27,6 +27,9 @@ import SplashScreen from "./pages/OnBoarding/SplashScreen";
 import OnBoarding from "./pages/OnBoarding/OnBoarding";
 import LoginPage from "./pages/OnBoarding/LoginPage";
 import SussPage from "./pages/OnBoarding/CreateAccount/SussPage";
+import CreateAccount from "./pages/OnBoarding/CreateAccount/CreateAccount";
+import Form1 from "./pages/OnBoarding/CreateAccount/Form-1";
+import Form2 from "./pages/OnBoarding/CreateAccount/Form-2";
 
 function App() {
   const [activeTab, setActiveTab] = useState("home"); // "home" | "reservations" | "chat" | "map" | "mypage"
@@ -51,11 +54,20 @@ function App() {
     if (currentScreen === "onboarding") {
       return <OnBoarding onStart={() => setCurrentScreen("login")} />;
     }
+    if (currentScreen === "login") {
+      return <LoginPage onLogin={() => setCurrentScreen(null)} onGoToSignup={() => setCurrentScreen("createaccount")} />;
+    }
+    if (currentScreen === "createaccount") {
+      return <CreateAccount onNext={() => setCurrentScreen("form1")} />;
+    }
+    if (currentScreen === "form1") {
+      return <Form1 onNext={() => setCurrentScreen("form2")} />;
+    }
+    if (currentScreen === "form2") {
+      return <Form2 onNext={() => setCurrentScreen("form3")} />;
+    }
     if (currentScreen === "susspage") {
       return <SussPage onFinish={() => setCurrentScreen("login")} />;
-    }
-    if (currentScreen === "login") {
-      return <LoginPage onLogin={() => setCurrentScreen(null)} />;
     }
 
     // 1. Sub-page screens

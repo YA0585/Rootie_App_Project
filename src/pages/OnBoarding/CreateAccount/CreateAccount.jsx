@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function CreateAccount() {
+export default function CreateAccount({ onNext }) {
     return (
         <div className="phone-wrap" style={{ position: 'relative', background: '' }}>
             <div style={{ width: 349, left: 40, top: 216, position: 'absolute', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', gap: 40, display: 'inline-flex' }}>
@@ -34,9 +34,11 @@ export default function CreateAccount() {
                     </div>
                 </div>
             </div>
-            <div data-property-1="Variant2" style={{ width: 430, height: 120, left: 0, top: 812, position: 'absolute', background: 'white', overflow: 'hidden' }}>
-                <div style={{ width: 390, height: 50, paddingLeft: 45, paddingRight: 45, paddingTop: 10, paddingBottom: 10, left: 20, top: 22, position: 'absolute', background: '#D9D9D9', borderRadius: 10, justifyContent: 'space-between', alignItems: 'center', display: 'inline-flex' }}>
-                    <div style={{ color: 'white', fontSize: 16, fontFamily: 'Noto Sans KR', fontWeight: '700', lineHeight: 24, wordWrap: 'break-word' }}>다음</div>
+            <div data-property-1="Variant2" style={{ width: 430, height: 120, left: 0, bottom: 0, position: 'absolute', background: 'white', overflow: 'hidden' }}>
+                <div 
+                    onClick={onNext}
+                    style={{ cursor: 'pointer', width: 390, height: 50, paddingLeft: 45, paddingRight: 45, paddingTop: 10, paddingBottom: 10, left: 20, top: 22, position: 'absolute', background: '#6AB43A', borderRadius: 10, justifyContent: 'center', alignItems: 'center', display: 'inline-flex' }}>
+                    <div style={{ color: 'white', fontSize: 16, fontFamily: 'Noto Sans KR', fontWeight: '700', lineHeight: '24px', wordWrap: 'break-word' }}>다음</div>
                 </div>
             </div>
         </div>

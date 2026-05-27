@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function LoginPage({ onLogin }) {
+export default function LoginPage({ onLogin, onGoToSignup }) {
     return (
         <div className="phone-wrap" style={{ position: 'relative', background: 'white' }}>
             <div style={{ width: 350, left: 40, top: 216, position: 'absolute', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', gap: 100, display: 'inline-flex' }}>
@@ -46,9 +46,9 @@ export default function LoginPage({ onLogin }) {
                             </div>
                         </div>
                         <div style={{ alignSelf: 'stretch', paddingLeft: 20, paddingRight: 20, justifyContent: 'space-between', alignItems: 'center', display: 'inline-flex' }}>
-                            <div style={{ color: '#6B7280', fontSize: 14, fontFamily: 'Noto Sans KR', fontWeight: '500', lineHeight: '20px', wordWrap: 'break-word' }}>아이디 찾기</div>
-                            <div style={{ color: '#6B7280', fontSize: 14, fontFamily: 'Noto Sans KR', fontWeight: '500', lineHeight: '20px', wordWrap: 'break-word' }}>비밀번호 찾기</div>
-                            <div style={{ color: '#6B7280', fontSize: 14, fontFamily: 'Noto Sans KR', fontWeight: '500', lineHeight: '20px', wordWrap: 'break-word' }}>회원가입</div>
+                            <div style={{ color: '#6B7280', fontSize: 14, fontFamily: 'Noto Sans KR', fontWeight: '500', lineHeight: '20px', wordWrap: 'break-word', cursor: 'pointer' }}>아이디 찾기</div>
+                            <div style={{ color: '#6B7280', fontSize: 14, fontFamily: 'Noto Sans KR', fontWeight: '500', lineHeight: '20px', wordWrap: 'break-word', cursor: 'pointer' }}>비밀번호 찾기</div>
+                            <div onClick={onGoToSignup} style={{ color: '#6B7280', fontSize: 14, fontFamily: 'Noto Sans KR', fontWeight: '500', lineHeight: '20px', wordWrap: 'break-word', cursor: 'pointer' }}>회원가입</div>
                         </div>
                     </div>
                 </div>
