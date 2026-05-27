@@ -43,8 +43,6 @@
     flex-direction: row;
     align-items: flex-end; /* match design */
     width: max-content;
-    padding-left: 20px; /* Optional start padding */
-    padding-right: 20px;
 }
 
 .carousel-item {
