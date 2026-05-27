@@ -203,7 +203,7 @@
     transform: scale(0.95);
 }
 
-.rootie-social-btn.kakao {
+/* .rootie-social-btn.kakao {
     background: #FEE500;
 }
 
@@ -222,7 +222,7 @@
 
 .rootie-social-btn.apple {
     background: #000000;
-}
+} */
 
 /* ── Responsive (Mobile) ── */
 @media (max-width: 430px) {
