@@ -1,6 +1,5 @@
-
 import { Carousel } from '../../components/Carousel/Carousel';
-import { useState, useRef } from "react";
+import { useState } from "react";
 import "./OnBoarding.css";
 
 const slides = [
@@ -141,79 +140,56 @@ function renderTitle(slide) {
 
 export default function Onboarding({ onStart }) {
     const [current, setCurrent] = useState(0);
-    const [slideKey, setSlideKey] = useState(0);
-    const touchStartX = useRef(null);
-
-    const goTo = (idx) => {
-        if (idx === current) return;
-        setCurrent(idx);
-        setSlideKey((k) => k + 1);
-    };
-
-    const handleNext = () => {
-        if (current < slides.length - 1) {
-            goTo(current + 1);
-        }
-    };
-
-    const handleTouchStart = (e) => {
-        touchStartX.current = e.touches[0].clientX;
-    };
-
-    const handleTouchEnd = (e) => {
-        if (touchStartX.current === null) return;
-        const diff = touchStartX.current - e.changedTouches[0].clientX;
-        if (Math.abs(diff) > 40) {
-            if (diff > 0 && current < slides.length - 1) goTo(current + 1);
-            else if (diff < 0 && current > 0) goTo(current - 1);
-        }
-        touchStartX.current = null;
-    };
-
-    const slide = slides[current];
-    const isLast = current === slides.length - 1;
 
     return (
-        <div
-            className="phone-wrap onboarding-wrapper"
-            onTouchStart={handleTouchStart}
-            onTouchEnd={handleTouchEnd}
-        >
-            <div key={slideKey} className="onboarding-slide">
-                <div className="onboarding-illustration">
-                    {slide.illustration === "dying" && <DyingPlant />}
-                    {slide.illustration === "chat" && <ChatIllustration />}
-                    {slide.illustration === "healthy" && <HealthyPlant />}
-                </div>
+        <div className="phone-wrap onboarding-wrapper">
+            <div style={{ flex: 1, width: '100%', position: 'relative', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+                <Carousel 
+                    speed={1.0} 
+                    autoPlay={true} 
+                    pauseOnHover={true} 
+                    gap={0}
+                    onIndexChange={setCurrent}
+                >
+                    {slides.map((slide, idx) => (
+                        <div key={idx} className="onboarding-slide" style={{ width: '430px' }}>
+                            <div className="onboarding-illustration">
+                                {slide.illustration === "dying" && <DyingPlant />}
+                                {slide.illustration === "chat" && <ChatIllustration />}
+                                {slide.illustration === "healthy" && <HealthyPlant />}
+                            </div>
 
-                <div className="onboarding-text">
-                    {renderTitle(slide)}
-                    <p className="onboarding-description">
-                        {slide.description.split("\n").map((line, i, arr) => (
-                            <span key={i}>
-                                {line}
-                                {i < arr.length - 1 && <br />}
-                            </span>
-                        ))}
-                    </p>
-                </div>
-
-                <div className="onboarding-dots">
-                    {slides.map((_, i) => (
-                        <button
-                            key={i}
-                            className={i === current ? "dot dot-active" : "dot"}
-                            onClick={() => goTo(i)}
-                            aria-label={"슬라이드 " + (i + 1)}
-                        />
+                            <div className="onboarding-text">
+                                {renderTitle(slide)}
+                                <p className="onboarding-description">
+                                    {slide.description.split("\n").map((line, i, arr) => (
+                                        <span key={i}>
+                                            {line}
+                                            {i < arr.length - 1 && <br />}
+                                        </span>
+                                    ))}
+                                </p>
+                            </div>
+                        </div>
                     ))}
-                </div>
+                </Carousel>
+            </div>
+            
+            <div className="onboarding-dots" style={{ marginBottom: '16px' }}>
+                {slides.map((_, i) => (
+                    <button
+                        key={i}
+                        className={i === current ? "dot dot-active" : "dot"}
+                        aria-label={"슬라이드 " + (i + 1)}
+                        style={{ cursor: 'default' }}
+                    />
+                ))}
             </div>
 
             <div className="onboarding-footer">
                 <button
                     className="onboarding-btn"
-                    onClick={isLast ? onStart : handleNext}
+                    onClick={onStart}
                 >
                     시작하기
                 </button>

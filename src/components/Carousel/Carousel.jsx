@@ -6,7 +6,8 @@ export const Carousel = ({
     speed = 0.5, 
     autoPlay = true, 
     pauseOnHover = true,
-    gap = 150 
+    gap = 150,
+    onIndexChange
 }) => {
     const containerRef = useRef(null);
     const contentRef = useRef(null);
@@ -16,6 +17,7 @@ export const Carousel = ({
     const [isDragging, setIsDragging] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
     const [isReducedMotion, setIsReducedMotion] = useState(false);
+    const lastIndexRef = useRef(-1);
 
     // Physics & Interaction tracking refs
     const physics = useRef({
@@ -68,8 +70,24 @@ export const Carousel = ({
             container.scrollLeft += singleSetWidth;
         }
 
+        // Calculate active index
+        if (onIndexChange) {
+            const totalItems = React.Children.count(children);
+            const itemWidth = singleSetWidth / totalItems;
+            
+            // Adjust calculation by half item width since items snap to center
+            const centerScroll = container.scrollLeft + container.clientWidth / 2;
+            const absoluteIndex = Math.floor(centerScroll / itemWidth);
+            const activeIndex = absoluteIndex % totalItems;
+            
+            if (activeIndex !== lastIndexRef.current && activeIndex >= 0) {
+                lastIndexRef.current = activeIndex;
+                onIndexChange(activeIndex);
+            }
+        }
+
         animationRef.current = requestAnimationFrame(update);
-    }, [isReducedMotion]);
+    }, [isReducedMotion, children, onIndexChange]);
 
     useEffect(() => {
         physics.current.isAutoScrolling = autoPlay && !(pauseOnHover && isHovered) && !isDragging;
