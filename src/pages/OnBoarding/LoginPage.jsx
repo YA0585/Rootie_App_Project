@@ -77,17 +77,22 @@ const EyeIcon = ({ visible }) => (
 
 );
 
-export default function RootieLogin() {
+export default function RootieLogin({ onLogin, onGoToSignup }) {
     const [id, setId] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
 
     const handleLogin = () => {
-        alert(`로그인 시도: ${id}`);
+        if (onLogin) onLogin();
+    };
+
+    const handleSignupClick = (e) => {
+        e.preventDefault();
+        if (onGoToSignup) onGoToSignup();
     };
 
     return (
-        <div className="phone-wrap rootie-container">
+        <div className="phone-wrap">
             <div className="rootie-inner">
                 {/* Logo */}
                 <div className="rootie-logo-wrap">
@@ -134,7 +139,7 @@ export default function RootieLogin() {
                         <span className="rootie-divider">|</span>
                         <a href="#" className="rootie-link">비밀번호 찾기</a>
                         <span className="rootie-divider">|</span>
-                        <a href="#" className="rootie-link">회원가입</a>
+                        <a href="#" className="rootie-link" onClick={handleSignupClick}>회원가입</a>
                     </div>
                 </div>
 
