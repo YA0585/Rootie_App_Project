@@ -124,10 +124,6 @@
      opacity: 0.9;
  }
 
- .signup-next-btn.active:active {
-     transform: scale(0.98);
- }
-
  .signup-next-btn:disabled {
      cursor: not-allowed;
  }
