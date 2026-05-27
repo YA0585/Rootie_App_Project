@@ -148,8 +148,8 @@ export default function Map({ navBar, onGoToShop, onGoToLocationSetting }) {
                 <div className="shop-list">
                     {shops.map((shop, i) => (
                         <div key={shop.id}>
-                            <div className="shop-row">
-                                <div className="shop-info" onClick={onGoToShop} style={{ cursor: 'pointer' }}>
+                            <div className="shop-row" onClick={onGoToShop} style={{ cursor: 'pointer' }}>
+                                <div className="shop-info">
                                     <p className="shop-name">{shop.name}</p>
                                     <p className="shop-tags">{shop.tags}</p>
                                     <p className="shop-hours">
