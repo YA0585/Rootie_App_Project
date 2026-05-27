@@ -25,7 +25,7 @@ import PlantDetail from "./pages/MyPage/PlantDetail";
 // Onboarding imports
 import SplashScreen from "./pages/OnBoarding/SplashScreen";
 import OnBoarding from "./pages/OnBoarding/OnBoarding";
-import LoginPage from "./pages/OnBoarding/LoginPage";
+import LoginPage from "./pages/OnBoarding/LoginPage/LoginPage";
 import SussPage from "./pages/OnBoarding/CreateAccount/SussPage";
 import CreateAccount from "./pages/OnBoarding/CreateAccount/CreateAccount";
 import Form1 from "./pages/OnBoarding/CreateAccount/Form-1";
