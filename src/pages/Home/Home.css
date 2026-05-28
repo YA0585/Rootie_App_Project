@@ -80,7 +80,7 @@ button {
     flex: 1;
     overflow-y: auto;
     overflow-x: hidden;
-    padding: 12px 20px 16px;
+    padding: 12px 20px 100px;
     display: flex;
     flex-direction: column;
     gap: 12px;

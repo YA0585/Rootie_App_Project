@@ -101,9 +101,11 @@ import "./Reservations.css";
 
 // ── Icons ────────────────────────────────────────────────────────────────────
 const IconBell = () => (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <path d="M5.42 8.68a6.58 6.58 0 0 1 13.16 0l.68 5.56 1.5 2.07H3.24l1.5-2.07.68-5.56Z" stroke="#2F2F2F" strokeWidth="1.5" strokeLinejoin="round" />
-        <path d="M10.63 19.58a1.42 1.42 0 0 0 2.84 0" stroke="#2F2F2F" strokeWidth="1.5" strokeLinecap="round" />
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M18.6841 17.6842V9.63156C18.6841 5.96905 15.7151 3 12.0526 3C8.39005 3 5.42099 5.96905 5.42099 9.63156V17.6842" fill="#6B7280" />
+        <path d="M18.6841 17.6842V9.63156C18.6841 5.96905 15.7151 3 12.0526 3C8.39005 3 5.42099 5.96905 5.42099 9.63156V17.6842" stroke="#6B7280" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M20.1053 17.6843H4" stroke="#6B7280" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M13.4736 19.5789C13.4736 20.3637 12.8374 21 12.0526 21M12.0526 21C11.2678 21 10.6315 20.3637 10.6315 19.5789M12.0526 21V19.5789" stroke="#6B7280" stroke-width="1.5" stroke-linejoin="round" />
     </svg>
 );
 
