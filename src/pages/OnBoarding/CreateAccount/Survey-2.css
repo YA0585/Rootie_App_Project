@@ -1,0 +1,168 @@
+.pss-screen {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: #f5f5f5;
+    font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Apple SD Gothic Neo", sans-serif;
+}
+
+/* 상단 바 */
+.pss-topbar {
+    padding: 20px 20px 0;
+}
+
+.pss-back-btn {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 28px;
+    color: #333;
+    padding: 0;
+    line-height: 1;
+}
+
+/* 진행 바 */
+.pss-progress-wrap {
+    margin: 16px 20px 0;
+    height: 4px;
+    background: #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.pss-progress-fill {
+    height: 100%;
+    width: 30%;
+    /* 진행도에 따라 조절 */
+    background: #3db069;
+    border-radius: 4px;
+}
+
+/* 질문 영역 */
+.pss-question {
+    margin-top: 40px;
+    padding: 0 24px;
+    text-align: center;
+}
+
+.pss-question-text {
+    font-size: 22px;
+    font-weight: 500;
+    color: #222;
+    line-height: 1.45;
+    margin: 0;
+}
+
+/* 선택지 영역 */
+.pss-options {
+    padding: 32px 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.pss-option {
+    width: 100%;
+    background: #fff;
+    border: 1.5px solid #e0e0e0;
+    border-radius: 14px;
+    padding: 16px 18px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+    text-align: left;
+    transition: border-color 0.15s ease, background 0.15s ease;
+    font-family: inherit;
+}
+
+.pss-option:hover {
+    border-color: #bbb;
+    background: #fafafa;
+}
+
+.pss-option.selected {
+    border-color: #3db069;
+    background: #f0faf4;
+}
+
+/* 아이콘 래퍼 */
+.pss-icon-wrap {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #e8f5ee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.pss-icon-wrap svg {
+    width: 28px;
+    height: 28px;
+}
+
+/* 텍스트 */
+.pss-text {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.pss-label {
+    font-size: 15px;
+    font-weight: 500;
+    color: #222;
+    margin: 0;
+}
+
+.pss-desc {
+    font-size: 13px;
+    color: #777;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.pss-option.selected .pss-label {
+    color: #1a7a40;
+}
+
+.pss-option.selected .pss-desc {
+    color: #3db069;
+}
+
+/* 하단 버튼 */
+.pss-bottom {
+    margin-top: auto;
+    padding: 24px 20px 48px;
+}
+
+.pss-confirm-btn {
+    width: 100%;
+    padding: 16px;
+    border-radius: 14px;
+    font-size: 16px;
+    font-weight: 500;
+    border: none;
+    font-family: inherit;
+    background: #ddd;
+    color: #aaa;
+    cursor: default;
+    transition: background 0.2s ease;
+}
+
+.pss-confirm-btn.active {
+    background: #3db069;
+    color: #fff;
+    cursor: pointer;
+}
+
+.pss-confirm-btn.active:hover {
+    background: #35a05e;
+}

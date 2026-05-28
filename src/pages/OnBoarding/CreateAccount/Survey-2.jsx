@@ -43,7 +43,7 @@ const OPTIONS = [
     },
 ];
 
-export default function PlantSkillSurvey({ onConfirm }) {
+export default function Survey2({ onConfirm }) {
     const [selected, setSelected] = useState(null);
 
     const handleConfirm = () => {

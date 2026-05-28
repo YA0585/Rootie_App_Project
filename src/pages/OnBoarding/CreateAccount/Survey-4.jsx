@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Form4({ onNext }) {
+export default function Survey4({ onNext }) {
     return (
         <div className="phone-wrap" style={{ position: 'relative', background: '' }}>
             <div style={{ width: 430, height: 124, left: 0, top: 0, position: 'absolute', background: '#F5F5F4', overflow: 'hidden' }}>
