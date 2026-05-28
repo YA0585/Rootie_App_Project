@@ -9,7 +9,7 @@
 }
 
 :root {
-    --green-primary: var(--fin-maincolor);
+    --green-primary: #3AB56A;
     --green-dark: #2A8A50;
     --green-light: #E8F7EE;
     --text-dark: #1A1A1A;
@@ -228,7 +228,64 @@ body {
     background: var(--green-dark);
 }
 
+/* Bottom Nav */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    width: 390px;
+    height: 68px;
+    background: var(--white);
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    z-index: 100;
+}
 
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    padding: 6px 12px;
+    border-radius: 10px;
+    transition: background 0.15s;
+}
+
+.nav-item:hover {
+    background: var(--green-light);
+}
+
+.nav-icon {
+    font-size: 22px;
+    line-height: 1;
+}
+
+.nav-label {
+    font-size: 10px;
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+.nav-item.active .nav-label {
+    color: var(--green-primary);
+    font-weight: 700;
+}
+
+.nav-center {
+    background: var(--green-primary);
+    border-radius: 14px;
+    padding: 8px 16px;
+}
+
+.nav-center .nav-label {
+    color: var(--white);
+}
+
+.nav-center:hover {
+    background: var(--green-dark);
+}
 
 @keyframes fadeUp {
     from {

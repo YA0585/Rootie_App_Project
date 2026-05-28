@@ -15,7 +15,7 @@ const appointments = [
     },
 ];
 
-export default function Reservations({ navBar, onGoToShop }) {
+export default function Appointments() {
     const [activeTab, setActiveTab] = useState("전체");
 
     return (
@@ -67,14 +67,30 @@ export default function Reservations({ navBar, onGoToShop }) {
 
                         <div className="card-actions">
                             <button className="btn-outline">다시 예약하기</button>
-                            <button className="btn-solid" onClick={() => onGoToShop && onGoToShop()}>리뷰 작성하기</button>
+                            <button className="btn-solid">리뷰 작성하기</button>
                         </div>
                     </div>
                 ))}
             </div>
 
             {/* Bottom Nav */}
-            {navBar}
+            <nav className="bottom-nav">
+                {[
+                    { icon: "🏠", label: "홈" },
+                    { icon: "📋", label: "예약 내역", active: true },
+                    { icon: "✦", label: "진단 받기", center: true },
+                    { icon: "📍", label: "지도" },
+                    { icon: "👤", label: "나의 루티" },
+                ].map(({ icon, label, active, center }) => (
+                    <div
+                        key={label}
+                        className={`nav-item ${active ? "active" : ""} ${center ? "nav-center" : ""}`}
+                    >
+                        <span className="nav-icon">{icon}</span>
+                        <span className="nav-label">{label}</span>
+                    </div>
+                ))}
+            </nav>
 
         </div>
     );
