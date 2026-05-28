@@ -258,7 +258,6 @@ body {
   letter-spacing: 0;
 }
 
-/* ── 4. APP CONTAINERS & NATIVE MOBILE SIMULATOR ── */
 .phone-wrap {
   width: 430px;
   height: 932px;
@@ -268,8 +267,6 @@ body {
   flex-direction: column;
   overflow: hidden;
   box-shadow: var(--shadow-lg);
-  border-radius: 40px;
-  border: 12px solid #222222;
   isolation: isolate;
   transform: translateZ(0);
 }
