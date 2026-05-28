@@ -406,10 +406,6 @@ export default function Map({ navBar, onGoToShop, onGoToLocationSetting }) {
             {/* 지도 영역 */}
             <div className={styles.mapArea}>
                 <div id="map" className={styles.mapImage}></div>
-                {/* 지도 오버레이 라인들 */}
-                <div className={`${styles.mapLine} ${styles.lineGreen}`} />
-                <div className={`${styles.mapLine} ${styles.lineYellow}`} />
-                <div className={`${styles.mapLine} ${styles.lineRed}`} />
 
                 {/* 검색바 */}
                 <div className={styles.searchBar}>
