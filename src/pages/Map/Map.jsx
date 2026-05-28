@@ -386,23 +386,42 @@ const filters = [
 export default function Map({ navBar, onGoToShop, onGoToLocationSetting }) {
     const [activeFilter, setActiveFilter] = useState("foliage");
 
+    const mapSheetRef = useRef(null);
+    const collapsedTopRef = useRef(450);
+    const [sheetTop, setSheetTop] = useState(450);
+    const [isAnimating, setIsAnimating] = useState(false);
+
+    const isDraggingRef = useRef(false);
+    const dragStartY = useRef(0);
+    const dragStartTop = useRef(0);
+
+    const EXPANDED_TOP = 50;
+
+    // mapSheetArea 높이를 측정하고 collapsed 위치 계산
+    useEffect(() => {
+        if (mapSheetRef.current) {
+            const h = mapSheetRef.current.getBoundingClientRect().height;
+            const ct = Math.max(h - 220, 200);
+            collapsedTopRef.current = ct;
+            setSheetTop(ct);
+        }
+    }, []);
+
+    // 카카오맵 초기화
     useEffect(() => {
         const initMap = () => {
             const container = document.getElementById("map");
             if (!container) return;
-
             const options = {
                 center: new window.kakao.maps.LatLng(37.507970, 127.021722),
                 level: 3,
             };
-
             new window.kakao.maps.Map(container, options);
         };
 
         if (window.kakao && window.kakao.maps) {
             window.kakao.maps.load(initMap);
         } else {
-            // 외부 스크립트가 아직 완전히 로드되지 않은 경우, 폴링(polling) 방식으로 대기합니다.
             const interval = setInterval(() => {
                 if (window.kakao && window.kakao.maps) {
                     clearInterval(interval);
@@ -413,93 +432,162 @@ export default function Map({ navBar, onGoToShop, onGoToLocationSetting }) {
         }
     }, []);
 
+    // drag handle에 마우스 올리면 시트 전체 위로
+    const expandSheet = () => {
+        setIsAnimating(true);
+        setSheetTop(EXPANDED_TOP);
+    };
+
+    const handlePointerDown = (e) => {
+        isDraggingRef.current = true;
+        setIsAnimating(false);
+        dragStartY.current = e.clientY;
+        dragStartTop.current = sheetTop;
+        e.currentTarget.setPointerCapture(e.pointerId);
+        e.preventDefault();
+    };
+
+    const handlePointerMove = (e) => {
+        if (!isDraggingRef.current) return;
+        const delta = e.clientY - dragStartY.current;
+        let newTop = dragStartTop.current + delta;
+        newTop = Math.max(EXPANDED_TOP, Math.min(collapsedTopRef.current, newTop));
+        setSheetTop(newTop);
+    };
+
+    const handlePointerUp = (e) => {
+        if (!isDraggingRef.current) return;
+        isDraggingRef.current = false;
+        setIsAnimating(true);
+        e.currentTarget.releasePointerCapture(e.pointerId);
+        // 중간 이상 내리면 collapsed, 아니면 expanded로 스냅
+        setSheetTop((prev) => {
+            const mid = (collapsedTopRef.current + EXPANDED_TOP) / 2;
+            return prev < mid ? EXPANDED_TOP : collapsedTopRef.current;
+        });
+    };
+
+    // location 버튼: 시트가 지도를 거의 다 덮으면 사라짐
+    const locationVisible = sheetTop > collapsedTopRef.current - 200;
+    const locationBtnTop = sheetTop - 60;
+
     return (
         <div className={styles.container}>
-            {/* 지도 영역 */}
-            <div className={styles.mapArea}>
-                <div id="map" className={styles.mapImage}></div>
+            {/* 지도 + 바텀시트 오버레이 영역 (navBar 위) */}
+            <div className={styles.mapSheetArea} ref={mapSheetRef}>
 
-                {/* 검색바 */}
-                <div className={styles.searchBar}>
-                    <span className={styles.searchIcon}><IconSearch /></span>
+                {/* 카카오맵 배경 (전체 채움) */}
+                <div className={styles.mapArea}>
+                    <div id="map" className={styles.mapImage}></div>
+
+                    {/* 검색바 */}
+                    <div className={styles.searchBar}>
+                        <span className={styles.searchIcon}><IconSearch /></span>
+                    </div>
+
+                    {/* 필터 칩들 */}
+                    <div className={styles.filterRow}>
+                        {filters.map((f) => (
+                            <button
+                                key={f.id}
+                                className={`${styles.filterChip} ${activeFilter === f.id ? styles.filterChipActive : ""}`}
+                                onClick={() => setActiveFilter(f.id)}
+                            >
+                                <span className={styles.filterEmoji}>{f.icon}</span>
+                                <span>{f.label}</span>
+                            </button>
+                        ))}
+                    </div>
                 </div>
 
-                {/* 필터 칩들 */}
-                <div className={styles.filterRow}>
-                    {filters.map((f) => (
-                        <button
-                            key={f.id}
-                            className={`${styles.filterChip} ${activeFilter === f.id ? styles.filterChipActive : ""
-                                }`}
-                            onClick={() => setActiveFilter(f.id)}
-                        >
-                            <span className={styles.filterEmoji}>{f.icon}</span>
-                            <span>{f.label}</span>
-                        </button>
-                    ))}
-                </div>
-
-                {/* 위치 버튼 */}
-                <button className={styles.locationBtn} onClick={onGoToLocationSetting}>
+                {/* 위치 버튼 — 바텀시트 위 60px를 따라 이동, 지도 가려지면 fade out */}
+                <button
+                    className={styles.locationBtn}
+                    onClick={onGoToLocationSetting}
+                    style={{
+                        top: locationBtnTop,
+                        opacity: locationVisible ? 1 : 0,
+                        transition: isAnimating
+                            ? "top 0.4s cubic-bezier(0.2,0.8,0.2,1), opacity 0.3s ease"
+                            : "opacity 0.3s ease",
+                        pointerEvents: locationVisible ? "auto" : "none",
+                    }}
+                >
                     <span className={styles.locationIcon}><IconLocation /></span>
                 </button>
-            </div>
 
-            {/* 바텀 시트 */}
-            <div className={styles.bottomSheet}>
-                <div className={styles.sheetHandle} />
-
-                {/* AI 매칭 배너 */}
-                <div className={styles.aiBanner}>
-                    <div className={styles.aiIconWrap}>
-                        <svg width="47" height="47" viewBox="0 0 47 47" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M29.3748 3.91669L30.4298 8.60018C31.3247 12.5728 34.4269 15.6751 38.3996 16.57L43.0832 17.625L38.3996 18.68C34.4269 19.5749 31.3247 22.6771 30.4298 26.6498L29.3748 31.3334L28.3199 26.6498C27.4249 22.6771 24.3227 19.5749 20.3501 18.68L15.6665 17.625L20.3501 16.57C24.3225 15.6751 27.4249 12.5728 28.3199 8.6002L29.3748 3.91669Z" fill="#6AB43A" stroke="#6AB43A" stroke-width="1.5" stroke-linejoin="round" />
-                            <path d="M13.7082 23.5L14.4618 26.8454C15.101 29.6828 17.3169 31.8989 20.1544 32.5381L23.4998 33.2917L20.1544 34.0452C17.3169 34.6844 15.101 36.9003 14.4618 39.7379L13.7082 43.0833L12.9546 39.7379C12.3154 36.9003 10.0995 34.6844 7.26187 34.0452L3.9165 33.2917L7.26187 32.5381C10.0995 31.8989 12.3154 29.683 12.9546 26.8454L13.7082 23.5Z" fill="#6AB43A" stroke="#6AB43A" stroke-width="1.5" stroke-linejoin="round" />
-                        </svg>
-
+                {/* 바텀 시트 */}
+                <div
+                    className={styles.bottomSheet}
+                    style={{
+                        top: sheetTop,
+                        transition: isAnimating
+                            ? "top 0.4s cubic-bezier(0.2,0.8,0.2,1)"
+                            : "none",
+                    }}
+                >
+                    {/* 드래그 핸들 영역 (보이지 않지만 상호작용 가능) */}
+                    <div
+                        className={styles.sheetHandleArea}
+                        onMouseEnter={expandSheet}
+                        onPointerDown={handlePointerDown}
+                        onPointerMove={handlePointerMove}
+                        onPointerUp={handlePointerUp}
+                        onPointerCancel={handlePointerUp}
+                    >
+                        <div className={styles.sheetHandle} />
                     </div>
-                    <div className={styles.aiBannerText}>
-                        <p className={styles.aiBannerTitle}>
-                            우리 집 식물에게 알맞는 업체는?
-                        </p>
-                        <p className={styles.aiBannerSub}>
-                            간단한 채팅 후, 딱 맞는 관리 전문가와 매칭 받아보세요.
-                        </p>
-                    </div>
-                </div>
 
-                {/* 가게 목록 */}
-                <div className={styles.shopList}>
-                    {shops.map((shop) => (
-                        <div key={shop.id} className={styles.shopItem} onClick={onGoToShop} style={{ cursor: 'pointer' }}>
-                            <div className={styles.shopInfo}>
-                                <p className={styles.shopName}>{shop.name}</p>
-                                <p className={styles.shopTags}>{shop.tags.join(" · ")}</p>
-                                <p className={styles.shopStatus}>
-                                    <span className={styles.statusOpen}>{shop.status}</span>
-                                    <span className={styles.dot}>·</span>
-                                    <span>{shop.closeTime}에 영업종료</span>
-                                </p>
-                                <p className={styles.shopMeta}>
-                                    도보 {shop.walkTime}
-                                    <span className={styles.dotGray}> · </span>
-                                    {shop.address}
-                                </p>
-                                <div className={styles.shopBottom}>
-                                    <span className={styles.star}><IconStar /></span>
-                                    <span className={styles.rating}>{shop.rating}</span>
-                                    <span className={styles.price}>{shop.price}</span>
-                                </div>
-                            </div>
-                            <button className={styles.reserveBtn} onClick={(e) => {
-                                e.stopPropagation();
-                                onGoToShop();
-                            }}>
-                                <span className={styles.calendarIcon}><IconCalendar /></span>
-                                예약
-                            </button>
+                    {/* AI 매칭 배너 (고정 — 스크롤 안됨) */}
+                    <div className={styles.aiBanner}>
+                        <div className={styles.aiIconWrap}>
+                            <svg width="47" height="47" viewBox="0 0 47 47" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M29.3748 3.91669L30.4298 8.60018C31.3247 12.5728 34.4269 15.6751 38.3996 16.57L43.0832 17.625L38.3996 18.68C34.4269 19.5749 31.3247 22.6771 30.4298 26.6498L29.3748 31.3334L28.3199 26.6498C27.4249 22.6771 24.3227 19.5749 20.3501 18.68L15.6665 17.625L20.3501 16.57C24.3225 15.6751 27.4249 12.5728 28.3199 8.6002L29.3748 3.91669Z" fill="#6AB43A" stroke="#6AB43A" strokeWidth="1.5" strokeLinejoin="round" />
+                                <path d="M13.7082 23.5L14.4618 26.8454C15.101 29.6828 17.3169 31.8989 20.1544 32.5381L23.4998 33.2917L20.1544 34.0452C17.3169 34.6844 15.101 36.9003 14.4618 39.7379L13.7082 43.0833L12.9546 39.7379C12.3154 36.9003 10.0995 34.6844 7.26187 34.0452L3.9165 33.2917L7.26187 32.5381C10.0995 31.8989 12.3154 29.683 12.9546 26.8454L13.7082 23.5Z" fill="#6AB43A" stroke="#6AB43A" strokeWidth="1.5" strokeLinejoin="round" />
+                            </svg>
                         </div>
-                    ))}
+                        <div className={styles.aiBannerText}>
+                            <p className={styles.aiBannerTitle}>우리 집 식물에게 알맞는 업체는?</p>
+                            <p className={styles.aiBannerSub}>간단한 채팅 후, 딱 맞는 관리 전문가와 매칭 받아보세요.</p>
+                        </div>
+                    </div>
+
+                    {/* 가게 목록 (스크롤 가능) */}
+                    <div className={styles.shopList}>
+                        {shops.map((shop) => (
+                            <div key={shop.id} className={styles.shopItem} onClick={onGoToShop} style={{ cursor: "pointer" }}>
+                                <div className={styles.shopInfo}>
+                                    <p className={styles.shopName}>{shop.name}</p>
+                                    <p className={styles.shopTags}>{shop.tags.join(" · ")}</p>
+                                    <p className={styles.shopStatus}>
+                                        <span className={styles.statusOpen}>{shop.status}</span>
+                                        <span className={styles.dot}>·</span>
+                                        <span>{shop.closeTime}에 영업종료</span>
+                                    </p>
+                                    <p className={styles.shopMeta}>
+                                        도보 {shop.walkTime}
+                                        <span className={styles.dotGray}> · </span>
+                                        {shop.address}
+                                    </p>
+                                    <div className={styles.shopBottom}>
+                                        <span className={styles.star}><IconStar /></span>
+                                        <span className={styles.rating}>{shop.rating}</span>
+                                        <span className={styles.price}>{shop.price}</span>
+                                    </div>
+                                </div>
+                                <button
+                                    className={styles.reserveBtn}
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        onGoToShop();
+                                    }}
+                                >
+                                    <span className={styles.calendarIcon}><IconCalendar /></span>
+                                    예약
+                                </button>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
 
