@@ -312,7 +312,7 @@ function BannerSlider() {
             <div
                 className="banner-track"
                 style={{ 
-                    transform: `translateX(calc(-${current * 100}% + ${translateX}px))`,
+                    transform: `translateX(calc(-${current * (100 / BANNERS.length)}% + ${translateX}px))`,
                     transition: isDragging ? 'none' : 'transform 0.4s ease'
                 }}
             >
