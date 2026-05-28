@@ -1,9 +1,11 @@
-.pss-screen {
+.phone-wrap {
+    width: 430px;
+    height: 932px;
+    background: var(--white);
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
-    background: #f5f5f5;
-    font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Apple SD Gothic Neo", sans-serif;
+    overflow: hidden;
+    position: relative;
 }
 
 /* 상단 바 */

@@ -17,7 +17,7 @@ export default function Survey3({ onConfirm }) {
     };
 
     return (
-        <div className="sv3-screen">
+        <div className="phone-wrap">
             <div className="sv3-topbar">
                 <button className="sv3-back-btn" aria-label="뒤로가기">&#8249;</button>
             </div>
