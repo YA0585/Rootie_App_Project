@@ -85,8 +85,7 @@ export default function RootieSignup({ onNext }) {
                 <button
                     className={`signup-next-btn ${isActive ? "active" : ""}`}
                     onClick={handleNext}
-                    disabled={!isActive}
-                >
+                    disabled={!isActive}>
                     <p>다음</p>
                 </button>
             </div>
