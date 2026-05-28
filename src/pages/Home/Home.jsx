@@ -296,11 +296,11 @@ function BannerSlider() {
     };
 
     useEffect(() => {
-        const timer = setInterval(() => {
+        const timer = setTimeout(() => {
             setCurrent((prev) => (prev + 1) % BANNERS.length);
         }, 4000);
-        return () => clearInterval(timer);
-    }, []);
+        return () => clearTimeout(timer);
+    }, [current]);
 
     return (
         <div 
