@@ -401,7 +401,6 @@ button {
 
 /* ── Shop list ─────────────────────────────────────────────────────────────── */
 .shop-list {
-    margin: 0 -20px;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -411,14 +410,14 @@ button {
 /* ── Shop card ─────────────────────────────────────────────────────────────── */
 .shop-card {
     margin: 0 auto;
-    width: 390px;
+    width: 100%;
     height: 120px;
     background: var(--white);
     border-radius: var(--radius-sm);
     border: 1px solid var(--border);
     display: flex;
     align-items: center;
-    padding: 20px;
+    padding: 16px;
     gap: 16px;
     position: relative;
     overflow: hidden;
