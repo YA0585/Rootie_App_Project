@@ -233,7 +233,7 @@ const SHOPS = [
         rating: 4.9,
         reviews: 120,
         responseRate: 89,
-        isOpen: true,
+        isOpen: false,
         avatar: "https://placehold.co/80x80/b9e3a4/5c9d31?text=🌱",
     },
 ];
@@ -246,7 +246,7 @@ const BANNERS = [
 // ── Sub-components ───────────────────────────────────────────────────────────
 function ShopCard({ shop }) {
     return (
-        <div className="shop-card">
+        <div className="home-shop-card">
             <img className="shop-avatar" src={shop.avatar} alt={shop.name} />
             {!shop.isOpen && <span className="shop-bookmark"><IconBookmark /></span>}
             <div className="shop-info">
@@ -432,7 +432,7 @@ export default function Home({ navBar }) {
                     </div>
 
                     {/* Shop cards */}
-                    <div className="shop-list">
+                    <div className="home-shop-list">
                         {SHOPS.map((shop) => (
                             <ShopCard key={shop.id} shop={shop} />
                         ))}
