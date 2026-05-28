@@ -154,7 +154,7 @@
 // }
 
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Home.css";
 
 // ── Icons (inline SVG helpers) ──────────────────────────────────────────────
@@ -269,12 +269,52 @@ function ShopCard({ shop }) {
 
 function BannerSlider() {
     const [current, setCurrent] = useState(0);
+    const [startX, setStartX] = useState(0);
+    const [isDragging, setIsDragging] = useState(false);
+    const [translateX, setTranslateX] = useState(0);
+
+    const handleTouchStart = (e) => {
+        setStartX(e.touches[0].clientX);
+        setIsDragging(true);
+    };
+
+    const handleTouchMove = (e) => {
+        if (!isDragging) return;
+        const currentX = e.touches[0].clientX;
+        const diff = currentX - startX;
+        setTranslateX(diff);
+    };
+
+    const handleTouchEnd = () => {
+        setIsDragging(false);
+        if (translateX < -50 && current < BANNERS.length - 1) {
+            setCurrent(current + 1);
+        } else if (translateX > 50 && current > 0) {
+            setCurrent(current - 1);
+        }
+        setTranslateX(0);
+    };
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrent((prev) => (prev + 1) % BANNERS.length);
+        }, 4000);
+        return () => clearInterval(timer);
+    }, []);
 
     return (
-        <div className="banner-slider">
+        <div 
+            className="banner-slider"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+        >
             <div
                 className="banner-track"
-                style={{ transform: `translateX(-${current * 100}%)` }}
+                style={{ 
+                    transform: `translateX(calc(-${current * 100}% + ${translateX}px))`,
+                    transition: isDragging ? 'none' : 'transform 0.4s ease'
+                }}
             >
                 {BANNERS.map((b) => (
                     <div key={b.id} className={`banner-item banner-item--${b.type}`}>

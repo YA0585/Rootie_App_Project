@@ -63,7 +63,7 @@ button {
 }
 
 .rootie-logo {
-    font-family: var(--font-splash-logo);
+    font-family: Quicksand;
     font-size: 24px;
     font-weight: 700;
     color: var(--fin-maincolor);
