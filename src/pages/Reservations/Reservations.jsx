@@ -107,43 +107,6 @@ const IconBell = () => (
     </svg>
 );
 
-// Tab Bar Icons
-const TabHome = () => (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <path d="M3 9.5 12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5Z" stroke="#6B7280" strokeWidth="1.5" />
-        <rect x="9" y="14" width="6" height="7" rx="1" stroke="#6B7280" strokeWidth="1.5" />
-    </svg>
-);
-
-const TabReserve = ({ active }) => (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <rect x="3" y="6" width="18" height="16" rx="2" fill={active ? "#6AB43A" : "none"} stroke={active ? "#6AB43A" : "#6B7280"} strokeWidth="1.5" />
-        <rect x="8" y="2" width="4" height="4" rx="1" stroke={active ? "#6AB43A" : "#6B7280"} strokeWidth="1.5" />
-        <rect x="13" y="14" width="4" height="4" rx="1" fill={active ? "white" : "#6B7280"} />
-    </svg>
-);
-
-const TabDiagnose = () => (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <path d="M12 3 L21 8.5 L21 15.5 L12 21 L3 15.5 L3 8.5 Z" stroke="#6B7280" strokeWidth="1.5" />
-        <line x1="12" y1="8" x2="12" y2="16" stroke="#6B7280" strokeWidth="1.5" strokeLinecap="round" />
-        <line x1="8" y1="12" x2="16" y2="12" stroke="#6B7280" strokeWidth="1.5" strokeLinecap="round" />
-    </svg>
-);
-
-const TabMap = () => (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <path d="M12 2A6.3 6.3 0 0 0 5.7 8.3C5.7 13.8 12 22 12 22s6.3-8.2 6.3-13.7A6.3 6.3 0 0 0 12 2Z" fill="#6B7280" />
-        <circle cx="12" cy="8.5" r="2.5" fill="white" />
-    </svg>
-);
-
-const TabProfile = () => (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="8" r="4" fill="#6B7280" />
-        <path d="M5 20a7 7 0 0 1 14 0" stroke="#6B7280" strokeWidth="1.5" strokeLinecap="round" />
-    </svg>
-);
 
 // ── Data ─────────────────────────────────────────────────────────────────────
 const FILTERS = ["전체", "다가오는 예약", "지난 예약", "분갈이"];
@@ -192,17 +155,9 @@ function ReservationCard({ item }) {
 }
 
 // ── Main Page ────────────────────────────────────────────────────────────────
-export default function Reservations() {
+export default function Reservations({ navBar }) {
     const [activeFilter, setActiveFilter] = useState("전체");
-    const [activeTab, setActiveTab] = useState("예약 내역");
 
-    const tabs = [
-        { label: "홈", icon: <TabHome /> },
-        { label: "예약 내역", icon: <TabReserve active={activeTab === "예약 내역"} /> },
-        { label: "진단 받기", icon: <TabDiagnose /> },
-        { label: "지도", icon: <TabMap /> },
-        { label: "나의 루티", icon: <TabProfile /> },
-    ];
 
     return (
         <div className="rootie-screen">
@@ -235,19 +190,8 @@ export default function Reservations() {
                 </div>
             </main>
 
-            {/* Tab bar */}
-            <nav className="tab-bar">
-                {tabs.map((tab) => (
-                    <button
-                        key={tab.label}
-                        className={`tab-item ${activeTab === tab.label ? "tab-item--active" : ""}`}
-                        onClick={() => setActiveTab(tab.label)}
-                    >
-                        {tab.icon}
-                        <span>{tab.label}</span>
-                    </button>
-                ))}
-            </nav>
+            {/* Tab bar (Passed from App) */}
+            {navBar}
         </div>
     );
 }
