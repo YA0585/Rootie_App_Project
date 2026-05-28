@@ -401,7 +401,7 @@ button {
 
 /* ── Shop list ─────────────────────────────────────────────────────────────── */
 .shop-list {
-    width: 350px;
+    width: 390px;
     display: flex;
     flex-direction: column;
     gap: 10px;
