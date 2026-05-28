@@ -1,7 +1,7 @@
 .phone-wrap {
     width: 430px;
     height: 932px;
-    background: var(--white);
+    background: #ffffff;
     display: flex;
     flex-direction: column;
     overflow: hidden;
