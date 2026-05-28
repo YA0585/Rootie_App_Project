@@ -37,7 +37,7 @@ button {
     width: 390px;
     min-height: 100dvh;
     max-height: 100dvh;
-    background: var(--bg);
+    background: var(--fin-background);
     display: flex;
     flex-direction: column;
     font-family: var(--font-kr);
@@ -245,4 +245,3 @@ button {
     color: var(--white);
     border: none;
 }
-

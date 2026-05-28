@@ -248,7 +248,6 @@ function ShopCard({ shop }) {
     return (
         <div className="shop-card">
             <img className="shop-avatar" src={shop.avatar} alt={shop.name} />
-            {shop.isOpen && <span className="shop-open-badge">영업중</span>}
             {!shop.isOpen && <span className="shop-bookmark"><IconBookmark /></span>}
             <div className="shop-info">
                 <div className="shop-name">{shop.name}</div>
@@ -303,7 +302,7 @@ function BannerSlider() {
     }, [current]);
 
     return (
-        <div 
+        <div
             className="banner-slider"
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
@@ -311,7 +310,7 @@ function BannerSlider() {
         >
             <div
                 className="banner-track"
-                style={{ 
+                style={{
                     transform: `translateX(calc(-${current * (100 / BANNERS.length)}% + ${translateX}px))`,
                     transition: isDragging ? 'none' : 'transform 0.4s ease'
                 }}

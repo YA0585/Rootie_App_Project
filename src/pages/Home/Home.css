@@ -40,7 +40,7 @@ button {
     width: 390px;
     min-height: 100dvh;
     max-height: 100dvh;
-    background: var(--bg);
+    background: var(--fin-background);
     display: flex;
     flex-direction: column;
     font-family: var(--font-kr);
@@ -409,7 +409,7 @@ button {
 
 /* ── Shop card ─────────────────────────────────────────────────────────────── */
 .shop-card {
-    width: 100%;
+    width: 390px;
     height: 120px;
     background: var(--white);
     border-radius: var(--radius-sm);
@@ -429,19 +429,6 @@ button {
     border: 1px solid var(--border);
     object-fit: cover;
     flex-shrink: 0;
-}
-
-.shop-open-badge {
-    position: absolute;
-    top: 20px;
-    right: 16px;
-    background: var(--green-light);
-    color: #5F8F65;
-    font-size: 12px;
-    font-weight: 500;
-    padding: 6px 10px;
-    border-radius: var(--radius-pill);
-    line-height: 18px;
 }
 
 .shop-bookmark {
