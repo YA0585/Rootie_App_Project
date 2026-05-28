@@ -28,12 +28,12 @@ import OnBoarding from "./pages/OnBoarding/OnBoarding";
 import LoginPage from "./pages/OnBoarding/LoginPage/LoginPage";
 import SussPage from "./pages/OnBoarding/CreateAccount/SussPage";
 import CreateAccount from "./pages/OnBoarding/CreateAccount/CreateAccount";
-import Form1 from "./pages/OnBoarding/CreateAccount/Form-1";
-import Form2 from "./pages/OnBoarding/CreateAccount/Form-2";
-import Form3 from "./pages/OnBoarding/CreateAccount/Form-3";
-import Form4 from "./pages/OnBoarding/CreateAccount/Form-4";
-import Form5 from "./pages/OnBoarding/CreateAccount/Form-5";
-import Form6 from "./pages/OnBoarding/CreateAccount/Form-6";
+import Survey1 from "./pages/OnBoarding/CreateAccount/Survey-1";
+import Survey2 from "./pages/OnBoarding/CreateAccount/Survey-2";
+import Survey3 from "./pages/OnBoarding/CreateAccount/Survey-3";
+import Survey4 from "./pages/OnBoarding/CreateAccount/Survey-4";
+import Survey5 from "./pages/OnBoarding/CreateAccount/Survey-5";
+import Survey6 from "./pages/OnBoarding/CreateAccount/Survey-6";
 
 function App() {
   const [activeTab, setActiveTab] = useState("home"); // "home" | "reservations" | "chat" | "map" | "mypage"
@@ -62,25 +62,25 @@ function App() {
       return <LoginPage onLogin={() => setCurrentScreen(null)} onGoToSignup={() => setCurrentScreen("createaccount")} />;
     }
     if (currentScreen === "createaccount") {
-      return <CreateAccount onNext={() => setCurrentScreen("form1")} />;
+      return <CreateAccount onNext={() => setCurrentScreen("survey1")} />;
     }
-    if (currentScreen === "form1") {
-      return <Form1 onNext={() => setCurrentScreen("form2")} />;
+    if (currentScreen === "survey1") {
+      return <Survey1 onConfirm={() => setCurrentScreen("survey2")} />;
     }
-    if (currentScreen === "form2") {
-      return <Form2 onNext={() => setCurrentScreen("form3")} />;
+    if (currentScreen === "survey2") {
+      return <Survey2 onConfirm={() => setCurrentScreen("survey3")} />;
     }
-    if (currentScreen === "form3") {
-      return <Form3 onNext={() => setCurrentScreen("form4")} />;
+    if (currentScreen === "survey3") {
+      return <Survey3 onConfirm={() => setCurrentScreen("survey4")} />;
     }
-    if (currentScreen === "form4") {
-      return <Form4 onNext={() => setCurrentScreen("form5")} />;
+    if (currentScreen === "survey4") {
+      return <Survey4 onNext={() => setCurrentScreen("survey5")} />;
     }
-    if (currentScreen === "form5") {
-      return <Form5 onNext={() => setCurrentScreen("form6")} />;
+    if (currentScreen === "survey5") {
+      return <Survey5 onNext={() => setCurrentScreen("survey6")} />;
     }
-    if (currentScreen === "form6") {
-      return <Form6 onNext={() => setCurrentScreen("susspage")} />;
+    if (currentScreen === "survey6") {
+      return <Survey6 onNext={() => setCurrentScreen("susspage")} />;
     }
     if (currentScreen === "susspage") {
       return <SussPage onFinish={() => setCurrentScreen("login")} />;
@@ -165,6 +165,4 @@ function App() {
     </div>
   );
 }
-
-
 export default App;

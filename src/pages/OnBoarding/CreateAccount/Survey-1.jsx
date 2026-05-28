@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./Survey-1.css";
 
-export default function PlantSurvey({ onConfirm }) {
+export default function Survey1({ onConfirm }) {
     const [selected, setSelected] = useState(null);
 
     const options = [
