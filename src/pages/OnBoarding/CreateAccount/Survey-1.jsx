@@ -15,7 +15,7 @@ export default function Survey1({ onConfirm }) {
     };
 
     return (
-        <div className="ps-screen">
+        <div className="phone-wrap">
             <div className="ps-top-bar">
                 <button className="ps-back-btn" aria-label="뒤로가기">
                     &#8249;
