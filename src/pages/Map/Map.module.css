@@ -5,13 +5,15 @@
 /* ── 전체 컨테이너 ── */
 .container {
     width: 430px;
-    min-height: 100vh;
-    background: #f7f6f2;
+    min-height: 100dvh;
+    max-height: 100dvh;
+    background: var(--fin-background);
     font-family: "Noto Sans KR", sans-serif;
     position: relative;
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    margin: 0 auto;
 }
 
 /* ── 지도 영역 ── */
