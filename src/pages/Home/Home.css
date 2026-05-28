@@ -62,8 +62,8 @@ button {
     flex-shrink: 0;
 }
 
-.rootie-logo {
-    font-family: Quicksand;
+.home-logo {
+    font-family: var(--font-splash-logo);
     font-size: 24px;
     font-weight: 700;
     color: var(--fin-maincolor);

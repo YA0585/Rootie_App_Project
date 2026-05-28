@@ -373,7 +373,7 @@ export default function Home({ navBar }) {
         <div className="rootie-screen">
             {/* Header */}
             <header className="rootie-header">
-                <span className="rootie-logo">Rootie</span>
+                <span className="home-logo">Rootie</span>
                 <button className="rootie-bell"><IconBell /></button>
             </header>
 
