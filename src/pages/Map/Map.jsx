@@ -387,10 +387,9 @@ export default function Map({ navBar, onGoToShop, onGoToLocationSetting }) {
     const [activeFilter, setActiveFilter] = useState("foliage");
 
     useEffect(() => {
-        if (!window.kakao || !window.kakao.maps) return;
-
-        window.kakao.maps.load(() => {
+        const initMap = () => {
             const container = document.getElementById("map");
+            if (!container) return;
 
             const options = {
                 center: new window.kakao.maps.LatLng(37.507970, 127.021722),
@@ -398,7 +397,20 @@ export default function Map({ navBar, onGoToShop, onGoToLocationSetting }) {
             };
 
             new window.kakao.maps.Map(container, options);
-        });
+        };
+
+        if (window.kakao && window.kakao.maps) {
+            window.kakao.maps.load(initMap);
+        } else {
+            // 외부 스크립트가 아직 완전히 로드되지 않은 경우, 폴링(polling) 방식으로 대기합니다.
+            const interval = setInterval(() => {
+                if (window.kakao && window.kakao.maps) {
+                    clearInterval(interval);
+                    window.kakao.maps.load(initMap);
+                }
+            }, 100);
+            return () => clearInterval(interval);
+        }
     }, []);
 
     return (
