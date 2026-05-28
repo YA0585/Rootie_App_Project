@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Form5({ onNext }) {
+export default function Survey5({ onNext }) {
     return (
         <div className="phone-wrap" style={{ position: 'relative', background: '' }}>
             <div style={{ width: 430, height: 932, left: 0, top: 0, position: 'absolute', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 271, display: 'inline-flex' }}>
