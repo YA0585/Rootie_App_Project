@@ -1,206 +1,175 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap");
 
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-:root {
-    --green-primary: var(--fin-maincolor);
-    --green-dark: #2A8A50;
-    --green-light: #E8F7EE;
-    --text-dark: #1A1A1A;
-    --text-mid: #555;
-    --text-light: #888;
-    --bg: #F5F6F8;
-    --white: #FFFFFF;
-    --border: #E7E5E4;
-    --shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
-    --radius: 16px;
-}
-
-body {
-    font-family: 'Noto Sans KR', sans-serif;
-    background: #EDEEEF;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* ─── Reset & Root ─────────────────────────────────────── */
+.mypage-root {
+    font-family: "Noto Sans KR", sans-serif;
+    background: #f2f2f2;
     min-height: 100vh;
+    max-width: 430px;
+    margin: 0 auto;
+    padding-bottom: 40px;
 }
 
-.phone-wrap {
-    width: 430px;
-    height: 100dvh;
-    background: var(--bg);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    position: relative;
-}
-
-.my-header {
+/* ─── Header ────────────────────────────────────────────── */
+.mypage-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 52px 20px 14px;
-    background: var(--bg);
-    flex-shrink: 0;
+    padding: 20px 20px 12px;
 }
 
-.my-title {
-    font-size: 20px;
+.mypage-title {
+    font-size: 24px;
     font-weight: 700;
-    color: var(--text-dark);
+    color: #000;
+    margin: 0;
+    line-height: 1;
 }
 
-.bell-btn {
-    width: 38px;
-    height: 38px;
-    border: none;
+.mypage-icon-btn {
     background: none;
+    border: none;
     cursor: pointer;
+    color: #000;
+    padding: 0;
     display: flex;
     align-items: center;
-    justify-content: center;
-    color: var(--text-dark);
 }
 
-.scroll-area {
-    flex: 1;
-    overflow-y: auto;
-    padding: 4px 16px 90px;
+/* ─── Scrollable Content ─────────────────────────────────── */
+.mypage-content {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 16px;
+    padding: 0 20px;
 }
 
-.scroll-area::-webkit-scrollbar {
-    display: none;
-}
-
+/* ─── Card Base ─────────────────────────────────────────── */
 .card {
-    background: var(--white);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    animation: fadeUp 0.4s ease both;
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #e7e5e4;
+    overflow: hidden;
 }
 
-/* Profile */
+/* ─── Profile Card ──────────────────────────────────────── */
 .profile-card {
     display: flex;
     align-items: center;
-    gap: 16px;
-    padding: 18px 20px;
-    animation-delay: 0.05s;
+    gap: 20px;
+    padding: 20px;
 }
 
-.avatar {
-    width: 60px;
-    height: 60px;
+.profile-avatar img {
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #f8a4a4, #e57373);
+    object-fit: cover;
+    display: block;
+}
+
+.profile-info {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 32px;
-    flex-shrink: 0;
+    flex-direction: column;
+    gap: 4px;
 }
 
 .profile-name {
-    font-size: 17px;
+    font-size: 20px;
     font-weight: 700;
-    color: var(--text-dark);
-    margin-bottom: 4px;
+    color: #000;
+    line-height: 32px;
 }
 
-.profile-sub {
-    font-size: 12px;
-    color: var(--text-light);
+.profile-meta {
+    font-size: 14px;
+    font-weight: 500;
+    color: #000;
+    line-height: 20px;
 }
 
-/* Pay */
+/* ─── Pay Card ──────────────────────────────────────────── */
 .pay-card {
-    padding: 18px 20px 16px;
-    animation-delay: 0.1s;
+    padding: 17px 21px 20px;
 }
 
 .pay-label {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--text-dark);
-    margin-bottom: 6px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #000;
+    line-height: 20px;
+    margin-bottom: 8px;
 }
 
 .pay-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 14px;
+    margin-bottom: 16px;
+}
+
+.pay-balance {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
 }
 
 .pay-amount {
-    font-size: 26px;
-    color: var(--text-dark);
-    font-weight: 400;
-}
-
-.pay-amount strong {
+    font-size: 24px;
     font-weight: 700;
+    color: #000;
+    line-height: 40px;
 }
 
-.pay-btns {
+.pay-unit {
+    font-size: 18px;
+    font-weight: 500;
+    color: #000;
+    line-height: 28px;
+}
+
+.pay-actions {
     display: flex;
     gap: 8px;
+    align-items: center;
 }
 
-.btn-charge {
-    padding: 8px 16px;
+/* ─── Buttons ───────────────────────────────────────────── */
+.btn {
+    padding: 10px 15px;
     border-radius: 20px;
-    border: 1.5px solid var(--border);
-    background: var(--white);
-    color: var(--text-dark);
-    font-size: 13px;
-    font-weight: 600;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: "Noto Sans KR", sans-serif;
     cursor: pointer;
-    transition: all 0.15s;
-    font-family: 'Noto Sans KR', sans-serif;
-}
-
-.btn-charge:hover {
-    border-color: var(--green-primary);
-    color: var(--green-primary);
-}
-
-.btn-send {
-    padding: 8px 16px;
-    border-radius: 20px;
     border: none;
-    background: var(--green-primary);
-    color: var(--white);
-    font-size: 13px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.15s;
-    font-family: 'Noto Sans KR', sans-serif;
+    line-height: 20px;
 }
 
-.btn-send:hover {
-    background: var(--green-dark);
+.btn-outline {
+    background: #fff;
+    color: #000;
+    border: 1px solid #888;
 }
 
+.btn-primary {
+    background: #6ab43a;
+    color: #fff;
+    border: 1px solid #6ab43a;
+}
+
+/* ─── Pay Divider & Stats ────────────────────────────────── */
 .pay-divider {
-    height: 1px;
-    background: var(--border);
-    margin-bottom: 14px;
+    border: none;
+    border-top: 1px solid #e7e5e4;
+    margin: 0 0 16px;
 }
 
 .pay-stats {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
+    gap: 0;
 }
 
 .pay-stat {
@@ -208,34 +177,37 @@ body {
     text-align: center;
 }
 
-.stat-label {
+.pay-stat-separator {
+    width: 1px;
+    height: 36px;
+    background: #e7e5e4;
+}
+
+.pay-stat-label {
     font-size: 12px;
-    color: var(--text-light);
+    font-weight: 500;
+    color: #000;
+    line-height: 18px;
     margin-bottom: 4px;
 }
 
-.stat-value {
+.pay-stat-value {
     font-size: 18px;
     font-weight: 700;
-    color: var(--text-dark);
+    color: #000;
+    line-height: 28px;
 }
 
-.stat-value.green {
-    color: var(--green-primary);
+.pay-stat-value.green {
+    color: #6ab43a;
 }
 
-.stat-divider {
-    width: 1px;
-    height: 36px;
-    background: var(--border);
-}
-
-/* Actions */
+/* ─── Actions Card ──────────────────────────────────────── */
 .actions-card {
     display: flex;
-    align-items: center;
-    padding: 6px 0;
-    animation-delay: 0.15s;
+    align-items: stretch;
+    padding: 0;
+    position: relative;
 }
 
 .action-item {
@@ -243,78 +215,85 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    padding: 18px 0 14px;
     gap: 8px;
-    padding: 14px 0;
-    border: none;
     background: none;
+    border: none;
     cursor: pointer;
-    border-radius: 12px;
-    transition: background 0.15s;
-    font-family: 'Noto Sans KR', sans-serif;
-}
-
-.action-item:hover {
-    background: var(--border);
+    position: relative;
 }
 
 .action-icon {
-    color: var(--text-dark);
+    color: #2f2f2f;
+    display: flex;
+    align-items: center;
 }
 
 .action-label {
-    font-size: 12px;
-    color: var(--text-mid);
+    font-size: 16px;
     font-weight: 500;
+    color: #2f2f2f;
+    line-height: 24px;
 }
 
 .action-divider {
+    position: absolute;
+    right: 0;
+    top: 14px;
+    bottom: 14px;
     width: 1px;
-    height: 40px;
-    background: var(--border);
-    flex-shrink: 0;
+    background: #e7e5e4;
 }
 
-/* Section */
+/* ─── Section Card (Plants & Reviews) ───────────────────── */
 .section-card {
     padding: 0;
-    animation-delay: 0.2s;
 }
 
 .section-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 16px 18px 14px;
+    padding: 20px 20px 0;
 }
 
 .section-title {
     font-size: 14px;
-    font-weight: 700;
-    color: var(--text-dark);
-    padding: 0; /* Home.css에서 넘어오는 padding(0 16px 12px) 덮어쓰기 */
+    font-weight: 500;
+    color: #000;
+    line-height: 20px;
 }
 
-/* Plants */
-.plant-list {
-    padding: 0 18px 16px;
-}
-
-.plant-row {
+.chevron-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #000;
+    padding: 0;
     display: flex;
     align-items: center;
-    gap: 14px;
-    padding: 10px 0;
+}
+
+/* ─── Plants ─────────────────────────────────────────────── */
+.plant-list {
+    margin-top: 8px;
+}
+
+.plant-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 24px 21px;
+    border-top: 1px solid #e7e5e4;
+    position: relative;
 }
 
 .plant-avatar {
-    width: 52px;
-    height: 52px;
-    border-radius: 14px;
-    background: linear-gradient(135deg, #a5d6a7, #66bb6a);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 26px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
     flex-shrink: 0;
 }
 
@@ -323,127 +302,124 @@ body {
 }
 
 .plant-name {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text-dark);
-    margin-bottom: 3px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #2a2a22;
+    line-height: 1.4;
 }
 
-.plant-sub {
-    font-size: 12px;
-    color: var(--text-light);
+.plant-species {
+    font-size: 14px;
+    font-weight: 500;
+    color: #2a2a22;
+    line-height: 1.4;
 }
 
 .btn-diagnose {
-    background: var(--green-primary);
-    color: var(--white);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: #6ab43a;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: "Noto Sans KR", sans-serif;
     border: none;
     border-radius: 20px;
-    padding: 7px 14px;
-    font-size: 12px;
-    font-weight: 600;
+    padding: 6px 10px;
     cursor: pointer;
     white-space: nowrap;
-    transition: background 0.15s;
-    font-family: 'Noto Sans KR', sans-serif;
 }
 
-.btn-diagnose:hover {
-    background: var(--green-dark);
-}
-
-.plant-divider {
-    height: 1px;
-    background: var(--border);
-}
-
-/* Reviews */
-.reviews-card {
-    animation-delay: 0.25s;
+/* ─── Reviews ────────────────────────────────────────────── */
+.review-list {
+    margin-top: 8px;
 }
 
 .review-item {
-    padding: 14px 18px;
+    padding: 16px 21px 16px;
+    border-top: 1px solid #e7e5e4;
+}
+
+.review-item.last {
+    border-bottom: none;
 }
 
 .review-top {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     margin-bottom: 4px;
 }
 
-.review-company {
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--text-dark);
+.review-store-info {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
 }
 
-.review-tags2 {
-    font-size: 12px;
-    color: var(--text-light);
+.review-store-name {
+    font-size: 18px;
+    font-weight: 500;
+    color: #000;
+}
+
+.review-service {
+    font-size: 14px;
+    font-weight: 500;
+    color: #a1a1a1;
 }
 
 .review-rating {
     display: flex;
     align-items: center;
-    gap: 4px;
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--text-dark);
+    gap: 3px;
 }
 
-.star {
-    color: #F5C518;
+.review-score {
+    font-size: 18px;
+    font-weight: 500;
+    color: #2f2f2f;
+    line-height: 28px;
 }
 
 .review-date {
-    font-size: 12px;
-    color: var(--text-light);
+    font-size: 14px;
+    font-weight: 500;
+    color: #000;
+    line-height: 20px;
+    margin-bottom: 10px;
+}
+
+.review-content-box {
+    background: #f2f2f2;
+    border-radius: 10px;
+    padding: 12px 13px;
     margin-bottom: 10px;
 }
 
 .review-content {
-    font-size: 13px;
-    color: var(--text-mid);
-    line-height: 1.6;
-    margin-bottom: 10px;
-    background: #F9F9F9;
-    border-radius: 8px;
-    padding: 10px 12px;
+    font-size: 12px;
+    font-weight: 400;
+    color: #000;
+    line-height: 18px;
+    margin: 0;
+    word-break: break-all;
 }
 
-.review-tag-list {
+.review-tags {
     display: flex;
-    gap: 6px;
     flex-wrap: wrap;
+    gap: 8px;
 }
 
 .review-tag {
-    background: var(--green-light);
-    color: var(--green-primary);
+    background: #e8f5e0;
+    color: #111110;
     font-size: 12px;
     font-weight: 500;
-    padding: 4px 10px;
+    font-family: "Noto Sans KR", sans-serif;
     border-radius: 20px;
-}
-
-.review-divider {
-    height: 1px;
-    background: var(--border);
-    margin: 0 18px;
-}
-
-
-
-@keyframes fadeUp {
-    from {
-        opacity: 0;
-        transform: translateY(14px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    padding: 10px 15px;
+    line-height: 18px;
 }
