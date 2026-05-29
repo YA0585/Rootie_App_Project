@@ -1,0 +1,63 @@
+/* ===== SelectInput.css ===== */
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap');
+
+.select-input-wrap {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+    box-sizing: border-box;
+}
+
+/* ── Optional label ── */
+.select-input__label {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 28px;
+    color: #2F2F2F;
+    margin: 0;
+}
+
+/* ── Visible field ── */
+.select-input__field {
+    width: 100%;
+    height: 55px;
+    background: #ffffff;
+    border-radius: 10px;
+    outline: 1px solid #E7E5E4;
+    padding: 0 16px 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    pointer-events: none;
+    transition: outline-color 0.15s;
+}
+
+.select-input-wrap:focus-within .select-input__field {
+    outline: 1.5px solid #6AB43A;
+}
+
+.select-input-wrap:hover .select-input__field {
+    outline-color: #9CA3AF;
+}
+
+.select-input__placeholder {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    color: #2F2F2F;
+}
+
+.select-input__value {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 24px;
+    color: #2F2F2F;
+}
+
