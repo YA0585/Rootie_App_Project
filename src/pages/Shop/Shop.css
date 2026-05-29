@@ -113,53 +113,6 @@
 }
 
 /* ─── Tabs ──────────────────────────────────────────────── */
-.shop-tabs {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 40px;
-    margin-bottom: 0;
-}
-
-.shop-tabs::before {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: #e7e5e4;
-}
-
-.shop-tab {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 18px;
-    font-weight: 500;
-    font-family: "Noto Sans KR", sans-serif;
-    color: #d9d9d9;
-    padding: 14px 0;
-    position: relative;
-    transition: color 0.2s;
-}
-
-.shop-tab.active {
-    color: #2f2f2f;
-}
-
-.shop-tab.active::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 70px;
-    height: 2px;
-    background: #2f2f2f;
-    border-radius: 2px;
-    z-index: 2;
-}
 
 /* ─── Section Base ──────────────────────────────────────── */
 .shop-section {

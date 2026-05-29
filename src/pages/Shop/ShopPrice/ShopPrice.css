@@ -120,37 +120,7 @@
     flex-shrink: 0;
 }
 
-/* ── Tabs ── */
-.sp-tab-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 40px;
-    border-bottom: 1px solid #E7E5E4;
-}
 
-.sp-tab-item {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 18px;
-    font-weight: 500;
-    color: #D9D9D9;
-    padding: 14px 0;
-    border-bottom: 2px solid transparent;
-    margin-bottom: -1px;
-    transition: color 0.15s, border-color 0.15s;
-}
-
-.sp-tab-item:hover {
-    color: #9CA3AF;
-}
-
-.sp-tab-active {
-    color: #2F2F2F !important;
-    border-bottom-color: #2F2F2F;
-}
 
 /* ── Price Section ── */
 .sp-price-section {
