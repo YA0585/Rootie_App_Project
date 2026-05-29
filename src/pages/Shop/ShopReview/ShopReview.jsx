@@ -87,7 +87,7 @@ const RatingStars = ({ rating, size = 18 }) => {
     return <div className="stars-row">{stars}</div>;
 };
 
-export default function ShopReview() {
+export default function ShopReview({ onBack }) {
     const [activeTab, setActiveTab] = useState("후기");
     const [sortBy, setSortBy] = useState("관련도순");
     const [photoOnly, setPhotoOnly] = useState(false);
@@ -106,7 +106,7 @@ export default function ShopReview() {
         <div className="ratings-root">
             {/* Header */}
             <div className="ratings-header">
-                <button className="icon-btn"><BackIcon /></button>
+                <button className="icon-btn" onClick={onBack}><BackIcon /></button>
                 <button className="icon-btn"><BookmarkIcon /></button>
             </div>
 

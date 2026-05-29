@@ -39,7 +39,7 @@ const ChevronRight = () => (
     </svg>
 );
 
-const Shop = () => {
+const Shop = ({ onBack, onGoToPrice, onGoToReview }) => {
     const [activeTab, setActiveTab] = useState("홈");
     const [photoFilter, setPhotoFilter] = useState("전체");
     const [copied, setCopied] = useState(false);
@@ -57,7 +57,7 @@ const Shop = () => {
         <div className="shop-root">
             {/* Top Nav */}
             <div className="shop-topnav">
-                <button className="shop-back-btn" aria-label="뒤로가기">
+                <button className="shop-back-btn" aria-label="뒤로가기" onClick={onBack}>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                         <path d="M15 18l-6-6 6-6" stroke="#2F2F2F" strokeWidth="1.5" strokeLinecap="round" />
                     </svg>
@@ -99,7 +99,11 @@ const Shop = () => {
                     <button
                         key={tab}
                         className={`shop-tab${activeTab === tab ? " active" : ""}`}
-                        onClick={() => setActiveTab(tab)}
+                        onClick={() => {
+                            setActiveTab(tab);
+                            if (tab === "가격" && onGoToPrice) onGoToPrice();
+                            if (tab === "후기" && onGoToReview) onGoToReview();
+                        }}
                     >
                         {tab}
                     </button>
@@ -218,7 +222,7 @@ const Shop = () => {
                         </div>
                     ))}
                 </div>
-                <button className="shop-more-link">
+                <button className="shop-more-link" onClick={onGoToPrice}>
                     가격표 더보기 <ChevronRight />
                 </button>
             </section>
@@ -272,7 +276,7 @@ const Shop = () => {
                     </div>
                 ))}
 
-                <button className="shop-more-link">
+                <button className="shop-more-link" onClick={onGoToReview}>
                     후기 더보기 <ChevronRight />
                 </button>
             </section>

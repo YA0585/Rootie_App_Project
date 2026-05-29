@@ -1,131 +1,127 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./ShopPrice.css";
 
-const NAV_TABS = ["홈", "가격", "후기", "사진"];
+const StarIcon = ({ size = 14 }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="#6AB43A" stroke="none">
+        <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
+    </svg>
+);
 
-const SERVICES = [
+const BackIcon = () => (
+    <svg width={22} height={22} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <polyline points="15 18 9 12 15 6" />
+    </svg>
+);
+
+const BookmarkIcon = () => (
+    <svg width={20} height={20} viewBox="0 0 24 24" fill="#6AB43A" stroke="#6AB43A" strokeWidth="1.5">
+        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
+    </svg>
+);
+
+const ChevronRightIcon = () => (
+    <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+        <polyline points="9 18 15 12 9 6" />
+    </svg>
+);
+
+const priceItems = [
     {
         id: 1,
         name: "분갈이",
         price: "4,000원~",
-        desc: "화분의 사이즈를 기준으로 비용이 계산됩니다. 정확한 비용 측정을 위해 화분의 입구의 지름(외경) ...",
-        bg: "linear-gradient(160deg, #4a3520 0%, #6b4c1e 100%)",
-        emoji: "🪴",
+        description: "화분의 사이즈를 기준으로 비용이 계산됩니다. 정확한 비용 측정을 위해 화분의 입구의 지름(외경) ...",
+        img: "https://placehold.co/98x98/c8e6a0/4a7c3f?text=🌿",
     },
     {
         id: 2,
         name: "영양제",
         price: "4,000원~",
-        desc: "선택하신 옵션 및 구성에 따라 가격이 달라질 수 있습니다. 상세 페이지에서 정확한 가격을 확인해 주세요.",
-        bg: "linear-gradient(160deg, #2d4a20 0%, #4a6b30 100%)",
-        emoji: "🌱",
+        description: "선택하신 옵션 및 구성에 따라 가격이 달라질 수 있습니다. 상세 페이지에서 정확한 가격을 확인해 주세요.",
+        img: "https://placehold.co/98x98/b5d990/3d6b34?text=🪴",
     },
     {
         id: 3,
         name: "가지치기",
         price: "10,000원~",
-        desc: "10컷 이상을 기준으로 금액이 측정됩니다. 상세페이지에서 정확한 가격을 확인해주세요.",
-        bg: "linear-gradient(160deg, #3d5a2e 0%, #5a3a1a 100%)",
-        emoji: "✂️",
+        description: "10컷 이상을 기준으로 금액이 측정됩니다. 상세페이지에서 정확한 가격을 확인해주세요.",
+        img: "https://placehold.co/98x98/a8d578/2e5a1f?text=✂️",
     },
 ];
 
-export default function ShopPrice() {
+const tabs = ["홈", "가격", "후기", "사진"];
+
+export default function ShopPrice({ onBack }) {
     const [activeTab, setActiveTab] = useState("가격");
-    const [bookmarked, setBookmarked] = useState(true);
 
     return (
-        <div className="phone-wrap">
-
+        <div className="shopprice-root">
             {/* Header */}
-            <header className="sp-header">
-                <button className="hd-btn">
-                    <svg width="22" height="22" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor" strokeWidth="2.2">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-                    </svg>
-                </button>
-                <button className="hd-btn" onClick={() => setBookmarked(!bookmarked)}>
-                    <svg width="22" height="22"
-                        fill={bookmarked ? "var(--fin-maincolor)" : "none"}
-                        viewBox="0 0 24 24"
-                        stroke={bookmarked ? "var(--fin-maincolor)" : "currentColor"}
-                        strokeWidth="2">
-                        <path strokeLinecap="round" strokeLinejoin="round"
-                            d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
-                    </svg>
-                </button>
-            </header>
+            <div className="shopprice-header">
+                <button className="sp-icon-btn" onClick={onBack}><BackIcon /></button>
+                <button className="sp-icon-btn"><BookmarkIcon /></button>
+            </div>
 
-            {/* Scroll Body */}
-            <div className="scroll-area">
-
-                {/* Shop Title */}
-                <div className="sp-title-block">
-                    <div className="sp-name-row">
-                        <h1 className="sp-name">그린핸즈 식물 케어</h1>
-                        <span className="sp-status">영업중</span>
+            {/* Business Info */}
+            <div className="sp-business-info">
+                <div className="sp-title-row">
+                    <div>
+                        <h1 className="sp-business-name">그린핸즈 식물 케어</h1>
+                        <p className="sp-business-category">분갈이 • 영양제</p>
+                        <div className="sp-meta">
+                            <StarIcon size={14} />
+                            <span className="sp-meta-rating">4.9</span>
+                            <span className="sp-meta-dot">·</span>
+                            <span className="sp-meta-item">리뷰 120건</span>
+                            <span className="sp-meta-dot">·</span>
+                            <span className="sp-meta-item">응답률 89%</span>
+                        </div>
                     </div>
-                    <p className="sp-category">분갈이 · 영양제</p>
-                    <div className="sp-meta">
-                        <span className="star-fill">★</span>
-                        <span className="sp-rating">4.9</span>
-                        <span className="sp-sub">리뷰 120건</span>
-                        <span className="sp-dot">·</span>
-                        <span className="sp-sub">응답률 89%</span>
-                    </div>
+                    <span className="sp-open-badge">영업중</span>
                 </div>
+            </div>
 
-                {/* Hero Photos */}
-                <div className="sp-hero">
-                    <div className="hero-img hero-left"><span>🪴</span></div>
-                    <div className="hero-img hero-right"><span>🌿</span></div>
-                </div>
+            {/* Photo Gallery */}
+            <div className="sp-gallery">
+                <img src="https://placehold.co/250x250/c8e6a0/4a7c3f?text=🌿" alt="식물 케어 1" className="sp-gallery-img" />
+                <img src="https://placehold.co/250x250/b5d990/3d6b34?text=🪴" alt="식물 케어 2" className="sp-gallery-img" />
+            </div>
 
-                {/* Nav Tabs */}
-                <div className="sp-nav-tabs">
-                    {NAV_TABS.map((t) => (
-                        <button key={t}
-                            className={`sp-tab ${activeTab === t ? "active" : ""}`}
-                            onClick={() => setActiveTab(t)}>{t}</button>
+            {/* Tabs */}
+            <div className="sp-tab-bar">
+                {tabs.map((tab) => (
+                    <button
+                        key={tab}
+                        className={`sp-tab-item ${activeTab === tab ? "sp-tab-active" : ""}`}
+                        onClick={() => setActiveTab(tab)}
+                    >
+                        {tab}
+                    </button>
+                ))}
+            </div>
+
+            {/* Price Section */}
+            <div className="sp-price-section">
+                <p className="sp-section-title">가격</p>
+
+                <div className="sp-price-list">
+                    {priceItems.map((item) => (
+                        <div key={item.id} className="sp-price-card">
+                            <div className="sp-price-info">
+                                <p className="sp-item-name">{item.name}</p>
+                                <p className="sp-item-price">{item.price}</p>
+                                <p className="sp-item-desc">{item.description}</p>
+                            </div>
+                            <img src={item.img} alt={item.name} className="sp-item-img" />
+                        </div>
                     ))}
                 </div>
 
-                {/* Price Section */}
-                <div className="price-section">
-                    <p className="price-section-title">가격</p>
-                    <div className="service-list">
-                        {SERVICES.map((svc, idx) => (
-                            <div key={svc.id}
-                                className={`service-item ${idx < SERVICES.length - 1 ? "bordered" : ""}`}>
-                                <div className="svc-info">
-                                    <p className="svc-name">{svc.name}</p>
-                                    <p className="svc-price">{svc.price}</p>
-                                    <p className="svc-desc">{svc.desc}</p>
-                                </div>
-                                <div className="svc-img" style={{ background: svc.bg }}>
-                                    <span>{svc.emoji}</span>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                    <button className="more-btn">
-                        가격표 더보기
-                        <svg width="16" height="16" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor" strokeWidth="2">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                        </svg>
-                    </button>
-                </div>
-
-                <div style={{ height: 88 }} />
+                <button className="sp-more-btn">
+                    <span>가격표 더보기</span>
+                    <ChevronRightIcon />
+                </button>
             </div>
-
-            {/* Bottom CTA */}
-            <div className="sp-cta">
-                <button className="btn-reserve">예약하기</button>
-            </div>
-
         </div>
     );
 }
