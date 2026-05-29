@@ -391,9 +391,9 @@ export default function Map({ navBar, onGoToShop, onGoToLocationSetting }) {
     const [sheetTop, setSheetTop] = useState(450);
     const [isAnimating, setIsAnimating] = useState(false);
 
-    const isDraggingRef = useRef(false);
-    const dragStartY = useRef(0);
     const dragStartTop = useRef(0);
+    const startY = useRef(0);
+    const currentY = useRef(0);
 
     const EXPANDED_TOP = 50;
 
@@ -442,33 +442,32 @@ export default function Map({ navBar, onGoToShop, onGoToLocationSetting }) {
         setSheetTop(EXPANDED_TOP);
     };
 
-    const handlePointerDown = (e) => {
-        isDraggingRef.current = true;
+    const handleTouchStart = (e) => {
         setIsAnimating(false);
-        dragStartY.current = e.clientY;
+        startY.current = e.touches[0].clientY;
         dragStartTop.current = sheetTop;
-        e.currentTarget.setPointerCapture(e.pointerId);
-        e.preventDefault();
     };
 
-    const handlePointerMove = (e) => {
-        if (!isDraggingRef.current) return;
-        const delta = e.clientY - dragStartY.current;
-        let newTop = dragStartTop.current + delta;
-        newTop = Math.max(EXPANDED_TOP, Math.min(collapsedTopRef.current, newTop));
-        setSheetTop(newTop);
+    const handleTouchMove = (e) => {
+        currentY.current = e.touches[0].clientY;
+        const diff = currentY.current - startY.current;
+
+        // 아래로만 drag 가능
+        if (diff > 0) {
+            setSheetTop(dragStartTop.current + diff);
+        }
     };
 
-    const handlePointerUp = (e) => {
-        if (!isDraggingRef.current) return;
-        isDraggingRef.current = false;
+    const handleTouchEnd = () => {
         setIsAnimating(true);
-        e.currentTarget.releasePointerCapture(e.pointerId);
-        // 중간 이상 내리면 collapsed, 아니면 expanded로 스냅
-        setSheetTop((prev) => {
-            const mid = (collapsedTopRef.current + EXPANDED_TOP) / 2;
-            return prev < mid ? EXPANDED_TOP : collapsedTopRef.current;
-        });
+        const diff = sheetTop - dragStartTop.current;
+
+        // 일정 이상 drag하면 닫힘
+        if (diff > 120) {
+            setSheetTop(collapsedTopRef.current);
+        } else {
+            setSheetTop(EXPANDED_TOP);
+        }
     };
 
     // location 버튼: 시트가 지도를 거의 다 덮으면 사라짐
@@ -534,10 +533,9 @@ export default function Map({ navBar, onGoToShop, onGoToLocationSetting }) {
                     <div
                         className={styles.sheetHandleArea}
                         onMouseEnter={expandSheet}
-                        onPointerDown={handlePointerDown}
-                        onPointerMove={handlePointerMove}
-                        onPointerUp={handlePointerUp}
-                        onPointerCancel={handlePointerUp}
+                        onTouchStart={handleTouchStart}
+                        onTouchMove={handleTouchMove}
+                        onTouchEnd={handleTouchEnd}
                     >
                         <div className={styles.sheetHandle} />
                     </div>

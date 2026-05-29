@@ -172,11 +172,11 @@
     cursor: grabbing;
 }
 
-/* ── 드래그 핸들 (투명 — 보이지 않음) ── */
+/* ── 드래그 핸들 ── */
 .sheetHandle {
     width: 36px;
     height: 6px;
-    background: transparent;
+    background: #e7e5e4;
     border-radius: 50px;
 }
 
@@ -221,6 +221,12 @@
 .shopList {
     flex: 1;
     overflow-y: auto;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+.shopList::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
 }
 
 .shopItem {
