@@ -261,7 +261,7 @@
 //     );
 // }
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import styles from "./Map.module.css";
 
 // 가게 데이터
@@ -412,7 +412,7 @@ export default function Map({ navBar, onGoToShop, onGoToLocationSetting }) {
         const initMap = () => {
             const container = document.getElementById("map");
             if (!container) return;
-            
+
             // React 18 StrictMode 두 번 실행 방지: 이미 자식 노드(지도)가 있다면 초기화 생략
             if (container.children.length > 0) return;
 
