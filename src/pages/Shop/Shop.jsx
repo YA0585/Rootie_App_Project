@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./Shop.css";
+import ShopTabBar from "../../components/ShopTabBar/ShopTabBar";
 
 const services = [
     { name: "분갈이", price: "4,000원~", desc: "화분의 사이즈를 기준으로 비용이 계산됩니다. 정확한 비용 측정을 위해 화분의 입구의 지름(외경) ..." },
@@ -43,8 +44,6 @@ const Shop = ({ onBack, onGoToPrice, onGoToReview }) => {
     const [activeTab, setActiveTab] = useState("홈");
     const [photoFilter, setPhotoFilter] = useState("전체");
     const [copied, setCopied] = useState(false);
-
-    const tabs = ["홈", "가격", "후기", "사진"];
     const photoFilters = ["전체", "리뷰", "업체"];
 
     const handleCopy = () => {
@@ -94,21 +93,14 @@ const Shop = ({ onBack, onGoToPrice, onGoToReview }) => {
             </div>
 
             {/* Tab Navigation */}
-            <div className="shop-tabs">
-                {tabs.map((tab) => (
-                    <button
-                        key={tab}
-                        className={`shop-tab${activeTab === tab ? " active" : ""}`}
-                        onClick={() => {
-                            setActiveTab(tab);
-                            if (tab === "가격" && onGoToPrice) onGoToPrice();
-                            if (tab === "후기" && onGoToReview) onGoToReview();
-                        }}
-                    >
-                        {tab}
-                    </button>
-                ))}
-            </div>
+            <ShopTabBar 
+                activeTab={activeTab}
+                onTabChange={(tab) => {
+                    setActiveTab(tab);
+                    if (tab === "가격" && onGoToPrice) onGoToPrice();
+                    if (tab === "후기" && onGoToReview) onGoToReview();
+                }}
+            />
 
             {/* Shop Details */}
             <section className="shop-section">

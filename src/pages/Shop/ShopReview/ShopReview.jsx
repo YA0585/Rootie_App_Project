@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./ShopReview.css";
+import ShopTabBar from "../../../components/ShopTabBar/ShopTabBar";
 
 const StarIcon = ({ filled = true, size = 20 }) => (
     <svg width={size} height={size} viewBox="0 0 24 24" fill={filled ? "#6AB43A" : "none"} stroke="#6AB43A" strokeWidth="1.5">
@@ -94,8 +95,6 @@ export default function ShopReview({ onBack }) {
     const [helpfulCounts, setHelpfulCounts] = useState({ 1: 3, 2: 1 });
     const [helpfulClicked, setHelpfulClicked] = useState({});
 
-    const tabs = ["홈", "가격", "후기", "사진"];
-
     const toggleHelpful = (id) => {
         if (helpfulClicked[id]) return;
         setHelpfulCounts((prev) => ({ ...prev, [id]: prev[id] + 1 }));
@@ -136,17 +135,10 @@ export default function ShopReview({ onBack }) {
             </div>
 
             {/* Tabs */}
-            <div className="tab-bar">
-                {tabs.map((tab) => (
-                    <button
-                        key={tab}
-                        className={`tab-item ${activeTab === tab ? "tab-active" : ""}`}
-                        onClick={() => setActiveTab(tab)}
-                    >
-                        {tab}
-                    </button>
-                ))}
-            </div>
+            <ShopTabBar 
+                activeTab={activeTab} 
+                onTabChange={setActiveTab} 
+            />
 
             {/* Write Review CTA */}
             <div className="write-review-section">

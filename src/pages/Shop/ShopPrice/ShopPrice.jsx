@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./ShopPrice.css";
+import ShopTabBar from "../../../components/ShopTabBar/ShopTabBar";
 
 const StarIcon = ({ size = 14 }) => (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="#6AB43A" stroke="none">
@@ -49,8 +50,6 @@ const priceItems = [
     },
 ];
 
-const tabs = ["홈", "가격", "후기", "사진"];
-
 export default function ShopPrice({ onBack }) {
     const [activeTab, setActiveTab] = useState("가격");
 
@@ -88,17 +87,10 @@ export default function ShopPrice({ onBack }) {
             </div>
 
             {/* Tabs */}
-            <div className="sp-tab-bar">
-                {tabs.map((tab) => (
-                    <button
-                        key={tab}
-                        className={`sp-tab-item ${activeTab === tab ? "sp-tab-active" : ""}`}
-                        onClick={() => setActiveTab(tab)}
-                    >
-                        {tab}
-                    </button>
-                ))}
-            </div>
+            <ShopTabBar 
+                activeTab={activeTab} 
+                onTabChange={setActiveTab} 
+            />
 
             {/* Price Section */}
             <div className="sp-price-section">
