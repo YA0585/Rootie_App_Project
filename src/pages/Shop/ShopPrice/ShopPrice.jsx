@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./ShopPrice.css";
 import ShopTabBar from "../../../components/ShopTabBar/ShopTabBar";
+import ShopTop from "../../../components/ShopTop/ShopTop";
 
 const StarIcon = ({ size = 14 }) => (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="#6AB43A" stroke="none">
@@ -55,36 +56,7 @@ export default function ShopPrice({ onBack, onGoToHome, onGoToPrice, onGoToRevie
 
     return (
         <div className="shopprice-root">
-            {/* Header */}
-            <div className="shopprice-header">
-                <button className="sp-icon-btn" onClick={onBack}><BackIcon /></button>
-                <button className="sp-icon-btn"><BookmarkIcon /></button>
-            </div>
-
-            {/* Business Info */}
-            <div className="sp-business-info">
-                <div className="sp-title-row">
-                    <div>
-                        <h1 className="sp-business-name">그린핸즈 식물 케어</h1>
-                        <p className="sp-business-category">분갈이 • 영양제</p>
-                        <div className="sp-meta">
-                            <StarIcon size={14} />
-                            <span className="sp-meta-rating">4.9</span>
-                            <span className="sp-meta-dot">·</span>
-                            <span className="sp-meta-item">리뷰 120건</span>
-                            <span className="sp-meta-dot">·</span>
-                            <span className="sp-meta-item">응답률 89%</span>
-                        </div>
-                    </div>
-                    <span className="sp-open-badge">영업중</span>
-                </div>
-            </div>
-
-            {/* Photo Gallery */}
-            <div className="sp-gallery">
-                <img src="https://placehold.co/250x250/c8e6a0/4a7c3f?text=🌿" alt="식물 케어 1" className="sp-gallery-img" />
-                <img src="https://placehold.co/250x250/b5d990/3d6b34?text=🪴" alt="식물 케어 2" className="sp-gallery-img" />
-            </div>
+            <ShopTop onBack={onBack} />
 
             {/* Tabs */}
             <ShopTabBar 

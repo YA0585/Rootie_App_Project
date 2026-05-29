@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./ShopReview.css";
 import ShopTabBar from "../../../components/ShopTabBar/ShopTabBar";
+import ShopTop from "../../../components/ShopTop/ShopTop";
 
 const StarIcon = ({ filled = true, size = 20 }) => (
     <svg width={size} height={size} viewBox="0 0 24 24" fill={filled ? "#6AB43A" : "none"} stroke="#6AB43A" strokeWidth="1.5">
@@ -103,36 +104,7 @@ export default function ShopReview({ onBack, onGoToHome, onGoToPrice, onGoToRevi
 
     return (
         <div className="ratings-root">
-            {/* Header */}
-            <div className="ratings-header">
-                <button className="icon-btn" onClick={onBack}><BackIcon /></button>
-                <button className="icon-btn"><BookmarkIcon /></button>
-            </div>
-
-            {/* Business Info */}
-            <div className="business-info">
-                <div className="business-title-row">
-                    <div>
-                        <h1 className="business-name">그린핸즈 식물 케어</h1>
-                        <p className="business-category">분갈이 • 영양제</p>
-                        <div className="business-meta">
-                            <StarIcon size={14} />
-                            <span className="meta-rating">4.9</span>
-                            <span className="meta-dot">·</span>
-                            <span className="meta-item">리뷰 120건</span>
-                            <span className="meta-dot">·</span>
-                            <span className="meta-item">응답률 89%</span>
-                        </div>
-                    </div>
-                    <span className="open-badge">영업중</span>
-                </div>
-            </div>
-
-            {/* Photo Gallery */}
-            <div className="photo-gallery">
-                <img src="https://placehold.co/250x250/c8e6a0/4a7c3f?text=🌿" alt="식물 케어 1" className="gallery-img" />
-                <img src="https://placehold.co/250x250/b5d990/3d6b34?text=🪴" alt="식물 케어 2" className="gallery-img" />
-            </div>
+            <ShopTop onBack={onBack} />
 
             {/* Tabs */}
             <ShopTabBar 
