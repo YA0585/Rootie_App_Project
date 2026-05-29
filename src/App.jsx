@@ -88,7 +88,7 @@ function App() {
 
     // 1. Sub-page screens
     if (currentScreen === "locationsetting") {
-      return <LocationSetting onBack={() => setCurrentScreen(null)} />;
+      return <LocationSetting onBack={() => setCurrentScreen(null)} navBar={sharedNavBar} />;
     }
     if (currentScreen === "shop") {
       return (
