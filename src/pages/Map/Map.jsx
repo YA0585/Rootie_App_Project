@@ -460,10 +460,9 @@ export default function Map({ navBar, onGoToShop, onGoToLocationSetting }) {
 
     const handleTouchEnd = () => {
         setIsAnimating(true);
-        const diff = sheetTop - dragStartTop.current;
-
-        // 일정 이상 drag하면 닫힘
-        if (diff > 120) {
+        
+        // 이동한 거리가 아니라, 현재 시트가 얼마나 내려와있는지를 기준으로 판단
+        if (sheetTop > EXPANDED_TOP + 120) {
             setSheetTop(collapsedTopRef.current);
         } else {
             setSheetTop(EXPANDED_TOP);
