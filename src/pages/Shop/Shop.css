@@ -114,11 +114,21 @@
 
 /* ─── Tabs ──────────────────────────────────────────────── */
 .shop-tabs {
+    position: relative;
     display: flex;
     justify-content: space-between;
     padding: 0 40px;
-    border-bottom: 1px solid #e7e5e4;
     margin-bottom: 0;
+}
+
+.shop-tabs::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #e7e5e4;
 }
 
 .shop-tab {
@@ -141,13 +151,14 @@
 .shop-tab.active::after {
     content: "";
     position: absolute;
-    bottom: -1px;
+    bottom: 0;
     left: 50%;
     transform: translateX(-50%);
     width: 70px;
     height: 2px;
     background: #2f2f2f;
     border-radius: 2px;
+    z-index: 2;
 }
 
 /* ─── Section Base ──────────────────────────────────────── */
@@ -342,6 +353,10 @@
     gap: 0;
     padding-top: 40px;
     padding-bottom: 40px;
+}
+
+.shop-price-section .shop-section-title {
+    margin-bottom: 0;
 }
 
 .shop-price-list {
