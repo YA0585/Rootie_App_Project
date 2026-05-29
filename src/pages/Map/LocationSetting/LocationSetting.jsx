@@ -1,38 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./LocationSetting.css";
 
 const LocationSetting = ({ onBack, navBar }) => {
     const [searchValue, setSearchValue] = useState("");
 
     const address = "서울특별시 서초구 서초동 1391";
-
-    useEffect(() => {
-        const initMap = () => {
-            const container = document.getElementById("loc-map");
-            if (!container) return;
-
-            // React 18 StrictMode 두 번 실행 방지
-            if (container.children.length > 0) return;
-
-            const options = {
-                center: new window.kakao.maps.LatLng(37.4979, 127.0276), // 강남역 부근
-                level: 3,
-            };
-            new window.kakao.maps.Map(container, options);
-        };
-
-        if (window.kakao && window.kakao.maps) {
-            window.kakao.maps.load(initMap);
-        } else {
-            const interval = setInterval(() => {
-                if (window.kakao && window.kakao.maps) {
-                    clearInterval(interval);
-                    window.kakao.maps.load(initMap);
-                }
-            }, 100);
-            return () => clearInterval(interval);
-        }
-    }, []);
 
     return (
         <div className="loc-root">
@@ -63,7 +35,13 @@ const LocationSetting = ({ onBack, navBar }) => {
 
             {/* Map area */}
             <div className="loc-map-area">
-                <div id="loc-map" style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}></div>
+                {/* SVG Placeholder for Map */}
+                <div className="loc-map-svg-placeholder" style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", background: "#e8e0d0" }}>
+                    <svg width="100%" height="100%" viewBox="0 0 400 400" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="400" height="400" fill="#e8e0d0" />
+                        <path d="M0 100 L400 150 M0 250 L400 200 M150 0 L100 400 M250 0 L300 400" stroke="#c0b090" strokeWidth="2" />
+                    </svg>
+                </div>
                 {/* Map pin label */}
                 <div className="loc-pin-wrapper">
                     <div className="loc-pin-label">강남역사거리</div>
