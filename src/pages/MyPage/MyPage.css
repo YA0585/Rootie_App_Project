@@ -4,11 +4,12 @@
 .mypage-root {
     font-family: "Noto Sans KR", sans-serif;
     background: #f2f2f2;
-    min-height: 100vh;
+    height: 100dvh;
     max-width: 430px;
     margin: 0 auto;
-    padding-bottom: 40px;
     position: relative;
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
 }
 
@@ -18,6 +19,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 20px 20px 12px;
+    flex-shrink: 0;
 }
 
 .mypage-title {
@@ -43,7 +45,10 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
-    padding: 0 20px;
+    padding: 0 20px 120px;
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 /* ─── Card Base ─────────────────────────────────────────── */
