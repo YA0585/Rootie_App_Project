@@ -259,8 +259,7 @@ body {
 }
 
 .phone-wrap {
-  width: 100%;
-  max-width: 430px;
+  width: 430px;
   background-color: var(--white);
   height: 100vh;
   background: var(--fin-background);
