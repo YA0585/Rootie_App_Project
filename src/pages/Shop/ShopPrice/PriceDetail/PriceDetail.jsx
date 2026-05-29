@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./PriceDetail.css";
+import SizeSelect from "../../../../components/SizeSelect/SizeSelect";
 
 const BackIcon = () => (
     <svg width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
@@ -72,12 +73,6 @@ const sizeOptions = [
 
 export default function PriceDetail({ onBack, onClose }) {
     const [selectedSize, setSelectedSize] = useState("");
-    const [dropdownOpen, setDropdownOpen] = useState(false);
-
-    const handleSelect = (option) => {
-        setSelectedSize(option);
-        setDropdownOpen(false);
-    };
 
     return (
         <div className="pd-root">
@@ -137,31 +132,13 @@ export default function PriceDetail({ onBack, onClose }) {
 
                     {/* Size selector */}
                     <div className="pd-size-group">
-                        <p className="pd-size-label">사이즈</p>
-                        <div className="pd-select-wrapper">
-                            <button
-                                className="pd-select-btn"
-                                onClick={() => setDropdownOpen(!dropdownOpen)}
-                            >
-                                <span className={selectedSize ? "pd-select-value" : "pd-select-placeholder"}>
-                                    {selectedSize || "사이즈 선택하기"}
-                                </span>
-                                <ChevronDownIcon />
-                            </button>
-                            {dropdownOpen && (
-                                <ul className="pd-dropdown">
-                                    {sizeOptions.map((opt, i) => (
-                                        <li
-                                            key={i}
-                                            className={`pd-dropdown-item ${selectedSize === opt ? "pd-dropdown-selected" : ""}`}
-                                            onClick={() => handleSelect(opt)}
-                                        >
-                                            {opt}
-                                        </li>
-                                    ))}
-                                </ul>
-                            )}
-                        </div>
+                        <SizeSelect
+                            label="사이즈"
+                            placeholder="사이즈 선택하기"
+                            value={selectedSize}
+                            onChange={(val) => setSelectedSize(val)}
+                            options={sizeOptions}
+                        />
                     </div>
                 </div>
             </div>
