@@ -4,6 +4,7 @@
     left: 0;
     right: 0;
     height: 97px;
+    width: 100%;
     background: var(--fin-white);
     border-top: 1px solid var(--fin-divider);
     display: flex;
