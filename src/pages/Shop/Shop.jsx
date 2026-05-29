@@ -232,8 +232,8 @@ const Shop = () => {
                         <span className="shop-review-score">4.9</span>
                     </div>
                     <div className="shop-review-sort">
-                        <span className="shop-sort-active">관련도순</span>
-                        <span className="shop-sort-inactive">최신순</span>
+                        <span className="shop-sort-active">• 관련도순</span>
+                        <span className="shop-sort-inactive">• 최신순</span>
                     </div>
                 </div>
 
@@ -242,10 +242,16 @@ const Shop = () => {
                         <div className="shop-review-top">
                             <div className="shop-review-user-row">
                                 <img src="https://placehold.co/61x61" alt={review.username} className="shop-review-avatar" />
-                                <StarIcon size={20} />
-                                <span className="shop-review-rating">{review.rating}</span>
-                                <span className="shop-review-username">{review.username}</span>
-                                <span className="shop-review-date">{review.date}</span>
+                                <div className="shop-review-user-info">
+                                    <div className="shop-review-rating-row">
+                                        <StarIcon size={20} />
+                                        <span className="shop-review-rating">{review.rating}</span>
+                                    </div>
+                                    <div className="shop-review-meta-row">
+                                        <span className="shop-review-username">{review.username}</span>
+                                        <span className="shop-review-date">{review.date}</span>
+                                    </div>
+                                </div>
                             </div>
                             <div className="shop-review-right">
                                 <button className="shop-review-menu" aria-label="더보기">

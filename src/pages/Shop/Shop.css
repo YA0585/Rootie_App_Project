@@ -142,8 +142,9 @@
     content: "";
     position: absolute;
     bottom: -1px;
-    left: 0;
-    right: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70px;
     height: 2px;
     background: #2f2f2f;
     border-radius: 2px;
@@ -467,8 +468,25 @@
 .shop-review-user-row {
     display: flex;
     align-items: center;
-    gap: 8px;
-    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.shop-review-user-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.shop-review-rating-row {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.shop-review-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
 
 .shop-review-rating {
