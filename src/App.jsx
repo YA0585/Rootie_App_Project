@@ -111,7 +111,7 @@ function App() {
     if (currentScreen === "shopprice") {
       return (
         <ShopPrice 
-          onBack={() => setCurrentScreen("shop")}
+          onBack={() => setCurrentScreen(null)}
           onGoToHome={() => setCurrentScreen("shop")}
           onGoToPrice={() => setCurrentScreen("shopprice")}
           onGoToReview={() => setCurrentScreen("shopreview")}
@@ -124,7 +124,7 @@ function App() {
     if (currentScreen === "shopreview") {
       return (
         <ShopReview 
-          onBack={() => setCurrentScreen("shop")}
+          onBack={() => setCurrentScreen(null)}
           onGoToHome={() => setCurrentScreen("shop")}
           onGoToPrice={() => setCurrentScreen("shopprice")}
           onGoToReview={() => setCurrentScreen("shopreview")}
