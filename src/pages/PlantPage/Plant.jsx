@@ -1,6 +1,6 @@
 // PlantDetail.jsx
 
-import "./PlantDetail.css";
+import "./Plant.css";
 import { ChevronLeft } from "lucide-react";
 
 export default function PlantDetail() {

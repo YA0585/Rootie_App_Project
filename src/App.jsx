@@ -19,8 +19,8 @@ import ShopPrice from "./pages/Shop/ShopPrice/ShopPrice";
 import ShopOptions from "./pages/Shop/ShopOptions/ShopOptions";
 import Chat from "./pages/Chat/Chat";
 import { NavBar } from "./components/NavBar/NavBar";
-import MyPlant from "./pages/MyPage/MyPlant";
-import PlantDetail from "./pages/MyPage/PlantDetail";
+import MyPlant from "./pages/MyPage/MyPlant/MyPlant";
+import PlantDetail from "./pages/PlantPage/Plant";
 
 // Onboarding imports
 import SplashScreen from "./pages/OnBoarding/SplashScreen";
