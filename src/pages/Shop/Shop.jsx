@@ -227,7 +227,7 @@ const Shop = () => {
             <section className="shop-section shop-review-section">
                 <div className="shop-review-header">
                     <div className="shop-review-title-row">
-                        <span className="shop-section-title-inline">리뷰</span>
+                        <span className="shop-section-title-inline">후기</span>
                         <StarIcon size={20} />
                         <span className="shop-review-score">4.9</span>
                     </div>
@@ -273,7 +273,7 @@ const Shop = () => {
                 ))}
 
                 <button className="shop-more-link">
-                    리뷰 더보기 <ChevronRight />
+                    후기 더보기 <ChevronRight />
                 </button>
             </section>
 
