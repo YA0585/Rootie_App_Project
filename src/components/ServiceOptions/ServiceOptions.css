@@ -1,0 +1,148 @@
+/* ===== ServiceOptions.css ===== */
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500;700&display=swap');
+
+/* ── Backdrop ── */
+.svo-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    z-index: 100;
+    animation: svo-fade-in 0.2s ease;
+}
+
+@keyframes svo-fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* ── Bottom Sheet ── */
+.svo-sheet {
+    position: fixed;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 430px;
+    background: #F5F5F4;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    z-index: 101;
+    display: flex;
+    flex-direction: column;
+    padding-top: 14px;
+    animation: svo-slide-up 0.25s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+@keyframes svo-slide-up {
+    from {
+        transform: translateX(-50%) translateY(100%);
+    }
+
+    to {
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+/* ── Drag Handle ── */
+.svo-handle {
+    width: 36px;
+    height: 6px;
+    background: #C7C7CC;
+    border-radius: 50px;
+    margin: 0 auto 28px;
+    flex-shrink: 0;
+}
+
+/* ── Option List ── */
+.svo-list {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    padding: 0 21px;
+    overflow-y: auto;
+    max-height: 60vh;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+}
+
+.svo-list::-webkit-scrollbar {
+    display: none;
+}
+
+/* ── Option Item ── */
+.svo-option {
+    width: 100%;
+    height: 55px;
+    background: #ffffff;
+    border: 1px solid #E7E5E4;
+    border-radius: 10px;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 28px;
+    color: #2F2F2F;
+    text-align: left;
+    flex-shrink: 0;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.svo-option:hover {
+    background: #F0F9E8;
+    border-color: #6AB43A;
+}
+
+.svo-option--selected {
+    background: #6AB43A;
+    border-color: #6AB43A;
+    color: #ffffff;
+}
+
+.svo-option--selected:hover {
+    background: #5a9e2e;
+    color: #ffffff;
+}
+
+/* ── Footer ── */
+.svo-footer {
+    margin-top: 20px;
+    padding: 22px 20px;
+    border-top: 1px solid #E7E5E4;
+    background: #F5F5F4;
+}
+
+.svo-confirm-btn {
+    width: 100%;
+    height: 50px;
+    border-radius: 10px;
+    border: none;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #ffffff;
+    background: #D9D9D9;
+    cursor: not-allowed;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.svo-confirm-btn--active {
+    background: #6AB43A;
+    cursor: pointer;
+}
+
+.svo-confirm-btn--active:hover {
+    background: #5a9e2e;
+}
+
+.svo-confirm-btn--active:active {
+    transform: scale(0.98);
+}

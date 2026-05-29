@@ -1,0 +1,55 @@
+/* ===== PotServiceOptions.css ===== */
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap');
+
+/* ── List wrapper ── */
+.pso-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+}
+
+/* ── Single item ── */
+.pso-item {
+    width: 100%;
+    padding: 13px 20px;
+    background: #ffffff;
+    border: 1px solid #E7E5E4;
+    border-radius: 10px;
+    display: inline-flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+    box-sizing: border-box;
+}
+
+.pso-item:hover {
+    background: #F0F9E8;
+    border-color: #6AB43A;
+}
+
+.pso-item--selected {
+    background: #6AB43A;
+    border-color: #6AB43A;
+}
+
+.pso-item--selected:hover {
+    background: #5a9e2e;
+}
+
+/* ── Label ── */
+.pso-item__label {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 28px;
+    color: #2F2F2F;
+    word-break: keep-all;
+}
+
+.pso-item--selected .pso-item__label {
+    color: #ffffff;
+}
