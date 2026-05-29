@@ -1,0 +1,139 @@
+/* MyPlant.css */
+
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #f5f5f4;
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+.myplant-page {
+    width: 100%;
+    min-height: 100vh;
+    background: #f5f5f4;
+}
+
+/* Header */
+
+.myplant-header {
+    height: 124px;
+    padding: 75px 16px 20px;
+    border-bottom: 1px solid #e7e5e4;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: #f5f5f4;
+}
+
+.myplant-header h1 {
+    color: #2a2a22;
+    font-size: 24px;
+    font-weight: 500;
+    word-break: break-word;
+}
+
+.icon-btn {
+    width: 24px;
+    height: 24px;
+
+    border: none;
+    background: transparent;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #000;
+}
+
+/* List */
+
+.plant-list {
+    padding: 20px 20px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Card */
+
+.plant-card {
+    width: 100%;
+    background: white;
+    border: 1px solid #cfd0c8;
+    border-radius: 10px;
+
+    padding: 19px 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.plant-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.plant-left img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.plant-info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.plant-info h2 {
+    color: #2a2a22;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 32px;
+    word-break: break-word;
+}
+
+.plant-info p {
+    color: #2a2a22;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    word-break: break-word;
+}
+
+/* Diagnosis Button */
+
+.diagnosis-btn {
+    height: 32px;
+    padding: 6px 10px;
+
+    border: none;
+    border-radius: 20px;
+    background: #6ab43a;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+
+    color: white;
+    font-size: 14px;
+    font-weight: 400;
+
+    cursor: pointer;
+    flex-shrink: 0;
+}
