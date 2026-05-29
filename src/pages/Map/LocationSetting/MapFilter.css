@@ -1,0 +1,279 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap");
+
+/* ─── Root ──────────────────────────────────────────────── */
+.mf-root {
+    font-family: "Noto Sans KR", sans-serif;
+    background: #f7f6f2;
+    max-width: 430px;
+    margin: 0 auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* ─── Top Search Bar ─────────────────────────────────────── */
+.mf-topbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    background: #f5f5f4;
+    padding: 48px 20px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.mf-back-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+}
+
+.mf-search-bar {
+    flex: 1;
+    height: 45px;
+    background: #fff;
+    border-radius: 50px;
+    border: 1px solid #e7e5e4;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.mf-search-input {
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: "Noto Sans KR", sans-serif;
+    color: #000;
+    width: 100%;
+}
+
+.mf-search-input::placeholder {
+    color: #aaa;
+}
+
+/* ─── Map Area ───────────────────────────────────────────── */
+.mf-map-area {
+    position: relative;
+    width: 100%;
+    height: 520px;
+    background: #ddd8cc;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.mf-map-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* ─── Map Pins ───────────────────────────────────────────── */
+.mf-map-pin {
+    position: absolute;
+    transform: translate(-50%, -100%);
+    cursor: pointer;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+/* ─── Location Button ────────────────────────────────────── */
+.mf-location-btn {
+    position: absolute;
+    right: 16px;
+    bottom: 52px;
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/* ─── Drag Handle ────────────────────────────────────────── */
+.mf-drag-handle-wrap {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 10px;
+}
+
+.mf-drag-handle {
+    width: 36px;
+    height: 6px;
+    background: #c7c7cc;
+    border-radius: 50px;
+}
+
+/* ─── Bottom Sheet ───────────────────────────────────────── */
+.mf-sheet {
+    flex: 1;
+    background: #fff;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    margin-top: -15px;
+    padding: 14px 0 40px;
+    overflow-y: auto;
+    z-index: 5;
+}
+
+.mf-sheet-handle {
+    width: 36px;
+    height: 5px;
+    background: #c7c7cc;
+    border-radius: 50px;
+    margin: 0 auto 20px;
+}
+
+/* ─── Sort Row ───────────────────────────────────────────── */
+.mf-sort-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 20px 12px;
+}
+
+.mf-sort-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: "Noto Sans KR", sans-serif;
+    color: #7d7d7d;
+    padding: 0;
+    transition: color 0.15s;
+}
+
+.mf-sort-btn.active {
+    color: #000;
+}
+
+.mf-sort-dot {
+    color: #7d7d7d;
+    font-size: 12px;
+}
+
+/* ─── Shop List ──────────────────────────────────────────── */
+.mf-shop-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.mf-shop-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 16px 20px;
+    border-bottom: 1px solid #c8c9c0;
+    gap: 12px;
+}
+
+.mf-shop-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.mf-shop-name {
+    font-size: 18px;
+    font-weight: 500;
+    color: #000;
+    line-height: 1.4;
+    margin-bottom: 2px;
+}
+
+.mf-shop-services {
+    font-size: 14px;
+    font-weight: 500;
+    color: #838181;
+    line-height: 1.4;
+}
+
+.mf-shop-status {
+    font-size: 14px;
+    color: #000;
+    line-height: 1.5;
+}
+
+.mf-status-open {
+    font-weight: 350;
+}
+
+.mf-dot-gray {
+    color: #000;
+    font-size: 10px;
+}
+
+.mf-status-close {
+    font-weight: 350;
+}
+
+.mf-shop-location {
+    font-size: 14px;
+    font-weight: 350;
+    color: #000;
+    line-height: 1.5;
+}
+
+.mf-dot-light {
+    color: #a9a9a9;
+    font-size: 10px;
+}
+
+.mf-shop-rating-row {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 4px;
+}
+
+.mf-rating-score {
+    font-size: 12px;
+    font-weight: 500;
+    color: #000;
+}
+
+.mf-rating-price {
+    font-size: 12px;
+    font-weight: 500;
+    color: #000;
+}
+
+/* ─── Book Button ────────────────────────────────────────── */
+.mf-book-btn {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: #6ab43a;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: "Noto Sans KR", sans-serif;
+    border: 1px solid #fff;
+    border-radius: 20px;
+    padding: 6px 10px;
+    cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;
+    align-self: flex-start;
+    margin-top: 12px;
+}
