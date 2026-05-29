@@ -8,7 +8,7 @@
 
 .phone-wrap {
     width: 430px;
-    height: 932px;
+    height: 100dvh;
     background-color: #ffffff;
     display: flex;
     align-items: center;

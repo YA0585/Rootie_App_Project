@@ -34,7 +34,7 @@ body {
 /* ── Phone Shell ── */
 .phone-wrap {
     width: 430px;
-    height: 932px;
+    height: 100dvh;
     background: var(--bg);
     display: flex;
     flex-direction: column;

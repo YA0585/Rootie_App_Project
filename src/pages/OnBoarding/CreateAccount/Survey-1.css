@@ -1,6 +1,6 @@
 .phone-wrap {
     width: 430px;
-    height: 932px;
+    height: 100dvh;
     background: #ffffff;
     display: flex;
     flex-direction: column;
