@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./ShopPrice.css";
 import ShopTabBar from "../../../components/ShopTabBar/ShopTabBar";
 import ShopTop from "../../../components/ShopTop/ShopTop";
+import PriceDetail from "./PriceDetail/PriceDetail";
 
 const StarIcon = ({ size = 14 }) => (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="#6AB43A" stroke="none">
@@ -53,6 +54,11 @@ const priceItems = [
 
 export default function ShopPrice({ onBack, onGoToHome, onGoToPrice, onGoToReview }) {
     const [activeTab, setActiveTab] = useState("가격");
+    const [showPriceDetail, setShowPriceDetail] = useState(false);
+
+    if (showPriceDetail) {
+        return <PriceDetail onBack={() => setShowPriceDetail(false)} onClose={() => setShowPriceDetail(false)} />;
+    }
 
     return (
         <div className="shopprice-root">
@@ -75,7 +81,14 @@ export default function ShopPrice({ onBack, onGoToHome, onGoToPrice, onGoToRevie
 
                 <div className="sp-price-list">
                     {priceItems.map((item) => (
-                        <div key={item.id} className="sp-price-card">
+                        <div 
+                            key={item.id} 
+                            className="sp-price-card"
+                            onClick={() => {
+                                if (item.name === "분갈이") setShowPriceDetail(true);
+                            }}
+                            style={{ cursor: item.name === "분갈이" ? "pointer" : "default" }}
+                        >
                             <div className="sp-price-info">
                                 <p className="sp-item-name">{item.name}</p>
                                 <p className="sp-item-price">{item.price}</p>
