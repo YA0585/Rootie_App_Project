@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./Shop.css";
 import ShopTabBar from "../../components/ShopTabBar/ShopTabBar";
+import ShopTop from "../../components/ShopTop/ShopTop";
 
 const services = [
     { name: "분갈이", price: "4,000원~", desc: "화분의 사이즈를 기준으로 비용이 계산됩니다. 정확한 비용 측정을 위해 화분의 입구의 지름(외경) ..." },
@@ -54,43 +55,7 @@ const Shop = ({ onBack, onGoToHome, onGoToPrice, onGoToReview }) => {
 
     return (
         <div className="shop-root">
-            {/* Top Nav */}
-            <div className="shop-topnav">
-                <button className="shop-back-btn" aria-label="뒤로가기" onClick={onBack}>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                        <path d="M15 18l-6-6 6-6" stroke="#2F2F2F" strokeWidth="1.5" strokeLinecap="round" />
-                    </svg>
-                </button>
-                <button className="shop-bookmark-btn" aria-label="북마크">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M5 18.1818V10.3222C5 6.87045 5 5.14461 6.09835 4.0723C7.1967 3 8.96446 3 12.5 3C16.0355 3 17.8033 3 18.9016 4.0723C20 5.14461 20 6.87045 20 10.3222V18.1818C20 20.3724 20 21.4676 19.2755 21.8597C17.8723 22.6188 15.2405 20.0859 13.9906 19.3233C13.2657 18.881 12.9033 18.6598 12.5 18.6598C12.0967 18.6598 11.7343 18.881 11.0094 19.3233C9.7595 20.0859 7.12763 22.6188 5.72455 21.8597C5 21.4676 5 20.3724 5 18.1818Z" fill="#6AB43A" stroke="#6AB43A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-
-                </button>
-            </div>
-
-            {/* Shop Info Header */}
-            <div className="shop-info-header">
-                <div className="shop-title-row">
-                    <h1 className="shop-name">그린핸즈 식물 케어</h1>
-                    <span className="shop-open-badge">영업중</span>
-                </div>
-                <div className="shop-meta-row">
-                    <span className="shop-category">분갈이 • 영양제</span>
-                    <div className="shop-rating-row">
-                        <StarIcon size={12} />
-                        <span className="shop-rating-score">4.9</span>
-                        <span className="shop-meta-text">리뷰 120건</span>
-                        <span className="shop-meta-text">응답률 89%</span>
-                    </div>
-                </div>
-            </div>
-
-            {/* Image Gallery */}
-            <div className="shop-gallery">
-                <img src="https://placehold.co/250x250" alt="업체 사진 1" className="shop-gallery-img" />
-                <img src="https://placehold.co/250x250" alt="업체 사진 2" className="shop-gallery-img" />
-            </div>
+            <ShopTop onBack={onBack} />
 
             {/* Tab Navigation */}
             <ShopTabBar 
