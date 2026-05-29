@@ -88,7 +88,7 @@ const RatingStars = ({ rating, size = 18 }) => {
     return <div className="stars-row">{stars}</div>;
 };
 
-export default function ShopReview({ onBack }) {
+export default function ShopReview({ onBack, onGoToHome, onGoToPrice, onGoToReview }) {
     const [activeTab, setActiveTab] = useState("후기");
     const [sortBy, setSortBy] = useState("관련도순");
     const [photoOnly, setPhotoOnly] = useState(false);
@@ -137,7 +137,12 @@ export default function ShopReview({ onBack }) {
             {/* Tabs */}
             <ShopTabBar 
                 activeTab={activeTab} 
-                onTabChange={setActiveTab} 
+                onTabChange={(tab) => {
+                    setActiveTab(tab);
+                    if (tab === "홈" && onGoToHome) onGoToHome();
+                    if (tab === "가격" && onGoToPrice) onGoToPrice();
+                    if (tab === "후기" && onGoToReview) onGoToReview();
+                }} 
             />
 
             {/* Write Review CTA */}

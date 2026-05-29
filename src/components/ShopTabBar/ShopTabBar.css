@@ -41,8 +41,9 @@
 .shop-tabbar__underline {
     position: absolute;
     bottom: -1px;
-    left: 0;
-    right: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70px;
     height: 2px;
     background: #2F2F2F;
     border-radius: 1px;

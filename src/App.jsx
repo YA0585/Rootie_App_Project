@@ -102,19 +102,34 @@ function App() {
       return (
         <Shop
           onBack={() => setCurrentScreen(null)}
+          onGoToHome={() => setCurrentScreen("shop")}
           onGoToPrice={() => setCurrentScreen("shopprice")}
           onGoToReview={() => setCurrentScreen("shopreview")}
         />
       );
     }
     if (currentScreen === "shopprice") {
-      return <ShopPrice onBack={() => setCurrentScreen("shop")} />;
+      return (
+        <ShopPrice 
+          onBack={() => setCurrentScreen("shop")}
+          onGoToHome={() => setCurrentScreen("shop")}
+          onGoToPrice={() => setCurrentScreen("shopprice")}
+          onGoToReview={() => setCurrentScreen("shopreview")}
+        />
+      );
     }
     if (currentScreen === "shopoptions") {
       return <ShopOptions onBack={() => setCurrentScreen("shop")} />;
     }
     if (currentScreen === "shopreview") {
-      return <ShopReview onBack={() => setCurrentScreen("shop")} />;
+      return (
+        <ShopReview 
+          onBack={() => setCurrentScreen("shop")}
+          onGoToHome={() => setCurrentScreen("shop")}
+          onGoToPrice={() => setCurrentScreen("shopprice")}
+          onGoToReview={() => setCurrentScreen("shopreview")}
+        />
+      );
     }
     if (currentScreen === "myplant") {
       return <MyPlant onBack={() => setCurrentScreen(null)} onGoToPlantDetail={() => setCurrentScreen("plantdetail")} />;

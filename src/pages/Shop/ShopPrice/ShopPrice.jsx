@@ -50,7 +50,7 @@ const priceItems = [
     },
 ];
 
-export default function ShopPrice({ onBack }) {
+export default function ShopPrice({ onBack, onGoToHome, onGoToPrice, onGoToReview }) {
     const [activeTab, setActiveTab] = useState("가격");
 
     return (
@@ -89,7 +89,12 @@ export default function ShopPrice({ onBack }) {
             {/* Tabs */}
             <ShopTabBar 
                 activeTab={activeTab} 
-                onTabChange={setActiveTab} 
+                onTabChange={(tab) => {
+                    setActiveTab(tab);
+                    if (tab === "홈" && onGoToHome) onGoToHome();
+                    if (tab === "가격" && onGoToPrice) onGoToPrice();
+                    if (tab === "후기" && onGoToReview) onGoToReview();
+                }} 
             />
 
             {/* Price Section */}

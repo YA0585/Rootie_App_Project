@@ -40,7 +40,7 @@ const ChevronRight = () => (
     </svg>
 );
 
-const Shop = ({ onBack, onGoToPrice, onGoToReview }) => {
+const Shop = ({ onBack, onGoToHome, onGoToPrice, onGoToReview }) => {
     const [activeTab, setActiveTab] = useState("홈");
     const [photoFilter, setPhotoFilter] = useState("전체");
     const [copied, setCopied] = useState(false);
@@ -97,6 +97,7 @@ const Shop = ({ onBack, onGoToPrice, onGoToReview }) => {
                 activeTab={activeTab}
                 onTabChange={(tab) => {
                     setActiveTab(tab);
+                    if (tab === "홈" && onGoToHome) onGoToHome();
                     if (tab === "가격" && onGoToPrice) onGoToPrice();
                     if (tab === "후기" && onGoToReview) onGoToReview();
                 }}
