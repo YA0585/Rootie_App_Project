@@ -55,6 +55,17 @@
     flex-shrink: 0;
 }
 
+/* Hide scrollbar for Chrome, Safari and Opera */
+.mypage-content::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.mypage-content {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
 /* ─── Card Base ─────────────────────────────────────────── */
 .card {
     background: #fff;
