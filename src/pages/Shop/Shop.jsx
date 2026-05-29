@@ -79,7 +79,7 @@ const Shop = () => {
                 <div className="shop-meta-row">
                     <span className="shop-category">분갈이 • 영양제</span>
                     <div className="shop-rating-row">
-                        <StarIcon size={14} />
+                        <StarIcon size={12} />
                         <span className="shop-rating-score">4.9</span>
                         <span className="shop-meta-text">리뷰 120건</span>
                         <span className="shop-meta-text">응답률 89%</span>
