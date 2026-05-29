@@ -38,6 +38,7 @@ import Survey6 from "./pages/OnBoarding/CreateAccount/Survey-6";
 function App() {
   const [activeTab, setActiveTab] = useState("home"); // "home" | "reservations" | "chat" | "map" | "mypage"
   const [currentScreen, setCurrentScreen] = useState("splash"); // "splash" | "onboarding" | "login" | null | "locationsetting" | "shop" | "shopprice" | "shopreview" | "myplant" | "plantdetail"
+  const [isLocationSet, setIsLocationSet] = useState(false);
 
   // Synchronization NavBar to inject as prop
   const sharedNavBar = (
@@ -88,7 +89,14 @@ function App() {
 
     // 1. Sub-page screens
     if (currentScreen === "locationsetting") {
-      return <LocationSetting onBack={() => setCurrentScreen(null)} navBar={sharedNavBar} />;
+      return <LocationSetting 
+        onBack={() => setCurrentScreen(null)} 
+        onConfirm={() => {
+            setIsLocationSet(true);
+            setCurrentScreen(null);
+        }}
+        navBar={sharedNavBar} 
+      />;
     }
     if (currentScreen === "shop") {
       return (
@@ -145,6 +153,7 @@ function App() {
             navBar={sharedNavBar}
             onGoToShop={() => setCurrentScreen("shop")}
             onGoToLocationSetting={() => setCurrentScreen("locationsetting")}
+            isLocationSet={isLocationSet}
           />
         );
       case "mypage":
