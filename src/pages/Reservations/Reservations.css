@@ -34,7 +34,7 @@ button {
 
 /* ── Screen ────────────────────────────────────────────────────────────────── */
 .rootie-screen {
-    width: 390px;
+    width: 430px;
     min-height: 100dvh;
     max-height: 100dvh;
     background: var(--fin-background);
