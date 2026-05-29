@@ -412,6 +412,10 @@ export default function Map({ navBar, onGoToShop, onGoToLocationSetting }) {
         const initMap = () => {
             const container = document.getElementById("map");
             if (!container) return;
+            
+            // React 18 StrictMode 두 번 실행 방지: 이미 자식 노드(지도)가 있다면 초기화 생략
+            if (container.children.length > 0) return;
+
             const options = {
                 center: new window.kakao.maps.LatLng(37.507970, 127.021722),
                 level: 3,

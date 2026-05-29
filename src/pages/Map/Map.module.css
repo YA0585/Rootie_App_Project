@@ -13,19 +13,28 @@
     display: flex;
     flex-direction: column;
     margin: 0 auto;
+    /* navBar is position:absolute (97px), so we account for it with padding */
+    padding-bottom: 97px;
+    box-sizing: border-box;
 }
 
 /* ── 지도 + 바텀시트 영역 (navBar 위 공간 전체) ── */
 .mapSheetArea {
     flex: 1;
     position: relative;
-    overflow: hidden;
+    min-height: 0;
+    /* No overflow:hidden — Kakao map needs to render tiles freely */
 }
 
 /* ── 지도 영역 (mapSheetArea 전체 채움) ── */
 .mapArea {
     position: absolute;
-    inset: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
     background: #e8e4d8;
 }
 
