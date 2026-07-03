@@ -3,6 +3,7 @@ import "./Shop.css";
 import ShopTabBar from "../../components/ShopTabBar/ShopTabBar";
 import ShopTop from "../../components/ShopTop/ShopTop";
 import greenhandsImg from "../../assets/greenhands.jpg";
+import shopMapImg from "../../assets/shop_map.png";
 
 const services = [
     { name: "분갈이", price: "4,000원~", desc: "화분의 사이즈를 기준으로 비용이 계산됩니다. 정확한 비용 측정을 위해 화분의 입구의 지름(외경) ..." },
@@ -129,7 +130,7 @@ const Shop = ({ onBack, onGoToHome, onGoToPrice, onGoToReview }) => {
 
                 {/* Map Placeholder */}
                 <div className="shop-map">
-                    <img src="https://placehold.co/390x120" alt="지도" className="shop-map-bg" />
+                    <img src={shopMapImg} alt="지도" className="shop-map-bg" />
                     <div className="shop-map-label">
                         <span className="shop-map-pin-label">강남역사거리</span>
                         <div className="shop-map-pin-tail" />
