@@ -23,6 +23,7 @@ export default function SizeSelect({
     options = [],
     onChange,
     label,
+    showArrow = true,
 }) {
     const [isOptionsOpen, setIsOptionsOpen] = useState(false);
 
@@ -40,7 +41,7 @@ export default function SizeSelect({
                     <span className={value ? "select-input__value" : "select-input__placeholder"}>
                         {value || placeholder}
                     </span>
-                    {options.length > 0 && <ChevronDownIcon />}
+                    {showArrow && options.length > 0 && <ChevronDownIcon />}
                 </div>
             </div>
 

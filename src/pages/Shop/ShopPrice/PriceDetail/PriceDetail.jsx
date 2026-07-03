@@ -138,6 +138,7 @@ export default function PriceDetail({ onBack, onClose }) {
                             value={selectedSize}
                             onChange={(val) => setSelectedSize(val)}
                             options={sizeOptions}
+                            showArrow={false}
                         />
                     </div>
                 </div>
