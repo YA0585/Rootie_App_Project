@@ -192,6 +192,67 @@
     }
 }
 
+/* ── 전문가 진단 결과 카드 (Figma 438:1984) ───────────────────────────── */
+.chat-page .diagnosis-card {
+    flex-shrink: 0;
+    background: var(--c-field);
+    border: 1px solid var(--c-border);
+    border-radius: 20px;
+    padding: 20px;
+    width: 340px;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.chat-page .diag-shop,
+.chat-page .diag-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--c-text);
+    line-height: 28px;
+    letter-spacing: -0.36px;
+}
+
+.chat-page .diag-divider {
+    width: 100%;
+    height: 1px;
+    background: var(--c-border);
+}
+
+.chat-page .diag-body {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--c-text);
+    line-height: 24px;
+    letter-spacing: -0.32px;
+}
+
+.chat-page .diag-actions-label {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--c-text);
+    line-height: 24px;
+}
+
+.chat-page .diag-actions {
+    margin: 0;
+    padding-left: 24px;
+    list-style: disc;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.chat-page .diag-actions li {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--c-text);
+    line-height: 24px;
+    letter-spacing: -0.32px;
+}
+
 /* ── 문진 요약 result card ─────────────────────────────────────────────── */
 .chat-page .summary-card {
     flex-shrink: 0;

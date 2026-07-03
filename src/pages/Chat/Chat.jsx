@@ -37,6 +37,19 @@ const SUMMARY_ROWS = ["식물", "증상", "급수", "햇빛", "증상기간"];
 const CONFIRM_TEXT = "이 내용으로 전문가에게 전달해줘";
 const WELCOME_REPLIES = ["네", "아니요", "잘 모르겠어요", "다른게 궁금해요"];
 
+// 전문가 진단 결과 (Figma 438:1984)
+const DIAGNOSIS = {
+    shop: "그린핸드 식물케어 진단 결과",
+    title: "과습으로 인한 뿌리 손상 의심",
+    body: "급수 빈도가 다소 높고 간접광이 짧아 과습이 진행됐을 가능성이 높습니다. 뿌리 점검과 배수층 확인이 필요합니다.",
+    actionsLabel: "권장조치",
+    actions: [
+        "급수 주 1회로 줄이기",
+        "뿌리 점검 및 분갈이 권장",
+        "햇빛 노출 시간 하루 4~5시간으로 늘리기",
+    ],
+};
+
 let msgId = 0;
 const nextId = () => ++msgId;
 
@@ -95,6 +108,15 @@ export default function Chat({ onBack }) {
             });
             pushBot({ kind: "diagnosing" });
         }, 600);
+        // 진단 완료 → "진단중..." 제거 후 결과 도착 (Figma 438:1984)
+        setTimeout(() => {
+            setMessages((prev) => [
+                ...prev.filter((m) => m.kind !== "diagnosing"),
+                { id: nextId(), kind: "bot", text: "전문가 진단이 도착했어요." },
+                { id: nextId(), kind: "diagnosis" },
+                { id: nextId(), kind: "botText", text: "업체로 직접 방문하시면 해결해드릴수있습니다. 업체 정보를 확인해보세요!" },
+            ]);
+        }, 2600);
     };
 
     const sendMessage = (text) => {
@@ -160,6 +182,24 @@ export default function Chat({ onBack }) {
                                 <span className="diagnosing">
                                     진단중<span className="diag-dots"><span>.</span><span>.</span><span>.</span></span>
                                 </span>
+                            </div>
+                        );
+                    }
+                    if (msg.kind === "diagnosis") {
+                        return (
+                            <div key={msg.id} className="bubble-row bot">
+                                <div className="diagnosis-card">
+                                    <p className="diag-shop">{DIAGNOSIS.shop}</p>
+                                    <div className="diag-divider" />
+                                    <p className="diag-title">{DIAGNOSIS.title}</p>
+                                    <p className="diag-body">{DIAGNOSIS.body}</p>
+                                    <p className="diag-actions-label">{DIAGNOSIS.actionsLabel}</p>
+                                    <ul className="diag-actions">
+                                        {DIAGNOSIS.actions.map((a) => (
+                                            <li key={a}>{a}</li>
+                                        ))}
+                                    </ul>
+                                </div>
                             </div>
                         );
                     }
