@@ -168,7 +168,7 @@ const Shop = ({ onBack, onGoToHome, onGoToPrice, onGoToReview }) => {
                                 <div className="shop-price-amount">{svc.price}</div>
                                 <div className="shop-price-desc">{svc.desc}</div>
                             </div>
-                            <img src="https://placehold.co/98x98" alt={svc.name} className="shop-price-img" />
+                            <img src={greenhandsImg} alt={svc.name} className="shop-price-img" />
                         </div>
                     ))}
                 </div>
@@ -247,12 +247,12 @@ const Shop = ({ onBack, onGoToHome, onGoToPrice, onGoToReview }) => {
                 </div>
                 <div className="shop-photo-grid">
                     <div className="shop-photo-col">
-                        <img src="https://placehold.co/190x172" alt="사진1" className="shop-photo-img" />
-                        <img src="https://placehold.co/190x191" alt="사진2" className="shop-photo-img" />
+                        <img src={greenhandsImg} alt="사진1" className="shop-photo-img" />
+                        <img src={greenhandsImg} alt="사진2" className="shop-photo-img" />
                     </div>
                     <div className="shop-photo-col">
-                        <img src="https://placehold.co/190x221" alt="사진3" className="shop-photo-img" />
-                        <img src="https://placehold.co/190x172" alt="사진4" className="shop-photo-img" />
+                        <img src={greenhandsImg} alt="사진3" className="shop-photo-img" />
+                        <img src={greenhandsImg} alt="사진4" className="shop-photo-img" />
                     </div>
                 </div>
                 <button className="shop-more-link">
