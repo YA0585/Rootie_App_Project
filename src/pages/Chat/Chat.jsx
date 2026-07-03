@@ -3,7 +3,7 @@ import "./Chat.css";
 import summaryPlant from "../../assets/monstera.jpg";
 
 // ── Scripted questionnaire flow ──────────────────────────────────────────────
-// Each step asks one question and fills one row of the 문진 요약 summary.
+// 웰컴(Figma 438:1064) → 문진 질문(438:1863) → 문진 요약 결과 카드 순으로 이어진다.
 const QUESTIONS = [
     {
         key: "식물",
@@ -40,7 +40,7 @@ const WELCOME_REPLIES = ["네", "아니요", "잘 모르겠어요", "다른게 �
 let msgId = 0;
 const nextId = () => ++msgId;
 
-export default function Chat() {
+export default function Chat({ onBack }) {
     const [started, setStarted] = useState(false); // false → 웰컴 화면 (Figma 438:1064)
     const [messages, setMessages] = useState([]);
     const [step, setStep] = useState(0); // index into QUESTIONS; === length → completed
@@ -56,7 +56,7 @@ export default function Chat() {
     const pushBot = (msg) =>
         setMessages((prev) => [...prev, { id: nextId(), ...msg }]);
 
-    // Welcome reply → 문진 플로우 시작
+    // 웰컴 답변 → 문진 플로우 시작
     const startSurvey = (text) => {
         setStarted(true);
         setMessages([{ id: nextId(), kind: "user", text }]);
@@ -65,7 +65,7 @@ export default function Chat() {
         }, 600);
     };
 
-    // Answer the current questionnaire step
+    // 현재 문진 단계 답변 처리
     const answerStep = (text) => {
         const q = QUESTIONS[step];
         const nextAnswers = { ...answers, [q.key]: text };
@@ -79,7 +79,6 @@ export default function Chat() {
             if (nextStep < QUESTIONS.length) {
                 pushBot({ kind: "bot", text: QUESTIONS[nextStep].prompt(nextAnswers) });
             } else {
-                // Questionnaire complete → show result summary
                 pushBot({
                     kind: "botText",
                     text: "문진 작성이 완료됐어요! 전문가에게 보내기전에 아래 내용을 확인해주세요.",
@@ -112,23 +111,21 @@ export default function Chat() {
 
     const handleKeyDown = (e) => { if (e.key === "Enter") sendMessage(inputValue); };
 
-    // Value shown in a summary row (apply per-question summarize mapping)
     const summaryValue = (rows, key) => {
         const q = QUESTIONS.find((x) => x.key === key);
         const raw = rows[key];
         return q?.summarize ? q.summarize(raw) : raw;
     };
 
-    // Current quick replies
     const isDone = step >= QUESTIONS.length;
     const quickReplies = isDone ? [] : QUESTIONS[step].options;
 
     return (
-        <div className="phone-wrap">
+        <div className="chat-page">
 
             {/* Header */}
             <header className="chat-header">
-                <button className="icon-btn" aria-label="뒤로가기">
+                <button className="icon-btn" aria-label="뒤로가기" onClick={onBack}>
                     <svg width="22" height="22" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" strokeWidth="2.2">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />

@@ -37,6 +37,7 @@ import Survey6 from "./pages/OnBoarding/CreateAccount/Survey-6";
 
 function App() {
   const [activeTab, setActiveTab] = useState("home"); // "home" | "reservations" | "chat" | "map" | "mypage"
+  const [prevTab, setPrevTab] = useState("home"); // tab shown before entering chat (for back arrow)
   const [currentScreen, setCurrentScreen] = useState("splash"); // "splash" | "onboarding" | "login" | null | "locationsetting" | "shop" | "shopprice" | "shopreview" | "myplant" | "plantdetail"
   const [isLocationSet, setIsLocationSet] = useState(false);
 
@@ -46,6 +47,7 @@ function App() {
       activeTab={activeTab}
       onChangeTab={(tabId) => {
         setCurrentScreen(null); // Clear sub-page state when primary nav is clicked
+        setPrevTab(activeTab); // remember where we came from (for chat back arrow)
         setActiveTab(tabId);
       }}
     />
@@ -146,7 +148,7 @@ function App() {
             navBar={sharedNavBar}
             onGoToMap={() => setActiveTab("map")}
             onGoToReservations={() => setActiveTab("reservations")}
-            onGoToChat={() => setActiveTab("chat")}
+            onGoToChat={() => { setPrevTab("home"); setActiveTab("chat"); }}
           />
         );
       case "reservations":
@@ -159,7 +161,7 @@ function App() {
       case "chat":
         return (
           <Chat
-            navBar={sharedNavBar}
+            onBack={() => setActiveTab(prevTab)}
           />
         );
       case "map":
