@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&family=Quicksand:wght@500;700&display=swap');
 
 *,
 *::before,
@@ -9,15 +9,16 @@
 }
 
 :root {
-    --green-primary: var(--fin-maincolor);
+    --green-primary: #6AB43A;
     --green-dark: #2A8A50;
     --green-light: #E8F7EE;
-    --text-dark: #1A1A1A;
+    --text-dark: #2F2F2F;
     --text-mid: #555;
     --text-light: #888;
     --bg: #FFFFFF;
     --white: #FFFFFF;
-    --border: #E8E8E8;
+    --border: #E7E5E4;
+    --field-bg: #F5F5F4;
     --radius: 16px;
 }
 
@@ -98,20 +99,23 @@ body {
 
 .welcome-msg p {
     font-size: 18px;
-    font-weight: 600;
+    font-weight: 500;
     color: var(--text-dark);
-    line-height: 1.55;
+    line-height: 28px;
+    letter-spacing: -0.36px;
 }
 
 .brand {
     color: var(--green-primary);
+    font-family: 'Quicksand', 'Noto Sans KR', sans-serif;
     font-weight: 700;
+    font-size: 20px;
+    letter-spacing: -0.2px;
 }
 
 /* Bubbles */
 .bubble-row {
     display: flex;
-    gap: 10px;
     animation: fadeUp 0.3s ease both;
 }
 
@@ -121,41 +125,95 @@ body {
 
 .bubble-row.bot {
     justify-content: flex-start;
-    align-items: flex-end;
-}
-
-.bot-avatar {
-    width: 32px;
-    height: 32px;
-    background: var(--green-primary);
-    color: var(--white);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 13px;
-    font-weight: 700;
-    flex-shrink: 0;
 }
 
 .bubble {
-    max-width: 72%;
-    padding: 12px 16px;
-    border-radius: 20px;
-    font-size: 14px;
-    line-height: 1.55;
+    max-width: 82%;
+    padding: 11px 20px;
+    border-radius: 25px;
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: -0.36px;
 }
 
 .bubble-user {
     background: var(--green-primary);
     color: var(--white);
-    border-bottom-right-radius: 4px;
 }
 
 .bubble-bot {
-    background: #F2F2F2;
+    background: var(--field-bg);
+    border: 1px solid var(--border);
     color: var(--text-dark);
-    border-bottom-left-radius: 4px;
+}
+
+/* Multi-line block message (e.g. 문진 완료 안내) */
+.bubble-bot--block {
+    border-radius: 20px;
+}
+
+/* 문진 요약 result card */
+.summary-card {
+    background: var(--field-bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 20px;
+    width: 322px;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.summary-thumb {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.summary-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.summary-title {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text-dark);
+    letter-spacing: -0.36px;
+    line-height: 28px;
+}
+
+.summary-table {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 2px;
+}
+
+.summary-row {
+    display: flex;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.summary-label {
+    width: 74px;
+    flex-shrink: 0;
+    font-weight: 700;
+    color: var(--text-dark);
+    letter-spacing: -0.32px;
+}
+
+.summary-value {
+    font-weight: 500;
+    color: var(--text-dark);
+    letter-spacing: -0.32px;
 }
 
 /* Quick Replies */
@@ -173,13 +231,14 @@ body {
 }
 
 .quick-chip {
-    padding: 9px 16px;
+    padding: 10px 15px;
     border-radius: 20px;
-    border: 1.5px solid var(--border);
+    border: 1px solid var(--border);
     background: var(--white);
     color: var(--text-dark);
-    font-size: 13px;
-    font-weight: 500;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1;
     white-space: nowrap;
     cursor: pointer;
     transition: all 0.15s;
@@ -189,7 +248,18 @@ body {
 .quick-chip:hover {
     border-color: var(--green-primary);
     color: var(--green-primary);
-    background: var(--green-light);
+}
+
+.quick-chip--primary {
+    background: var(--green-primary);
+    border-color: var(--green-primary);
+    color: var(--white);
+    border-radius: 50px;
+}
+
+.quick-chip--primary:hover {
+    color: var(--white);
+    opacity: 0.9;
 }
 
 /* Input Bar */
@@ -197,65 +267,67 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 10px 16px 28px;
+    padding: 10px 20px 30px;
     background: var(--white);
     flex-shrink: 0;
 }
 
 .add-btn {
     position: absolute;
-    left: 6px;
+    left: 15px;
     top: 50%;
     transform: translateY(-50%);
-    width: 36px;
-    height: 36px;
+    width: 24px;
+    height: 24px;
     border: none;
     background: none;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--text-light);
+    color: var(--green-primary);
     border-radius: 50%;
     flex-shrink: 0;
-    transition: background 0.15s;
+    transition: opacity 0.15s;
     z-index: 2;
 }
 
 .add-btn:hover {
-    background: #E8E8E8;
+    opacity: 0.7;
 }
 
 .input-wrap {
     flex: 1;
     position: relative;
-    height: 46px;
-    background: #F5F5F5;
-    border-radius: 24px;
+    height: 50px;
+    background: var(--field-bg);
+    border: 1px solid var(--border);
+    border-radius: 50px;
     display: flex;
     align-items: center;
     padding: 0;
 }
 
-.input-brand {
+.input-hint {
     position: absolute;
-    left: 46px;
-    font-size: 14px;
-    font-weight: 700;
+    left: 51px;
+    display: inline-flex;
+    align-items: baseline;
+    font-size: 18px;
+    font-weight: 400;
     color: var(--green-primary);
+    letter-spacing: -0.36px;
     white-space: nowrap;
     pointer-events: none;
     z-index: 2;
 }
 
-.input-placeholder-text {
-    position: absolute;
-    left: 90px;
-    font-size: 14px;
-    color: var(--text-light);
-    white-space: nowrap;
-    pointer-events: none;
-    z-index: 2;
+.input-brand {
+    font-family: 'Quicksand', 'Noto Sans KR', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--green-primary);
+    letter-spacing: -0.2px;
 }
 
 .chat-input {
@@ -266,16 +338,15 @@ body {
     background: transparent;
     border: none;
     outline: none;
-    padding: 0 18px 0 46px;
-    font-size: 14px;
+    padding: 0 20px 0 51px;
+    font-size: 18px;
     font-family: 'Noto Sans KR', sans-serif;
     color: var(--text-dark);
-    border-radius: 24px;
+    border-radius: 50px;
     z-index: 1;
 }
 
-.chat-input:focus~.input-brand,
-.chat-input:focus~.input-placeholder-text {
+.chat-input:focus~.input-hint {
     display: none;
 }
 

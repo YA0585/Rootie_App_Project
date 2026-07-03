@@ -1,14 +1,51 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./Chat.css";
+import summaryPlant from "../../assets/monstera.jpg";
 
-const QUICK_REPLIES = ["네", "아니요", "잘 모르겠어요", "다른게 궁금해요"];
-
-const INITIAL_MESSAGES = [
-    { id: 1, type: "bot", text: null, isWelcome: true },
+// ── Scripted questionnaire flow ──────────────────────────────────────────────
+// Each step asks one question and fills one row of the 문진 요약 summary.
+const QUESTIONS = [
+    {
+        key: "식물",
+        prompt: () => "오늘은 어떤 식물이 걱정되시나요?",
+        options: ["몬스테라", "스투키", "산세베리아"],
+    },
+    {
+        key: "증상",
+        prompt: (a) => `${a["식물"] || "반려식물"}에게 어떤 증상이 보이나요?`,
+        options: ["잎이 변색되었어요", "식물이 말랐어요", "잘 모르겠어요", "다른게 궁금해요"],
+        summarize: (v) => (v === "잎이 변색되었어요" ? "잎이 노랗게 변함" : v),
+    },
+    {
+        key: "급수",
+        prompt: () => "물은 얼마나 자주 주시나요?",
+        options: ["주 2~3회", "주 1회", "2주에 1회"],
+    },
+    {
+        key: "햇빛",
+        prompt: () => "햇빛은 어떻게 받고 있나요?",
+        options: ["직접광", "간접광", "그늘"],
+    },
+    {
+        key: "증상기간",
+        prompt: () => "증상이 나타난 지 얼마나 됐나요?",
+        options: ["3일 전부터", "1주일 전부터", "한 달 이상"],
+    },
 ];
 
+const SUMMARY_ROWS = ["식물", "증상", "급수", "햇빛", "증상기간"];
+const CONFIRM_TEXT = "이 내용으로 전문가에게 전달해줘";
+
+let msgId = 0;
+const nextId = () => ++msgId;
+
 export default function Chat() {
-    const [messages, setMessages] = useState(INITIAL_MESSAGES);
+    const [messages, setMessages] = useState([
+        { id: nextId(), kind: "bot", text: QUESTIONS[0].prompt({}) },
+    ]);
+    const [step, setStep] = useState(0); // index into QUESTIONS; === length → completed
+    const [answers, setAnswers] = useState({});
+    const [confirmed, setConfirmed] = useState(false);
     const [inputValue, setInputValue] = useState("");
     const bottomRef = useRef(null);
 
@@ -16,24 +53,64 @@ export default function Chat() {
         bottomRef.current?.scrollIntoView({ behavior: "smooth" });
     }, [messages]);
 
-    const sendMessage = (text) => {
-        if (!text.trim()) return;
-        const userMsg = { id: Date.now(), type: "user", text };
-        setMessages((prev) => [...prev, userMsg]);
-        setInputValue("");
+    const pushBot = (msg) =>
+        setMessages((prev) => [...prev, { id: nextId(), ...msg }]);
+
+    // Answer the current questionnaire step
+    const answerStep = (text) => {
+        const q = QUESTIONS[step];
+        const nextAnswers = { ...answers, [q.key]: text };
+        setAnswers(nextAnswers);
+        setMessages((prev) => [...prev, { id: nextId(), kind: "user", text }]);
+
+        const nextStep = step + 1;
+        setStep(nextStep);
 
         setTimeout(() => {
-            const botMsg = {
-                id: Date.now() + 1,
-                type: "bot",
-                text: "네, 알겠어요! 식물 상태에 대해 조금 더 알려주세요.",
-            };
-            setMessages((prev) => [...prev, botMsg]);
-        }, 800);
+            if (nextStep < QUESTIONS.length) {
+                pushBot({ kind: "bot", text: QUESTIONS[nextStep].prompt(nextAnswers) });
+            } else {
+                // Questionnaire complete → show result summary
+                pushBot({
+                    kind: "botText",
+                    text: "문진 작성이 완료됐어요! 전문가에게 보내기전에 아래 내용을 확인해주세요.",
+                });
+                pushBot({ kind: "summary", answers: nextAnswers });
+            }
+        }, 600);
     };
 
-    const handleQuickReply = (text) => sendMessage(text);
+    const sendConfirm = () => {
+        setConfirmed(true);
+        setMessages((prev) => [...prev, { id: nextId(), kind: "user", text: CONFIRM_TEXT }]);
+        setTimeout(() => {
+            pushBot({
+                kind: "botText",
+                text: "전문가에게 전달했어요! 곧 진단 답변이 도착할 거예요. 🌱",
+            });
+        }, 600);
+    };
+
+    const sendMessage = (text) => {
+        if (!text.trim()) return;
+        setInputValue("");
+        if (step < QUESTIONS.length) answerStep(text.trim());
+        else if (!confirmed) sendConfirm();
+        else setMessages((prev) => [...prev, { id: nextId(), kind: "user", text: text.trim() }]);
+    };
+
     const handleKeyDown = (e) => { if (e.key === "Enter") sendMessage(inputValue); };
+
+    // Value shown in a summary row (apply per-question summarize mapping)
+    const summaryValue = (rows, key) => {
+        const q = QUESTIONS.find((x) => x.key === key);
+        const raw = rows[key];
+        return q?.summarize ? q.summarize(raw) : raw;
+    };
+
+    // Current quick replies
+    const isDone = step >= QUESTIONS.length;
+    const quickReplies = isDone ? [] : QUESTIONS[step].options;
 
     return (
         <div className="phone-wrap">
@@ -57,34 +134,64 @@ export default function Chat() {
 
             {/* Message Area */}
             <div className="chat-body">
-                {messages.map((msg) =>
-                    msg.isWelcome ? (
-                        <div key={msg.id} className="welcome-msg">
-                            <p><span className="brand">Rootie</span>와 함께</p>
-                            <p>식물 상태를 알아볼까요?</p>
-                        </div>
-                    ) : msg.type === "user" ? (
-                        <div key={msg.id} className="bubble-row user">
-                            <div className="bubble bubble-user">{msg.text}</div>
-                        </div>
-                    ) : (
+                {messages.map((msg) => {
+                    if (msg.kind === "user") {
+                        return (
+                            <div key={msg.id} className="bubble-row user">
+                                <div className="bubble bubble-user">{msg.text}</div>
+                            </div>
+                        );
+                    }
+                    if (msg.kind === "summary") {
+                        return (
+                            <div key={msg.id} className="bubble-row bot">
+                                <div className="summary-card">
+                                    <div className="summary-thumb">
+                                        <img src={summaryPlant} alt="식물 사진" />
+                                    </div>
+                                    <p className="summary-title">문진 요약</p>
+                                    <div className="summary-table">
+                                        {SUMMARY_ROWS.map((key) => (
+                                            <div key={key} className="summary-row">
+                                                <span className="summary-label">{key}</span>
+                                                <span className="summary-value">
+                                                    {summaryValue(msg.answers, key)}
+                                                </span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        );
+                    }
+                    // bot / botText
+                    return (
                         <div key={msg.id} className="bubble-row bot">
-                            <div className="bot-avatar">R</div>
-                            <div className="bubble bubble-bot">{msg.text}</div>
+                            <div className={`bubble bubble-bot ${msg.kind === "botText" ? "bubble-bot--block" : ""}`}>
+                                {msg.text}
+                            </div>
                         </div>
-                    )
-                )}
+                    );
+                })}
                 <div ref={bottomRef} />
             </div>
 
             {/* Quick Replies */}
-            <div className="quick-replies">
-                {QUICK_REPLIES.map((q) => (
-                    <button key={q} className="quick-chip" onClick={() => handleQuickReply(q)}>
-                        {q}
+            {isDone && !confirmed ? (
+                <div className="quick-replies">
+                    <button className="quick-chip quick-chip--primary" onClick={sendConfirm}>
+                        {CONFIRM_TEXT}
                     </button>
-                ))}
-            </div>
+                </div>
+            ) : quickReplies.length > 0 ? (
+                <div className="quick-replies">
+                    {quickReplies.map((q) => (
+                        <button key={q} className="quick-chip" onClick={() => sendMessage(q)}>
+                            {q}
+                        </button>
+                    ))}
+                </div>
+            ) : null}
 
             {/* Input Bar */}
             <div className="chat-input-bar">
@@ -96,8 +203,9 @@ export default function Chat() {
                             <line x1="5" y1="12" x2="19" y2="12" />
                         </svg>
                     </button>
-                    <span className="input-brand">Rootie</span>
-                    <span className="input-placeholder-text">와 대화를 시작해보세요.</span>
+                    <span className="input-hint">
+                        <span className="input-brand">Rootie</span>와 대화를 시작해보세요.
+                    </span>
                     <input
                         type="text"
                         className="chat-input"
