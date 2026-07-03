@@ -222,9 +222,11 @@ export default function Chat({ onBack }) {
                             <line x1="5" y1="12" x2="19" y2="12" />
                         </svg>
                     </button>
-                    <span className="input-hint">
-                        <span className="input-brand">Rootie</span>와 대화를 시작해보세요.
-                    </span>
+                    {!started && !inputValue && (
+                        <span className="input-hint">
+                            <span className="input-brand">Rootie</span>와 대화를 시작해보세요.
+                        </span>
+                    )}
                     <input
                         type="text"
                         className="chat-input"
