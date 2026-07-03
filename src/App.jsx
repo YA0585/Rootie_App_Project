@@ -112,11 +112,12 @@ function App() {
     }
     if (currentScreen === "shopprice") {
       return (
-        <ShopPrice 
+        <ShopPrice
           onBack={() => setCurrentScreen(null)}
           onGoToHome={() => setCurrentScreen("shop")}
           onGoToPrice={() => setCurrentScreen("shopprice")}
           onGoToReview={() => setCurrentScreen("shopreview")}
+          onGoToReservations={() => { setCurrentScreen(null); setActiveTab("reservations"); }}
         />
       );
     }

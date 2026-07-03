@@ -72,7 +72,7 @@ const sizeOptions = [
     "~40.0 cm (45,000원)",
 ];
 
-export default function PriceDetail({ onBack, onClose }) {
+export default function PriceDetail({ onBack, onClose, onGoToReservations }) {
     const [selectedSize, setSelectedSize] = useState("");
     const [showReservation, setShowReservation] = useState(false);
 
@@ -88,6 +88,7 @@ export default function PriceDetail({ onBack, onClose }) {
                 price={priceLabel}
                 onBack={() => setShowReservation(false)}
                 onClose={onClose}
+                onDone={onGoToReservations}
             />
         );
     }
