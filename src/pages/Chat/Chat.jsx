@@ -35,14 +35,14 @@ const QUESTIONS = [
 
 const SUMMARY_ROWS = ["식물", "증상", "급수", "햇빛", "증상기간"];
 const CONFIRM_TEXT = "이 내용으로 전문가에게 전달해줘";
+const WELCOME_REPLIES = ["네", "아니요", "잘 모르겠어요", "다른게 궁금해요"];
 
 let msgId = 0;
 const nextId = () => ++msgId;
 
 export default function Chat() {
-    const [messages, setMessages] = useState([
-        { id: nextId(), kind: "bot", text: QUESTIONS[0].prompt({}) },
-    ]);
+    const [started, setStarted] = useState(false); // false → 웰컴 화면 (Figma 438:1064)
+    const [messages, setMessages] = useState([]);
     const [step, setStep] = useState(0); // index into QUESTIONS; === length → completed
     const [answers, setAnswers] = useState({});
     const [confirmed, setConfirmed] = useState(false);
@@ -55,6 +55,15 @@ export default function Chat() {
 
     const pushBot = (msg) =>
         setMessages((prev) => [...prev, { id: nextId(), ...msg }]);
+
+    // Welcome reply → 문진 플로우 시작
+    const startSurvey = (text) => {
+        setStarted(true);
+        setMessages([{ id: nextId(), kind: "user", text }]);
+        setTimeout(() => {
+            pushBot({ kind: "bot", text: QUESTIONS[0].prompt({}) });
+        }, 600);
+    };
 
     // Answer the current questionnaire step
     const answerStep = (text) => {
@@ -94,9 +103,11 @@ export default function Chat() {
     const sendMessage = (text) => {
         if (!text.trim()) return;
         setInputValue("");
-        if (step < QUESTIONS.length) answerStep(text.trim());
+        const t = text.trim();
+        if (!started) startSurvey(t);
+        else if (step < QUESTIONS.length) answerStep(t);
         else if (!confirmed) sendConfirm();
-        else setMessages((prev) => [...prev, { id: nextId(), kind: "user", text: text.trim() }]);
+        else setMessages((prev) => [...prev, { id: nextId(), kind: "user", text: t }]);
     };
 
     const handleKeyDown = (e) => { if (e.key === "Enter") sendMessage(inputValue); };
@@ -134,6 +145,12 @@ export default function Chat() {
 
             {/* Message Area */}
             <div className="chat-body">
+                {!started && (
+                    <div className="welcome-msg">
+                        <p><span className="brand">Rootie</span>와 함께</p>
+                        <p>식물 상태를 알아볼까요?</p>
+                    </div>
+                )}
                 {messages.map((msg) => {
                     if (msg.kind === "user") {
                         return (
@@ -177,7 +194,15 @@ export default function Chat() {
             </div>
 
             {/* Quick Replies */}
-            {isDone && !confirmed ? (
+            {!started ? (
+                <div className="quick-replies">
+                    {WELCOME_REPLIES.map((q) => (
+                        <button key={q} className="quick-chip" onClick={() => sendMessage(q)}>
+                            {q}
+                        </button>
+                    ))}
+                </div>
+            ) : isDone && !confirmed ? (
                 <div className="quick-replies">
                     <button className="quick-chip quick-chip--primary" onClick={sendConfirm}>
                         {CONFIRM_TEXT}
