@@ -91,8 +91,9 @@ export default function Chat({ onBack }) {
         setTimeout(() => {
             pushBot({
                 kind: "botText",
-                text: "전문가에게 전달했어요! 곧 진단 답변이 도착할 거예요. 🌱",
+                text: "식집사님의 위치기반 설정에 따른 근처 3곳의 식물 전문가에게 전달했어요. 잠시만 기다려주세요.",
             });
+            pushBot({ kind: "diagnosing" });
         }, 600);
     };
 
@@ -153,6 +154,15 @@ export default function Chat({ onBack }) {
                             </div>
                         );
                     }
+                    if (msg.kind === "diagnosing") {
+                        return (
+                            <div key={msg.id} className="bubble-row bot">
+                                <span className="diagnosing">
+                                    진단중<span className="diag-dots"><span>.</span><span>.</span><span>.</span></span>
+                                </span>
+                            </div>
+                        );
+                    }
                     if (msg.kind === "summary") {
                         return (
                             <div key={msg.id} className="bubble-row bot">
@@ -196,21 +206,31 @@ export default function Chat({ onBack }) {
                         </button>
                     ))}
                 </div>
-            ) : isDone && !confirmed ? (
+            ) : !isDone ? (
+                quickReplies.length > 0 ? (
+                    <div className="quick-replies">
+                        {quickReplies.map((q) => (
+                            <button key={q} className="quick-chip" onClick={() => sendMessage(q)}>
+                                {q}
+                            </button>
+                        ))}
+                    </div>
+                ) : null
+            ) : !confirmed ? (
                 <div className="quick-replies">
                     <button className="quick-chip quick-chip--primary" onClick={sendConfirm}>
                         {CONFIRM_TEXT}
                     </button>
                 </div>
-            ) : quickReplies.length > 0 ? (
+            ) : (
                 <div className="quick-replies">
-                    {quickReplies.map((q) => (
+                    {WELCOME_REPLIES.map((q) => (
                         <button key={q} className="quick-chip" onClick={() => sendMessage(q)}>
                             {q}
                         </button>
                     ))}
                 </div>
-            ) : null}
+            )}
 
             {/* Input Bar */}
             <div className="chat-input-bar">
