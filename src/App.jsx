@@ -162,6 +162,7 @@ function App() {
         return (
           <Chat
             onBack={() => setActiveTab(prevTab)}
+            onGoToShop={() => setCurrentScreen("shop")}
           />
         );
       case "map":

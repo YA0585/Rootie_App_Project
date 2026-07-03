@@ -64,7 +64,7 @@ const DIAGNOSIS = {
 let msgId = 0;
 const nextId = () => ++msgId;
 
-export default function Chat({ onBack }) {
+export default function Chat({ onBack, onGoToShop }) {
     const [started, setStarted] = useState(false); // false → 웰컴 화면 (Figma 438:1064)
     const [messages, setMessages] = useState([]);
     const [step, setStep] = useState(0); // index into QUESTIONS; === length → completed
@@ -226,7 +226,7 @@ export default function Chat({ onBack }) {
                                         </div>
                                     </div>
                                     <div className="shop-card__actions">
-                                        <button className="shop-card__btn shop-card__btn--outline">업체 정보 보기</button>
+                                        <button className="shop-card__btn shop-card__btn--outline" onClick={onGoToShop}>업체 정보 보기</button>
                                         <button className="shop-card__btn shop-card__btn--primary">방문 예약하기</button>
                                     </div>
                                 </div>
