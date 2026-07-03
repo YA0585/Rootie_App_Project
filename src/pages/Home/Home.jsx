@@ -239,11 +239,6 @@ export default function Home({ navBar }) {
                         </p>
                         <p className="hero-sub">전문가의 진단을 받아<br />식물의 정확한 상태를 알아보세요.</p>
                     </div>
-                    <img
-                        className="hero-img"
-                        src="https://placehold.co/200x220/d6eac8/5c9d31?text=🪴"
-                        alt="plant"
-                    />
                 </div>
 
                 {/* CTA */}
