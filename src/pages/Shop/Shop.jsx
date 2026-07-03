@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./Shop.css";
 import ShopTabBar from "../../components/ShopTabBar/ShopTabBar";
 import ShopTop from "../../components/ShopTop/ShopTop";
+import greenhandsImg from "../../assets/greenhands.jpg";
 
 const services = [
     { name: "분갈이", price: "4,000원~", desc: "화분의 사이즈를 기준으로 비용이 계산됩니다. 정확한 비용 측정을 위해 화분의 입구의 지름(외경) ..." },
@@ -149,7 +150,7 @@ const Shop = ({ onBack, onGoToHome, onGoToPrice, onGoToReview }) => {
                         <div className="shop-biz-title">업체소개</div>
                         <div className="shop-biz-date">생성일: 2025년 1월 1일</div>
                     </div>
-                    <img src="https://placehold.co/60x60" alt="업체 로고" className="shop-biz-logo" />
+                    <img src={greenhandsImg} alt="업체 로고" className="shop-biz-logo" />
                 </div>
                 <div className="shop-biz-cert">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">

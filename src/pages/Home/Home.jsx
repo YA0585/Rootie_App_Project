@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "./Home.css";
+import greenhandsImg from "../../assets/greenhands.jpg";
 
 // ── Icons (inline SVG helpers) ──────────────────────────────────────────────
 const IconBell = () => (
@@ -68,7 +69,7 @@ const SHOPS = [
         reviews: 120,
         responseRate: 89,
         isOpen: false,
-        avatar: "https://placehold.co/80x80/b9e3a4/5c9d31?text=🌿",
+        avatar: greenhandsImg,
     },
     {
         id: 2,
@@ -78,7 +79,7 @@ const SHOPS = [
         reviews: 120,
         responseRate: 89,
         isOpen: false,
-        avatar: "https://placehold.co/80x80/b9e3a4/5c9d31?text=🌱",
+        avatar: greenhandsImg,
     },
 ];
 

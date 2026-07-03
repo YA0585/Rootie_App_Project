@@ -1,4 +1,5 @@
 import "./ShopTop.css";
+import greenhandsImg from "../../assets/greenhands.jpg";
 
 const BackIcon = () => (
     <svg width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="#2F2F2F" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
@@ -42,10 +43,7 @@ export default function ShopHeader({
     responseRate = 89,
     isOpen = true,
     saved = false,
-    images = [
-        "https://placehold.co/250x250/c8e6a0/4a7c3f?text=🌿",
-        "https://placehold.co/250x250/b5d990/3d6b34?text=🪴",
-    ],
+    images = [greenhandsImg, greenhandsImg],
     onBack,
     onBookmark,
 }) {
