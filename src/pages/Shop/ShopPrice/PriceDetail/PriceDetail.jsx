@@ -71,7 +71,7 @@ const sizeOptions = [
     "~40.0 cm (45,000원)",
 ];
 
-export default function PriceDetail({ onBack, onClose }) {
+export default function PriceDetail({ onBack, onClose, onReserve }) {
     const [selectedSize, setSelectedSize] = useState("");
 
     return (
@@ -149,6 +149,7 @@ export default function PriceDetail({ onBack, onClose }) {
                 <button
                     className={`pd-cta-btn ${selectedSize ? "pd-cta-active" : ""}`}
                     disabled={!selectedSize}
+                    onClick={() => selectedSize && onReserve?.()}
                 >
                     {selectedSize ? `${selectedSize.split("(")[1]?.replace(")", "")} 예약하기` : "사이즈를 선택해 주세요"}
                 </button>
