@@ -56,13 +56,10 @@ export default function Chat({ onBack }) {
     const pushBot = (msg) =>
         setMessages((prev) => [...prev, { id: nextId(), ...msg }]);
 
-    // 웰컴 답변 → 문진 플로우 시작
-    const startSurvey = (text) => {
+    // 웰컴에서 "네" 등을 누르면 → Figma 438:1863 처럼 봇 질문으로 대화 시작
+    const startSurvey = () => {
         setStarted(true);
-        setMessages([{ id: nextId(), kind: "user", text }]);
-        setTimeout(() => {
-            pushBot({ kind: "bot", text: QUESTIONS[0].prompt({}) });
-        }, 600);
+        setMessages([{ id: nextId(), kind: "bot", text: QUESTIONS[0].prompt({}) }]);
     };
 
     // 현재 문진 단계 답변 처리
@@ -103,7 +100,7 @@ export default function Chat({ onBack }) {
         if (!text.trim()) return;
         setInputValue("");
         const t = text.trim();
-        if (!started) startSurvey(t);
+        if (!started) startSurvey();
         else if (step < QUESTIONS.length) answerStep(t);
         else if (!confirmed) sendConfirm();
         else setMessages((prev) => [...prev, { id: nextId(), kind: "user", text: t }]);

@@ -212,9 +212,11 @@
 /* ── Quick replies ─────────────────────────────────────────────────────── */
 .chat-page .quick-replies {
     display: flex;
+    flex-wrap: nowrap;
     gap: 8px;
     padding: 8px 20px 12px;
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
     flex-shrink: 0;
 }
 
@@ -223,6 +225,7 @@
 }
 
 .chat-page .quick-chip {
+    flex-shrink: 0;
     padding: 10px 15px;
     border-radius: 20px;
     border: 1px solid var(--c-border);
