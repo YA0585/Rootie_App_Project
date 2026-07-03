@@ -128,19 +128,9 @@ const Shop = ({ onBack, onGoToHome, onGoToPrice, onGoToReview }) => {
                     <span className="shop-detail-main">서울시 강남구 논현로</span>
                 </div>
 
-                {/* Map Placeholder */}
+                {/* Map */}
                 <div className="shop-map">
                     <img src={shopMapImg} alt="지도" className="shop-map-bg" />
-                    <div className="shop-map-label">
-                        <span className="shop-map-pin-label">강남역사거리</span>
-                        <div className="shop-map-pin-tail" />
-                    </div>
-                    <div className="shop-map-marker">
-                        <svg width="28" height="36" viewBox="0 0 28 36" fill="none">
-                            <path d="M14 0C6.27 0 0 6.27 0 14c0 9.33 14 22 14 22S28 23.33 28 14C28 6.27 21.73 0 14 0z" fill="#6AB43A" />
-                            <circle cx="14" cy="14" r="5" fill="white" />
-                        </svg>
-                    </div>
                 </div>
             </section>
 
