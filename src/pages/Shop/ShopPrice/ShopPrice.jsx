@@ -3,6 +3,7 @@ import "./ShopPrice.css";
 import ShopTabBar from "../../../components/ShopTabBar/ShopTabBar";
 import ShopTop from "../../../components/ShopTop/ShopTop";
 import PriceDetail from "./PriceDetail/PriceDetail";
+import greenhandsImg from "../../../assets/greenhands.jpg";
 
 const StarIcon = ({ size = 14 }) => (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="#6AB43A" stroke="none">
@@ -34,21 +35,21 @@ const priceItems = [
         name: "분갈이",
         price: "4,000원~",
         description: "화분의 사이즈를 기준으로 비용이 계산됩니다. 정확한 비용 측정을 위해 화분의 입구의 지름(외경) ...",
-        img: "https://placehold.co/98x98/c8e6a0/4a7c3f?text=🌿",
+        img: greenhandsImg,
     },
     {
         id: 2,
         name: "영양제",
         price: "4,000원~",
         description: "선택하신 옵션 및 구성에 따라 가격이 달라질 수 있습니다. 상세 페이지에서 정확한 가격을 확인해 주세요.",
-        img: "https://placehold.co/98x98/b5d990/3d6b34?text=🪴",
+        img: greenhandsImg,
     },
     {
         id: 3,
         name: "가지치기",
         price: "10,000원~",
         description: "10컷 이상을 기준으로 금액이 측정됩니다. 상세페이지에서 정확한 가격을 확인해주세요.",
-        img: "https://placehold.co/98x98/a8d578/2e5a1f?text=✂️",
+        img: greenhandsImg,
     },
 ];
 
