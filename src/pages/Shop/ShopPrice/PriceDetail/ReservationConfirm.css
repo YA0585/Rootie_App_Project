@@ -1,0 +1,197 @@
+/* 예약 확인 화면 (Figma 541:13920) */
+.rc-root {
+    width: 430px;
+    max-width: 100%;
+    height: 100dvh;
+    margin: 0 auto;
+    background: #f5f5f4;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Noto Sans KR', sans-serif;
+    position: relative;
+    overflow: hidden;
+}
+
+.rc-root * {
+    box-sizing: border-box;
+}
+
+/* Header */
+.rc-header {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 60px 19px 20px 16px;
+    background: #f5f5f4;
+    border-bottom: 1px solid #e7e5e4;
+}
+
+.rc-header-back,
+.rc-header-close {
+    border: none;
+    background: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 0;
+}
+
+.rc-header-title {
+    flex: 1;
+    margin-left: 12px;
+    font-size: 24px;
+    font-weight: 500;
+    color: #2a2a22;
+    letter-spacing: -0.24px;
+}
+
+/* Content */
+.rc-scroll {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.rc-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+
+.rc-field {
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid #e7e5e4;
+    border-radius: 10px;
+    padding: 13px 20px;
+    display: flex;
+    align-items: center;
+}
+
+.rc-field--row {
+    gap: 31px;
+    padding-left: 21px;
+}
+
+.rc-field-text {
+    font-size: 18px;
+    font-weight: 500;
+    color: #2f2f2f;
+    line-height: 28px;
+    letter-spacing: -0.36px;
+    white-space: nowrap;
+}
+
+.rc-divider {
+    width: 100%;
+    height: 1px;
+    background: #2a2a22;
+    margin: 0;
+}
+
+.rc-amount {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.rc-amount-label {
+    font-size: 20px;
+    font-weight: 500;
+    color: #000000;
+    line-height: 32px;
+}
+
+.rc-amount-value {
+    font-size: 20px;
+    font-weight: 500;
+    color: #6ab43a;
+    line-height: 32px;
+}
+
+/* Notice card */
+.rc-notice {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.rc-notice-head {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.rc-notice-title {
+    font-size: 18px;
+    font-weight: 500;
+    color: #000000;
+    line-height: 28px;
+    letter-spacing: -0.36px;
+}
+
+.rc-notice-body {
+    background: #e7e5e4;
+    border-radius: 10px;
+    padding: 16px 15px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #000000;
+    line-height: 20px;
+    letter-spacing: -0.28px;
+}
+
+.rc-confirm-check {
+    align-self: flex-end;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 0;
+    font-size: 18px;
+    font-weight: 500;
+    color: #d9d9d9;
+    letter-spacing: -0.36px;
+    transition: color 0.15s;
+}
+
+.rc-confirm-check--on {
+    color: #6ab43a;
+}
+
+/* Footer */
+.rc-footer {
+    flex-shrink: 0;
+    height: 120px;
+    background: #f5f5f4;
+    border-top: 1px solid #e7e5e4;
+    padding: 22px 20px;
+}
+
+.rc-cta {
+    width: 100%;
+    height: 50px;
+    border: none;
+    border-radius: 10px;
+    background: #d9d9d9;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: -0.16px;
+    cursor: not-allowed;
+    transition: background 0.15s;
+}
+
+.rc-cta--active {
+    background: #6ab43a;
+    cursor: pointer;
+}

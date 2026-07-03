@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./PriceDetail.css";
 import SizeSelect from "../../../../components/SizeSelect/SizeSelect";
+import ReservationConfirm from "./ReservationConfirm";
 
 const BackIcon = () => (
     <svg width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
@@ -73,6 +74,23 @@ const sizeOptions = [
 
 export default function PriceDetail({ onBack, onClose }) {
     const [selectedSize, setSelectedSize] = useState("");
+    const [showReservation, setShowReservation] = useState(false);
+
+    // "~15.0 cm (6,000원)" → 사이즈 "~15.0 cm", 금액 "6,000원"
+    const sizeLabel = selectedSize ? selectedSize.split(" (")[0] : "";
+    const priceLabel = selectedSize ? selectedSize.split("(")[1]?.replace(")", "") : "";
+
+    if (showReservation) {
+        return (
+            <ReservationConfirm
+                service="분갈이"
+                size={sizeLabel}
+                price={priceLabel}
+                onBack={() => setShowReservation(false)}
+                onClose={onClose}
+            />
+        );
+    }
 
     return (
         <div className="pd-root">
@@ -149,8 +167,9 @@ export default function PriceDetail({ onBack, onClose }) {
                 <button
                     className={`pd-cta-btn ${selectedSize ? "pd-cta-active" : ""}`}
                     disabled={!selectedSize}
+                    onClick={() => selectedSize && setShowReservation(true)}
                 >
-                    {selectedSize ? `${selectedSize.split("(")[1]?.replace(")", "")} 예약하기` : "사이즈를 선택해 주세요"}
+                    {selectedSize ? `${priceLabel} 예약하기` : "사이즈를 선택해 주세요"}
                 </button>
             </div>
         </div>
