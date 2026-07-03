@@ -192,6 +192,124 @@
     }
 }
 
+/* ── 추천 업체 카드 (Figma 438:2023) ──────────────────────────────────── */
+.chat-page .shop-card {
+    flex-shrink: 0;
+    background: var(--c-field);
+    border: 1px solid var(--c-border);
+    border-radius: 20px;
+    padding: 20px;
+    width: 340px;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.chat-page .shop-card__meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--c-text);
+    white-space: nowrap;
+}
+
+.chat-page .shop-card__meta .shop-card__star {
+    margin-left: -8px;
+}
+
+.chat-page .shop-card__main {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.chat-page .shop-card__avatar {
+    width: 54px;
+    height: 54px;
+    border-radius: 12px;
+    border: 1px solid #edeee8;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.chat-page .shop-card__info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+    flex: 1;
+}
+
+.chat-page .shop-card__name-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.chat-page .shop-card__name {
+    font-size: 18px;
+    font-weight: 700;
+    color: #2a2a22;
+    letter-spacing: -0.18px;
+}
+
+.chat-page .shop-card__badge {
+    flex-shrink: 0;
+    background: #e8f5e0;
+    color: #5f8f65;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 18px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+}
+
+.chat-page .shop-card__loc {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 14px;
+    color: #2a2a22;
+    letter-spacing: -0.14px;
+}
+
+.chat-page .shop-card__actions {
+    display: flex;
+    gap: 8px;
+}
+
+.chat-page .shop-card__btn {
+    flex: 1;
+    height: 33px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -0.14px;
+    cursor: pointer;
+    transition: opacity 0.15s;
+}
+
+.chat-page .shop-card__btn--outline {
+    background: #ffffff;
+    border: 1px solid #000000;
+    color: #000000;
+}
+
+.chat-page .shop-card__btn--primary {
+    background: var(--c-green);
+    border: 1px solid var(--c-green);
+    color: #f7f6f2;
+}
+
+.chat-page .shop-card__btn:hover {
+    opacity: 0.85;
+}
+
 /* ── 전문가 진단 결과 카드 (Figma 438:1984) ───────────────────────────── */
 .chat-page .diagnosis-card {
     flex-shrink: 0;

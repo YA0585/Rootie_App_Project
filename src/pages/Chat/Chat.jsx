@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./Chat.css";
 import summaryPlant from "../../assets/monstera.jpg";
+import greenhandsImg from "../../assets/greenhands.jpg";
 
 // ── Scripted questionnaire flow ──────────────────────────────────────────────
 // 웰컴(Figma 438:1064) → 문진 질문(438:1863) → 문진 요약 결과 카드 순으로 이어진다.
@@ -36,6 +37,16 @@ const QUESTIONS = [
 const SUMMARY_ROWS = ["식물", "증상", "급수", "햇빛", "증상기간"];
 const CONFIRM_TEXT = "이 내용으로 전문가에게 전달해줘";
 const WELCOME_REPLIES = ["네", "아니요", "잘 모르겠어요", "다른게 궁금해요"];
+
+// 추천 업체 (Figma 438:2023)
+const SHOP = {
+    name: "그린핸즈 식물 케어",
+    location: "서울시 서초구 00동",
+    rating: "4.9",
+    reviews: "리뷰 120건",
+    responseRate: "응답률 89%",
+    isOpen: true,
+};
 
 // 전문가 진단 결과 (Figma 438:1984)
 const DIAGNOSIS = {
@@ -114,7 +125,8 @@ export default function Chat({ onBack }) {
                 ...prev.filter((m) => m.kind !== "diagnosing"),
                 { id: nextId(), kind: "bot", text: "전문가 진단이 도착했어요." },
                 { id: nextId(), kind: "diagnosis" },
-                { id: nextId(), kind: "botText", text: "업체로 직접 방문하시면 해결해드릴수있습니다. 업체 정보를 확인해보세요!" },
+                { id: nextId(), kind: "botText", text: "업체로 방문하시면 해결해드릴수있어요. 업체 정보를 확인해보세요!" },
+                { id: nextId(), kind: "shopcard" },
             ]);
         }, 2600);
     };
@@ -182,6 +194,42 @@ export default function Chat({ onBack }) {
                                 <span className="diagnosing">
                                     진단중<span className="diag-dots"><span>.</span><span>.</span><span>.</span></span>
                                 </span>
+                            </div>
+                        );
+                    }
+                    if (msg.kind === "shopcard") {
+                        return (
+                            <div key={msg.id} className="bubble-row bot">
+                                <div className="shop-card">
+                                    <div className="shop-card__meta">
+                                        <span className="shop-card__rating">{SHOP.rating}</span>
+                                        <svg className="shop-card__star" width="14" height="14" viewBox="0 0 16 16" fill="none">
+                                            <path d="M9.2 2.01l1.24 2.48c.17.35.61.68.99.74l2.24.38c1.43.24 1.76 1.28.73 2.31l-1.74 1.75c-.29.3-.45.87-.36 1.28l.5 2.16c.39 1.72-.51 2.38-2.02 1.48l-2.09-1.25c-.38-.22-1-.22-1.39 0l-2.09 1.25c-1.5.9-2.41.23-2.02-1.48l.5-2.16c.09-.41-.07-.98-.36-1.28L1.6 7.92C.57 6.89.9 5.85 2.33 5.61l2.23-.38c.37-.06.82-.39.99-.74L6.78 2.01c.67-1.35 1.76-1.35 2.42 0z" fill="#6AB43A" />
+                                        </svg>
+                                        <span>{SHOP.reviews}</span>
+                                        <span>{SHOP.responseRate}</span>
+                                    </div>
+                                    <div className="shop-card__main">
+                                        <img className="shop-card__avatar" src={greenhandsImg} alt={SHOP.name} />
+                                        <div className="shop-card__info">
+                                            <div className="shop-card__name-row">
+                                                <span className="shop-card__name">{SHOP.name}</span>
+                                                {SHOP.isOpen && <span className="shop-card__badge">영업중</span>}
+                                            </div>
+                                            <div className="shop-card__loc">
+                                                <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                                                    <path d="M9.43 14.56c-.3.28-.71.44-1.13.44s-.83-.16-1.13-.44C4.39 11.94.66 9.01 2.48 4.77 3.46 2.47 5.82 1 8.3 1s4.84 1.47 5.82 3.77c1.81 4.24-1.9 7.18-4.69 9.79z" fill="#6B7280" />
+                                                    <circle cx="8.3" cy="7.3" r="2.45" fill="#fff" />
+                                                </svg>
+                                                <span>{SHOP.location}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="shop-card__actions">
+                                        <button className="shop-card__btn shop-card__btn--outline">업체 정보 보기</button>
+                                        <button className="shop-card__btn shop-card__btn--primary">방문 예약하기</button>
+                                    </div>
+                                </div>
                             </div>
                         );
                     }
