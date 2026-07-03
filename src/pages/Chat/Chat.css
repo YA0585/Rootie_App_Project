@@ -125,15 +125,15 @@
 
 .chat-page .bubble {
     flex-shrink: 0;
-    max-width: 82%;
+    max-width: 100%;
     width: fit-content;
     padding: 10px 20px;
     border-radius: 50px;
     font-size: 18px;
     line-height: 28px;
     letter-spacing: -0.36px;
-    white-space: pre-wrap;
-    word-break: break-word;
+    /* 짧은 질문/답변 말풍선은 한 줄로 (줄바꿈 X) */
+    white-space: nowrap;
 }
 
 .chat-page .bubble-user {
@@ -149,6 +149,10 @@
 
 .chat-page .bubble-bot--block {
     border-radius: 20px;
+    /* 여러 줄 안내 메시지는 줄바꿈 허용 */
+    max-width: 82%;
+    white-space: normal;
+    word-break: break-word;
 }
 
 /* ── 문진 요약 result card ─────────────────────────────────────────────── */
