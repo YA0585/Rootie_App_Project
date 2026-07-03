@@ -53,12 +53,12 @@ const priceItems = [
     },
 ];
 
-export default function ShopPrice({ onBack, onGoToHome, onGoToPrice, onGoToReview, onGoToReservations }) {
+export default function ShopPrice({ onBack, onGoToHome, onGoToPrice, onGoToReview }) {
     const [activeTab, setActiveTab] = useState("가격");
     const [showPriceDetail, setShowPriceDetail] = useState(false);
 
     if (showPriceDetail) {
-        return <PriceDetail onBack={() => setShowPriceDetail(false)} onClose={() => setShowPriceDetail(false)} onReserve={onGoToReservations} />;
+        return <PriceDetail onBack={() => setShowPriceDetail(false)} onClose={() => setShowPriceDetail(false)} />;
     }
 
     return (
